@@ -1,0 +1,33 @@
+p.value.druki {
+  background-color: #EEE;
+  padding-top: 1px !important;
+  
+}
+p.value.druki.empty {
+  height: 0;
+  background-color: #FFF;
+}
+p.value.druki .buttons {
+left:-45px;
+top:-2px;
+}
+p.value.druki.empty ul {margin-top: 0;}
+p.value.druki ul {clear: both; margin-top: 25px;}
+
+p.value.druki li.druk {
+  background-color: #FFF;
+  padding: 3px 4px 1px;
+  overflow: auto;
+  margin: 4px 0;
+  -moz-border-radius: 3px;
+  border: 1px solid #CCC;
+}
+p.value.druki li.druk .docthumbs_a, .lightpicker.druki .item .docthumbs_a {float: left;}
+p.value.druki li.druk .content, .lightpicker.druki .item .content {margin-left: 85px;}
+p.value.druki li.druk .tytul, .lightpicker.druki .item .tytul {margin-top: 5px; color: #555;}
+p.value.druki li.druk .data, .lightpicker.druki .item .data {color:#777777; margin-bottom:3px; margin-top:-15px; text-align:right;}
+
+.lightpicker.poslowie-partie .item {
+  margin: 2px 0;
+  padding: 5px;
+}

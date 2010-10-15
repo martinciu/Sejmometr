@@ -1,0 +1,50 @@
+h1 {font-weight: normal;}
+h2 {font-weight: normal; font-size: 14px; color: #58595B;}
+
+._BOX_HEADER h1 {float: left; font-size: 18px; width: 250px;}
+._BOX_HEADER h2 {float: left; margin-right: 5px; position: relative; top: 2px;}
+._BOX_HEADER select {position: relative; top: -1px;}
+
+.p {padding-bottom: 20px; border-bottom: 1px solid #CCC; margin: 25px 10px;}
+.p:first-child {margin-top: 10px;}
+.p:last-child {border-bottom: none; margin-bottom: 0;}
+.p .dokument {float: left;}
+.p .dokument.lb {position: absolute;}
+.p .tytul {font-size: 15px;}
+.p .tytul a {color: #0083B8;}
+.p .pc {margin-left: 100px; min-height: 102px;}
+.p .autorstatus {margin-top: 7px;}
+.p .autorstatus span.label {color:#555; display:block; float:left; margin-right:5px; text-align:right; width:60px; font-weight: bold;}
+.p .opis {margin-top: 10px;}
+
+.filtr {margin-bottom: 10px; text-align: left;}
+.filtr ul {margin-left: 8px;}
+.filtr ul li {line-height: 16px;}
+.filtr ul li.selected span.ilosc {display: none;}
+
+.filtr ul li a.o {color: #58595B; display: block; padding: 2px 0 3px; margin-left: 17px;}
+.filtr ul li a.o:hover {color: #0083D8;}
+.filtr ul li a.o:hover span.ilosc {color: #58595B;}
+.filtr ul li span.ilosc {margin-left: 5px;}
+.filtr .filtruj_btn_cont {text-align: right;}
+
+.mCheckbox {width: 10px; height: 10px; background: url(/g/sprite01.png) no-repeat -71px -22px; display: block; float: left; margin-top: 6px;}
+.mCheckbox.checked {background-position: -81px -22px;}
+.mCheckbox.superchecked {background-position: -91px -22px; cursor: default;}
+
+._PAGINATION {text-align: center; font-size: 15px; margin-top: 1px;}
+._PAGINATION a {padding: 1px 8px; background-color: #E6E6E6; margin: 0 2px; -moz-border-radius: 5px; border-radius: 5px; color: #58595B;}
+._PAGINATION a:hover {color: #0083B8;}
+._PAGINATION a.selected {color: white; background: url(/g/_PAG_BTN_SELECTED_BG.gif) repeat-x 0 0;}
+._PAGINATION a.first {margin-right: 5px;}
+._PAGINATION .separator {color: #777;}
+._PAGINATION .separator.first {margin-right: 7px;}
+._PAGINATION .separator.last {margin-left: 7px;}
+._PAGINATION a.last {margin-left: 5px;}
+
+.total {font-size: 13px; color: #58595B; margin-top: -19px; text-align: right;}
+.wiecejmniej {margin: -16px 0 0 26px;}
+
+#ofensywa {margin-top:25px; background: url("/g/_HEADER_BG.gif") repeat-x scroll 0 -15px transparent; color: white; padding: 4px 5px; -moz-border-radius: 5px; border-radius: 5px; display: block; -moz-box-shadow: 0px 0px 5px #888; -webkit-box-shadow: 0px 0px 5px #888; box-shadow: 0px 0px 5px #888; outline: none;}
+#ofensywa h3 {font-size: 13px;}
+#ofensywa:hover span {text-decoration: underline;}

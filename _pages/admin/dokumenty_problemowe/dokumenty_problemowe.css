@@ -1,0 +1,21 @@
+.mBrowser .list {width: 140px;}
+.mBrowser .item {margin-left: 140px;}
+
+.mBrowser .item .tools {}
+.mBrowser .item .tools a {display: block; margin: 5px;}
+
+.mBrowser .item ul.flags {margin-left:110px; min-height:140px;}
+.mBrowser .item ul.flags li {list-style: disc inside; padding: 5px;}
+.mBrowser .item ul.flags .error {color: #C00;}
+.mBrowser .item ul.flags .ok {color: #060;}
+
+#readers {width: 100%;}
+#readers td {width: 50%; padding: 5px;}
+
+.reader {background-color:#EEE; border:1px dashed #CCC;}
+
+h2.dok_title {text-transform: uppercase;}
+#tools {border-top: 1px solid #CCC; padding: 5px; margin-top: 8px;}
+h4 {margin-top: 10px;}
+
+.dok_buttons {text-align: center; border-top: 1px solid #CCC; margin-top: 10px; padding-top: 10px;}

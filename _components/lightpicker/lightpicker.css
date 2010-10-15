@@ -1,0 +1,12 @@
+.lightpicker {}
+.lightpicker input.input {width: 100%;}
+.lightpicker .results {background-color: #EEE; border: 1px solid #CCC; height: 339px; -moz-border-radius-bottomleft: 5px; -moz-border-radius-bottomright: 5px; border-top: none; padding: 3px; overflow: auto;}
+.lightpicker .item{
+  background-color: #FFF;
+  padding: 3px 4px 1px;
+  overflow: auto;
+  margin: 4px 0;
+  -moz-border-radius: 3px;
+  border: 1px solid #CCC;
+}
+.lightpicker .item:hover {background-color: #FFE; cursor: pointer;}

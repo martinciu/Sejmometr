@@ -1,0 +1,8 @@
+.mBrowser .list {width: 200px;}
+.mBrowser .item {margin-left: 200px;}
+
+.mBrowser .item .tytul {margin-bottom: 10px;}
+
+.mBrowser .item .docthumbs_a {margin: 5px 7px;}
+.mBrowser .item .docthumbs_a img {border-width: 2px;}
+.mBrowser .item .docthumbs_a.selected img {border-color: #3B5998;}

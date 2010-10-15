@@ -1,0 +1,24 @@
+table td {text-align: left;}
+#oportalu_table {width: 100%;}
+#oportalu_table .tdl {width: 70%;}
+#oportalu_table .tdr {width: 30%; text-align: center;}
+.tdl {font-size: 13px;}
+.tdl p {margin: 8px 0;}
+.tdl p.smaller {margin-top: -7px; color: #888; font-size: 11px;}
+.tdl p:first-child {margin-top: 0;}
+
+#logotypy {height: 74px;}
+#logotypy a {margin: 0 25px; outline: none;}
+#logotypy a:first-child {margin-left: 0;}
+#logotypy a:last-child {margin-right: 0;}
+
+#pobierz_logo {margin-top: 15px;}
+
+#funkcje_ul li {list-style:disc outside none; margin-left:30px;}
+#adres_div {-moz-border-radius:5px; border: 5px; background-color:#EEE; font-size:12px; margin:30px 0; padding:5px 8px; text-align: left;}
+#adres_div p {margin: 0;}
+#adres_div p.smaller {color: #666;}
+#form_div {margin-top: 5px;}
+
+#adres_input {margin-right: 5px;}
+#kredyty {border-top:1px solid #CCCCCC; font-size:12px; margin-top:20px; padding-top:10px; text-align:center;}

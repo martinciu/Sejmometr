@@ -1,0 +1,12 @@
+.mBrowser .list {width: 33%;}
+.mBrowser .item {margin-left: 33%;}
+
+.mBrowser .item .tools {}
+.mBrowser .item .tools a {display: block; margin: 5px;}
+
+.mBrowser .item ul.flags {margin-left:110px; min-height:140px;}
+.mBrowser .item ul.flags li {list-style: disc inside; padding: 5px;}
+.mBrowser .item ul.flags .error {color: #C00;}
+.mBrowser .item ul.flags .ok {color: #060;}
+
+.mBrowser .item .title_bar {margin-bottom: 15px;}

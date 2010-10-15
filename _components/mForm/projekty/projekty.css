@@ -1,0 +1,25 @@
+p.value.items {
+  background-color: #EEE;
+  padding-top: 1px !important;
+  
+}
+p.value.items.empty {
+  height: 0;
+  background-color: #FFF;
+}
+p.value.items .buttons {
+left:-45px;
+top:-2px;
+}
+p.value.items.empty ul {margin-top: 0;}
+p.value.items ul {clear: both; margin-top: 25px;}
+
+p.value.items li.item {
+  background-color: #FFF;
+  padding: 3px 4px 1px;
+  overflow: auto;
+  margin: 4px 0;
+  -moz-border-radius: 3px;
+  border: 1px solid #CCC;
+}
+]p.value.items li.item .tytul, .lightpicker.items .item .tytul {margin-top: 5px; color: #555;}

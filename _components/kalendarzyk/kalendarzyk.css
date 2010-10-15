@@ -1,0 +1,6 @@
+.kalendarzyk {width: 37px; font-weight: bold;}
+.kalendarzyk .miesiac, .kalendarzyk .rok {color: white; font-size: 74%; height: 11px; line-height: 11px;}
+.kalendarzyk .miesiac {background: url(/g/sprite01.png) repeat-x -71px 0;}
+.kalendarzyk .rok {background: url(/g/sprite01.png) repeat-x -71px -11px;}
+.kalendarzyk .dzien {background-color: #E6E6E6; color: #666; font-size: 122%; padding: 0 0 1px; line-height: 14px;}
+.kalendarzyk p {text-align: center;}

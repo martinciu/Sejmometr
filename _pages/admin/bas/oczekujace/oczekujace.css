@@ -1,0 +1,5 @@
+.mBrowser .list {width: 200px;}
+.mBrowser .item {margin-left: 200px;}
+
+.mBrowser .item .tytul {margin: 15px 0;}
+.mBrowser .item .druk_html {background-color: #EEE; padding: 10px; -moz-border-radius: 10px; margin-bottom: 5px;}

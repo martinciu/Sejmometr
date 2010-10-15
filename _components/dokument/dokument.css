@@ -1,0 +1,22 @@
+.dokument {outline: none; display: block;}
+.dokument img.d {-moz-box-shadow: 0px 0px 5px #CCC; -webkit-box-shadow: 0px 0px 5px #CCC; box-shadow: 0px 0px 5px #CCC; border: 1px solid #CCC; background: white; z-index: 0;}
+.dokument.a img.d {}
+.dokument.b img.d {width: 170px; height: 220px;}
+.dokument.c img.d {}
+.dokument.d img.d {width: 75px; height: 93px;}
+.dokument.e img.d {}
+
+.dokument .overlay_bg {background-color: #EEE; opacity: .7; z-index: 1; filter:alpha(opacity=70);}
+.dokument .overlay {text-align: left; z-index: 2; position: relative;}
+.dokument .overlay .str {text-align: right; color: #58595B;}
+.dokument .overlay img.lupa {background: url(/g/sprite01.png) no-repeat;}
+
+
+.dokument.b {width: 172px; height: 222px;}
+
+
+.dokument.d {width: 77px; height: 95px;}
+.dokument .overlay_bg {height: 25px; margin-top: -28px;}
+.dokument .overlay {margin-top: -24px; padding: 0 2px;}
+.dokument .overlay img.lupa {width: 22px; height: 22px; background-position: -71px -31px;}
+.dokument .overlay .str {margin-right:2px; margin-top:-18px;}

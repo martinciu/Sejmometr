@@ -1,0 +1,18 @@
+.mBrowser .list {width: 150px;}
+.mBrowser .item {margin-left: 150px;}
+
+.mBrowser .item .tools {}
+.mBrowser .item .tools a {display: block; margin: 5px;}
+
+.mBrowser .item ul.flags {margin-left:110px; min-height:140px;}
+.mBrowser .item ul.flags li {list-style: disc inside; padding: 5px;}
+.mBrowser .item ul.flags .error {color: #C00;}
+.mBrowser .item ul.flags .ok {color: #060;}
+
+#_COL_RIGHT {padding-right: 0;}
+#browser {width: 50%; float: left;}
+#scribd_cont {width: 50%; overflow: auto;}
+#scribd {margin-left: 10px; text-align: center; background-color:#EEE; border:1px dashed #CCC; font-size:13px; overflow: hidden;}
+#scribd .msg {position: relative; top: 50%; margin-top: -8px;}
+
+.druk_title_bar {background-color: #EEE; padding: 5px 8px; -moz-border-radius: 5px; margin-bottom: 10px;}

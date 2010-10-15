@@ -1,0 +1,24 @@
+html {background-color: white;}
+body {
+	line-height: 1;
+	font-family: Arial;
+	color: #555;
+}
+a {text-decoration: none; color: #555;}
+a:visited {color: #555;}
+a:hover {color: #55F;}
+#container {margin: auto; margin-top: 70px; width: 318px;}
+img {border: none;}
+#logo {width: 318px; height: 259px;}
+#batory {width: 54px; height: 40px;}
+.pa {font-size: 24px; text-align: center; margin-top: 15px;}
+.pb {text-align: justify; font-size: 15px; margin-top: 5px; margin-bottom: 20px;}
+.pc {font-size: 11px;}
+.pc.l {text-align: left;}
+.pc.r {margin-top: -41px; text-align: right;}
+#formDiv {margin-bottom: 35px; background-color: #EEE; -moz-border-radius: 5px; border-radius: 5px; padding: 8px;}
+#formDiv p {text-align: center;}
+#inp {width: 100%; margin-bottom: 5px;}
+.pd {font-size: 12px; text-align: left !important; margin-bottom: 3px;}
+.pe {font-size: 10px;}
+.inp_cont {padding-right: 6px;}

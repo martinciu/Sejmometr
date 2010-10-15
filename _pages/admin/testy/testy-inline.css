@@ -1,0 +1,8 @@
+{literal}
+  #results {font-family: monospace; background-color: #E5E5E5; -moz-border-radius: 3px; height: 400px; overflow: auto; -moz-border-radius-topleft: 0; -moz-border-radius-topright: 0;}
+  #results p {padding: 3px; }
+  #results p:hover {background-color: white;}
+  
+  .progress_bar {background-color: #3B5998; width: 0; height: 1px;}
+  .progress_bar.top {margin-top: 5px;}
+{/literal}

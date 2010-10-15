@@ -1,0 +1,17 @@
+.mBrowser .list {width: 150px;}
+.mBrowser .item {margin-left: 150px;}
+
+#_COL_RIGHT {padding-right: 0;}
+#browser {width: 57%; float: left;}
+#side_div_cont {width: 43%; overflow: auto;}
+#side_div {margin-left: 10px; text-align: left; background-color:#EEE; border:1px dashed #CCC; font-size:13px; overflow: auto; padding: 10px;}
+#side_div .msg {position: relative; top: 50%; margin-top: -8px;}
+
+#side_div ._druk {-moz-border-radius:3px; background-color:#FF3; cursor:pointer; padding:0 5px;}
+
+.mForm p.value {margin-left: 50px;}
+.mForm label.label {width: 50px;}
+
+#duplikaty_table {width: 100%;}
+#duplikaty_table td, #duplikaty_table th {border: 1px solid #CCC; text-align: center; padding: 3px; width: 1%;}
+#duplikaty_table th {font-weight: bold;}

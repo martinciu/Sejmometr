@@ -1,0 +1,7 @@
+.mBrowser .list {width: 250px;}
+.mBrowser .item {margin-left: 250px;}
+
+#punkty_table {width: 100%; margin-top: 10px; border-top: 1px solid #CCC;}
+#punkty_table td {width: 50%;}
+#punkty_table a {display: block; margin: 15px 5px; color: #333; text-decoration: none;}
+#punkty_table a:hover {color: blue;}

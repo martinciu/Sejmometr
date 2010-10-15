@@ -1,0 +1,8 @@
+{literal}
+  #login_box {width: 400px; border: 1px solid #CCC; padding: 40px 20px 20px; margin: 70px auto; background-color: #EEE;}
+  #login_box .row {padding: 5px 0;}
+  #login_box .row.error {color: #F00;}
+  #login_box .row.separator {border-top: 1px solid #CCC; margin-top: 10px; padding-top: 15px;}
+  #login_box label.fortext {display:block; float:left; margin-right:5px; margin-top:3px; text-align:right; width:79px;}
+  #login_box label.forcheckbox {margin-left: 5px;}
+{/literal}

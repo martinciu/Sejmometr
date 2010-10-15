@@ -1,0 +1,1 @@
+{$M.PAGE_HTML}

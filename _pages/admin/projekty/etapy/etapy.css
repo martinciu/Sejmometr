@@ -1,0 +1,67 @@
+.mBrowser .list {width: 150px;}
+.mBrowser .item {margin-left: 150px;}
+
+.inner_title_bar .buttons {margin-top: -15px; text-align: right;}
+
+#_COL_RIGHT {padding-right: 0;}
+#browser {width: 50%; float: left;}
+#side_div_cont {width: 50%; overflow: auto;}
+#side_div {margin-left: 10px; text-align: left; background-color:#EEE; border:1px dashed #CCC; font-size:13px; overflow: auto; padding: 10px;}
+#side_div .msg {position: relative; top: 50%; margin-top: -8px;}
+
+#side_div .link {-moz-border-radius:5px; background-color:#FF3; cursor:pointer; padding:0 5px; color: #333; font-weight: bold; text-decoration: none; border: 1px solid #AAA;}
+#side_div .link.x {background-color: #8F8;}
+#side_div .link.x.y {background-color: #BDF; cursor: default;}
+#side_div .invalidlink {-moz-border-radius:5px; background-color:#F88; padding:0 5px;}
+
+
+#projekt .tytul {border-top:1px solid #CCC; margin-top:4px; padding-top:3px;}
+#typ_span {font-weight: bold;}
+
+#elementy_div {margin-left: 10px; margin-bottom: 5px;}
+#elementy_table {width: 100%;}
+#elementy_table td {width: 33.33%; padding: 0 3px 2px 3px;}
+#elementy_table td p.tytul {text-align: center;}
+#elementy_table td:first-child {padding-left: 0;}
+#elementy_table td:last-child {padding-right: 0;}
+#elementy_table td ul {background-color: #EAEAFF; -moz-border-radius: 4px; overflow: auto; border: 1px solid #CCC; min-height: 75px;}
+#elementy_table td ul li {background-color: #FFF; padding: 2px; margin: 1px 3px; cursor: pointer; border: 1px solid #CCC;}
+#elementy_table td ul li.x {background-color: #AFA;}
+#elementy_table td ul li.x:hover {background-color: #AFA;}
+#elementy_table td ul li:hover {background-color: #FFE;}
+#elementy_table td ul li:first-child {-moz-border-radius-topleft: 3px; -moz-border-radius-topright: 3px; margin-top: 3px;}
+#elementy_table td ul li:last-child {-moz-border-radius-bottomleft: 3px; -moz-border-radius-bottomright: 3px; margin-bottom: 3px;}
+#elementy_table td ul li p.t {font-weight: bold;}
+#elementy_table td ul li.pp p.t {font-style: italic;}
+#elementy_table td ul li p.o {font-size: 85%;}
+
+span.subt {color: #888;}
+
+#etapy {-moz-border-radius: 5px; background-color: #EAEAFF; padding: 0 4px;}
+
+#etapy li {overflow: hidden;}
+
+#etapy li {background-color: #FFF; padding: 3px 4px 1px; margin: 4px 0; -moz-border-radius: 3px; border: 1px solid #CCC; -moz-user-select: none; cursor: move;}
+#etapy li:hover {background-color: #FFE !important;}
+#etapy li.punkt h4 {cursor: pointer;}
+#etapy li.punkt h4 span {color: red;}
+#etapy li .docthumbs_a {float: left;}
+#etapy li .content {margin-left: 85px;}
+#etapy li .tytul {margin-top: 3px; color: #555; font-size: 85%; margin-bottom: 2px; border-top: 1px solid #EEE;}
+#etapy li .tytul.skierowanie {font-size: inherit; color: inherit;}
+#etapy li .zalecenie {font-size: 85%; color: #555;}
+#etapy li .data {margin-bottom:3px; margin-top:-15px; text-align:right;}
+#etapy li.pp .data {font-style: italic;}
+#etapy li.date_warning .data {color: #F73;}
+
+
+.lbdane .data {padding: 4px 0;}
+.lbdane .data .field {margin: 15px 0; text-align: center;}
+.lbdane .data .field:first-child {margin-top: 0;}
+.lbdane .data .field:last-child {margin-bottom: 0;}
+.lbdane .data .field .label {font-size: 90%; color: #888;}
+.lbdane .data .field .value {}
+.lbdane .buttons {text-align: center; padding-top: 7px; border-top: 1px solid #DDD; margin-top: 10px;}
+.lbdane .buttons a {margin: 1px 15px;}
+.lbdane .status_slowny {background-color: #EEE; text-align: center; padding: 5px; margin: 5px; -moz-border-radius: 5px; height: 48px;}
+.lbdane .sequence {color:#777; font-family:monospace; font-size:125%; margin-top:10px; text-align:center;}
