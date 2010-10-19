@@ -1,0 +1,1 @@
+{box type="vertical-reverted"}

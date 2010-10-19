@@ -1,0 +1,23 @@
+html{color:#58595B;background:white;}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td{margin:0;padding:0;}
+table{border-collapse:collapse;border-spacing:0;font-size:inherit;font:100%;}
+table td{vertical-align: top;}
+fieldset,img{border:0;}
+address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal;}
+li{list-style:none;}
+caption,th{text-align:left;}
+q:before,q:after{content:'';}
+abbr,acronym{border:0;font-variant:normal;}
+sup{vertical-align:text-top;}
+sub{vertical-align:text-bottom;}
+legend{color:#000;}
+del,ins{text-decoration:none;}
+input,textarea,select{font:11px "lucida grande",tahoma,verdana,arial,sans-serif; line-height: 1.4em;}
+body {font-family: tahoma,"lucida grande",verdana,arial,sans-serif; font-size: 12px;}
+pre,code,kbd,samp,tt{font-family:monospace;*font-size:108%;line-height:100%;}
+a,a:hover,a:visited,a:active,span.a{border: none; text-decoration: none; color: #0083B8;}
+input{-moz-border-radius: 3px; -webkit-border-radius: 3px;}
+input[type=text], input[type=password] {width: 250px; padding: 1px 3px 0 3px;}
+h1 {font-weight: normal;}
+h2 {font-weight: normal; font-size: 14px; color: #58595B;}
+body {padding: 5px;}

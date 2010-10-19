@@ -1,0 +1,15 @@
+h1 a._BTN {font-size: 12px; position: relative; top: -2px;}
+
+#glowny_post {padding-right: 10px;}
+#glowny_post h2 {font-size: 16px;}
+#glowny_post .admin_buttons {padding: 5px 0;}
+#glowny_post .info {font-size: 11px; margin-top: 1px;}
+#glowny_post .opis {font-size: 13px; margin: 10px 0 18px;}
+#glowny_post .tresc {font-size: 13px;}
+
+#ostatnie_posty h3 {font-weight: normal; margin-bottom: 5px;}
+#ostatnie_posty .post {border-bottom: 1px solid #BBB; padding: 10px 0;}
+#ostatnie_posty .post:last-child {border-bottom: none;}
+#ostatnie_posty .tytul {}
+#ostatnie_posty .info {font-size: 11px; margin-top: 1px;}
+#ostatnie_posty .opis {margin-top: 3px;}

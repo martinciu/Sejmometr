@@ -1,0 +1,1 @@
+<h1><a href="/blog">Blog</a>{if $can_manage} <a href="/blog/nowy_post" class="_BTN orange">Nowy post</a>{/if}</h1>
