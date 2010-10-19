@@ -43,6 +43,31 @@
 	<div class="_BOX_FOOTER">
 	  '.$parts['footer'].'
 	</div></div>';
+	
+	  } elseif( $type=='vertical-reverted' ) {
+             
+	    echo '<div class="_BOX _VERTICAL"><div class="_BOX_HEADER">'.$parts['header'].'</div>
+	<table class="_BOX_TABLE" cellpadding="0" cellspacing="0" border="0">
+	  <tr class="_SHADOW">
+	    <td class="_SHADOW _WHITE_TOP">&nbsp;</td>
+	    <td class="_SHADOW _GREY_TOP">&nbsp;</td>
+	  </tr>
+	  <tr class="_MAIN_TR">
+	    <td class="_RIGHT_TD">
+	      '.$parts['left'].'
+	    </td>
+	    <td class="_LEFT_TD">
+	      '.$parts['right'].'
+	    </td>
+	  </tr>
+	  <tr class="_SHADOW">
+	    <td class="_SHADOW _WHITE_BOTTOM">&nbsp;</td>
+	    <td class="_SHADOW _GREY_BOTTOM">&nbsp;</td>
+	  </tr>
+	</table>
+	<div class="_BOX_FOOTER">
+	  '.$parts['footer'].'
+	</div></div>';
     
     } elseif( $type=='horizontal' ) {
     

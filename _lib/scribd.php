@@ -2,8 +2,8 @@
 
 /* Unofficial Scribd PHP Class library */
 
-$scribd_api_key = "28m456tic45gl1kr4wi9";
-$scribd_secret = "sec-1ow4x3lic4gxr06vj4x2c9zbek"; 
+$scribd_api_key = SCRIBD_API_KEY;
+$scribd_secret = SCRIBD_SECRET; 
 
 class Scribd {
 

@@ -52,7 +52,12 @@ class PAGE extends PATTERN {
 	  
 		$this->NAME = $pathparts['filename'];
 	  $this->META = $this->DB->selectRows("SELECT name, content FROM ".DB_TABLE_meta."");
+    
 
+    // PAGE LIBS
+    $libs = $this->DB->selectValues("SELECT lib FROM ".DB_TABLE_pages_libs." WHERE page='".$this->ID."'");
+    foreach( $libs as $lib ) $this->addLib($lib);    
+    
 		$file = ROOT.'/_lib/mPortal/PAGE-addon.php';
 		if( file_exists($file) ) include $file;
   }
@@ -152,7 +157,7 @@ class PAGE extends PATTERN {
 		
 	}
 	
-	function addLib($lib){
+	function addLib($lib){	  
 	  $parts = parse_url($lib);
 	  $lib = $parts['path'];
 	  $params = $parts['query'];

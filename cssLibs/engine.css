@@ -19,6 +19,8 @@ pre,code,kbd,samp,tt{font-family:monospace;*font-size:108%;line-height:100%;}
 a,a:hover,a:visited,a:active,span.a{border: none; text-decoration: none; color: #0083B8;}
 input{-moz-border-radius: 3px; -webkit-border-radius: 3px;}
 input[type=text], input[type=password] {width: 250px; padding: 1px 3px 0 3px;}
+h1 {font-weight: normal;}
+h2 {font-weight: normal; font-size: 14px; color: #58595B;}
 
 /* GENERAL RULES */
 .lfloat {float: left;}

@@ -1,7 +1,4 @@
-h1 {font-weight: normal;}
-h2 {font-weight: normal; font-size: 14px; color: #58595B;}
-
-._BOX_HEADER h1 {float: left; font-size: 18px; width: 250px;}
+._BOX_HEADER h1 {float: left; width: 250px;}
 ._BOX_HEADER h2 {float: left; margin-right: 5px; position: relative; top: 2px;}
 ._BOX_HEADER select {position: relative; top: -1px;}
 

@@ -84,14 +84,15 @@ var $_MPAGE = Class.create({
     $('_OVERLAY').observe('click', this.onOverlayClick.bind(this));
     this._onInitCallbacks.each(function(callback){callback();});
   },	
-  getServiceParameters: function(arguments){
-    var args = $A(arguments);
+  getServiceParameters: function(args, method){ 
+    var args = $A(args);
     if( args.length==0 ) { return false; }
     
     var service = args[0];
     var params = null;
     var successCallback = null;
     var failCallback = null;
+    var method = (method=='post') ? 'post' : 'get';
     
     switch( args.length ) {
       case 2: {
@@ -116,13 +117,13 @@ var $_MPAGE = Class.create({
     if( failCallback==null ) { failCallback=this._generalFailCallback; }
     var parameters = {'_PID': this.PAGE.ID};
     if( params ) { parameters['_PARAMS'] = Object.toJSON(params); }
-    return {service: service, parameters: parameters, successCallback: successCallback, failCallback: failCallback, method: 'get'};
+    return {service: service, parameters: parameters, successCallback: successCallback, failCallback: failCallback, method: method};
   },
-  service: function(arguments){   
-    this._service( this.getServiceParameters(arguments) );   
+  service: function(args, method){   
+    this._service( this.getServiceParameters(args, method) );   
   },
-  pattern: function(arguments){
-    this._pattern( this.getServiceParameters(arguments) );
+  pattern: function(args){
+    this._pattern( this.getServiceParameters(args) );
   },
   _service: function(params){
     new Ajax.Request('/service/'+params.service, {
@@ -221,8 +222,9 @@ var $_MPAGE = Class.create({
 });
 var $M = new $_MPAGE();
 
-function $SERVICE(){ return $M.service(arguments); }
-function $S(){ return $M.service(arguments); }
+function $SERVICE(){ return $M.service(arguments, 'get'); }
+function $POST_SERVICE(){ return $M.service(arguments, 'post'); }
+function $S(){ return $M.service(arguments, 'get'); }
 function $P(){ return $M.pattern(arguments); }
 function $PATTERN(){ return $M.pattern(arguments); }
 
