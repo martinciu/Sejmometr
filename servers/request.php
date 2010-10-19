@@ -5,6 +5,8 @@
   ));
   $DB = &$M->DB;
   
-  if( $_REQUEST['_SERVICE']!='pobierz_dokument_z_podajnika' && $_REQUEST['_SERVICE']!='build_engines' ) $M->setAccess(2);
+  $free_access_requests = array('pobierz_dokument_z_podajnika', 'build_engines', 'git_hub_sync');
+  
+  if( !in_array($_REQUEST['_SERVICE'], $free_access_requests) ) $M->setAccess(2);
   include( ROOT.'/_requests/'.$_REQUEST['_SERVICE'].'.php' );    
 ?>
