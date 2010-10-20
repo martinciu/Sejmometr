@@ -1,5 +1,5 @@
 <?
-  return $this->DB->selectValues("SELECT id FROM `druki` WHERE tempA=0 AND `typ_id`=7 AND autorA_id='Rzad'");
+  return $this->DB->selectValues("SELECT id FROM `projekty` WHERE data_sprawdzenia='0000-00-00 00:00:00'");
 
   // return $this->DB->selectValues("SELECT id FROM `dokumenty` WHERE _temp_obraz='0'");
   

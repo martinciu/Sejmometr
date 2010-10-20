@@ -19,16 +19,22 @@ var Druk = Class.create({
       }
     }
     
+    
+    var numery = $A();
+		$$('#druk .tytul .link').each( function(span){ this.push( span.readAttribute('numer') ) }.bind(numery) );
+    
     var fields = $A();
     fields.push({name: 'data', label: 'Data', type: 'date', value: this.data.data, suggestion: data_suggestion});
-    fields.push({name: 'projekty', label: 'Projekty', type: 'projekty', value: this.data.projekty});
+    fields.push({name: 'projekty', label: 'Projekty', type: 'projekty', value: this.data.projekty, suggestion: numery});
+    fields.push({name: '', label: 'Projekty (Sejm)', type: 'projekty', value: this.data.projekty_});
   
     
-    this.form = new mForm('druk_form', fields, {activateFirstInvalid: true});
-    
-    
-    
+    this.form = new mForm('druk_form', fields, {activateFirstInvalid: true});    
     this.form.activateFirstInvalid();
+    
+    
+    this.form.fields[2].div.addClassName('disabled').down('.buttons').hide();
+    
     
     $('scribd').height_control(); 
     if( this.data.dokument_id ) {
@@ -68,7 +74,7 @@ var Druk = Class.create({
 	    mBrowser.disable_loading();
 	    this.btnSave.disable();
 	    	    
-	    $S('druki/zapisz', params, this.onSave.bind(this), function(){
+	    $S('bas/zapisz', params, this.onSave.bind(this), function(){
 	      mBrowser.disable_loading
 	      this.btnSave.enable();
 	    }.bind(this));
@@ -83,7 +89,7 @@ var Druk = Class.create({
         mBrowser.markAsDeleted(this.id);
         mBrowser.loadNextItem();
       }      
-    } else alert('Druk nie został zapisany');
+    } else alert('Element nie został zapisany');
     mBrowser.enable_loading();
     this.btnSave.enable();
   }
@@ -105,6 +111,7 @@ var mBrowser;
 
 $M.addInitCallback(function(){
   Event.observe(document, 'keypress', function(event){
-	  if( event.ctrlKey && event.charCode==115 ) druk.save();
+	  if( event.ctrlKey && event.charCode==115 ) { druk.save(); }
+	  else if( event.ctrlKey && event.charCode==100 ) { druk.form.fields[1].add(); }
 	});
 });

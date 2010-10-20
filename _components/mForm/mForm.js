@@ -173,6 +173,7 @@ _mFormTypes.register('integer', Class.create(mFormField, {
 }));
 
 _mFormTypes.register('date', Class.create(_mFormTypes.getClass('varchar'), {
+  _miesiace: ['stycznia', 'lutego', 'marca', 'kwietnia', 'maja', 'czerwca', 'lipca', 'sierpnia', 'września', 'października', 'listopada', 'grudnia'],
   initialize: function(params){
     this.name = params.name;
     this.params = params.params;
@@ -192,11 +193,24 @@ _mFormTypes.register('date', Class.create(_mFormTypes.getClass('varchar'), {
   },
   getValueDiv: function(){
     var p = new Element('p');
-    this.input = new Element('input', {name: this.name, type: 'text', className: 'value date', MAXLENGTH: '10'}).observe('blur', this.validate.bind(this));
-    return p.insert(this.input);
+    this.input = new Element('input', {name: this.name, type: 'text', className: 'value date', MAXLENGTH: '10'}).observe('blur', this.validate.bind(this)).observe('keyup', this.update_display.bind(this)).observe('change', this.update_display.bind(this));
+    this.display = new Element('span');
+    return p.insert(this.input).insert(this.display);
+  },
+  update_display: function(){
+    parts = $F(this.input).strip().split('-');
+    if( parts.length==3 ) {
+      var m = Number(parts[1])-1;
+      if( m>=0 && m<=12 ) { this.display.update( Number(parts[2])+' '+this._miesiace[m]+' '+Number(parts[0]) ); }
+      else { this.display.update(''); }
+    }
   },
   _validate: function(){
     return Boolean( $F(this.input).match(/^(19|20)\d\d([- /.])(0[1-9]|1[012])\2(0[1-9]|[12][0-9]|3[01])$/) )
+  },
+  setValue: function($super, value){
+    $super(value);
+    this.update_display();
   }
 }));
 

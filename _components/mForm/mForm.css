@@ -12,7 +12,7 @@
 .mForm label.label.validate_error {color: red;}
 
 .mForm input.value, .mForm textarea.value {font-size: 12px; padding: 3px 4px; width: 100%; border: 1px solid; border-top-color: #A4A4A4; border-right-color: #C1C1C1; border-left-color: #C1C1C1; border-bottom-color: #A4A4A4; -moz-border-radius: 3px;}
-.mForm input.value.date {width: 77px;}
+.mForm input.value.date {width: 77px; margin-right: 5px;}
 .mForm input.value.guess {background-color: #FFD;}
 
 .mForm p.value.multi {height:24px; overflow:hidden;}

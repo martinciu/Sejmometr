@@ -18,3 +18,6 @@
 .druk_title_bar {background-color: #EEE; padding: 5px 8px; -moz-border-radius: 5px; margin-bottom: 10px;}
 
 .link {-moz-border-radius:3px; background-color:#FF3; cursor:pointer; padding:0 5px;}
+
+.mForm .field.disabled p.value.items ul {margin-top: 0;}
+.mForm .field.disabled p.value.items li.item {background-color: #EEE;}
