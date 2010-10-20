@@ -23,6 +23,8 @@ var Druk = Class.create({
     var numery = $A();
 		$$('#druk .tytul .link').each( function(span){ this.push( span.readAttribute('numer') ) }.bind(numery) );
     
+    if( this.data.akcept=='0' ) this.data.projekty = this.data.projekty_;
+    
     var fields = $A();
     fields.push({name: 'data', label: 'Data', type: 'date', value: this.data.data, suggestion: data_suggestion});
     fields.push({name: 'projekty', label: 'Projekty', type: 'projekty', value: this.data.projekty, suggestion: numery});
@@ -31,10 +33,11 @@ var Druk = Class.create({
     
     this.form = new mForm('druk_form', fields, {activateFirstInvalid: true});    
     this.form.activateFirstInvalid();
-    
+
+    if( this.data.akcept=='0' ) this.form.fields[1].div.addClassName('marked');
     
     this.form.fields[2].div.addClassName('disabled').down('.buttons').hide();
-    
+    this.form.fields[0].input.activate();
     
     $('scribd').height_control(); 
     if( this.data.dokument_id ) {

@@ -1,6 +1,6 @@
 <?
   $id = $_PARAMS['id'];
-  $druk = $this->DB->selectAssoc("SELECT bas.id, bas.tytul, bas.data, dokumenty.akcept as dokument_akcept, dokumenty.scribd_doc_id, dokumenty.scribd_access_key, bas.dokument_id FROM bas LEFT JOIN dokumenty ON bas.dokument_id=dokumenty.id WHERE bas.id='$id'"); 
+  $druk = $this->DB->selectAssoc("SELECT bas.akcept, bas.id, bas.tytul, bas.data, dokumenty.akcept as dokument_akcept, dokumenty.scribd_doc_id, dokumenty.scribd_access_key, bas.dokument_id FROM bas LEFT JOIN dokumenty ON bas.dokument_id=dokumenty.id WHERE bas.id='$id'"); 
   
   $txt_file = ROOT.'/dokumenty_txt/'.$druk['dokument_id'].'.txt';
   if( file_exists($txt_file) ) $druk['txt'] = substr( file_get_contents($txt_file), 0, 250 );
@@ -13,6 +13,8 @@
   if( preg_match('/\(druk sejmowy nr(.*?)\)/i', $tytul, $matches) ) {
     $druki_pattern = $matches[1];
   } elseif( preg_match('/\(druk nr(.*?)\)/i', $tytul, $matches) ) {
+    $druki_pattern = $matches[1];
+  } elseif( preg_match('/druku nr(.*?)$/i', $tytul, $matches) ) {
     $druki_pattern = $matches[1];
   } elseif( preg_match('/\(druki(.*?)\)/i', $tytul, $matches) ) {
     $druki_pattern = $matches[1];

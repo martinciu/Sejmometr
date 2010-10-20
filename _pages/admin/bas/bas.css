@@ -21,3 +21,4 @@
 
 .mForm .field.disabled p.value.items ul {margin-top: 0;}
 .mForm .field.disabled p.value.items li.item {background-color: #EEE;}
+.mForm .field.marked p.value.border {background-color: #fdffe9;}
