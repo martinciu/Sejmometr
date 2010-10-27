@@ -77,6 +77,7 @@
     }
     if( $errors ) {
       $this->DB->update_assoc('posiedzenia_dni', array('analiza_wystapienia'=>'2'), $dzien_id);
+      $this->S('liczniki/nastaw/dni');
       return '2';
     }
            
@@ -166,7 +167,8 @@
     
     if( $this->DB->selectCountBoolean("SELECT COUNT(*) FROM wypowiedzi WHERE dzien_id='$dzien_id'") ) {
       $this->DB->update_assoc('posiedzenia_dni', array('analiza_wystapienia'=>'3'), $dzien_id);
-      return '3';
+      $this->S('liczniki/nastaw/dni');
+      return 3;
     } else {
     
 	    for( $i=0; $i<count($data); $i++ ) {
@@ -198,9 +200,14 @@
     
     
     $this->DB->update_assoc('posiedzenia_dni', array('analiza_wystapienia'=>'4'), $dzien_id);
+    $this->S('liczniki/nastaw/dni');
+
     return 4;
   } else {
     $this->DB->update_assoc('posiedzenia_dni', array('analiza_wystapienia'=>'5'), $dzien_id);
+    $this->S('liczniki/nastaw/dni');
     return 5;
   }
+  
+  
 ?>

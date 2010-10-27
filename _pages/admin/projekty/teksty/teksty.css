@@ -1,0 +1,35 @@
+.mBrowser .list {width: 150px;}
+.mBrowser .item {margin-left: 150px;}
+
+.mBrowser .item .tools {}
+.mBrowser .item .tools a {display: block; margin: 5px;}
+
+.mBrowser .item ul.flags {margin-left:110px; min-height:140px;}
+.mBrowser .item ul.flags li {list-style: disc inside; padding: 5px;}
+.mBrowser .item ul.flags .error {color: #C00;}
+.mBrowser .item ul.flags .ok {color: #060;}
+
+#_COL_RIGHT {padding-right: 0;}
+#browser {width: 50%; float: left;}
+#side_div {margin-left: 50%;}
+
+#dokument {background-color:#EEE; border:1px dashed #CCC; margin-left: 10px;}
+
+
+#txt {font-size:13px; overflow: auto; background: white; margin: 5px;}
+#txt p {padding: 9px 5px; cursor: pointer; -moz-user-select: none; border-top: 1px solid #DDD;}
+#txt p:first-child {border-top: none;}
+#txt p:hover {background-color: #EEF;}
+#txt p.s {background-color: #728ABD; color: white;}
+
+.mTabs {}
+.mTabs .header {margin-bottom: 3px;}
+.mTabs .header a {padding: 2px 10px 6px; outline: none;}
+.mTabs .header a.selected {background-color: #D8DFEA; color: #333;  -moz-border-radius-topleft: 5px; -moz-border-radius-topright: 5px;}
+.mTabs .content {background-color: #D8DFEA; padding: 5px 5px 0; -moz-border-radius: 5px;}
+.mTabs .content .tab_div {background-color: white; -moz-border-radius: 3px; padding: 1px 4px;}
+.mTabs .content .tab_div:empty {background-color: #D8DFEA;}
+.mTabs .content .tab_div.hover {background-color: #FFE !important;}
+.mTabs .content .tab_div p {margin: 7px 0;}
+.mTabs .content .tab_div p:first-child {margin-top: 0;}
+.mTabs .content .tab_div p:last-child {margin-bottom: 0;}

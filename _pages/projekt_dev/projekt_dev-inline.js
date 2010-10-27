@@ -1,0 +1,2 @@
+box.init();
+init();

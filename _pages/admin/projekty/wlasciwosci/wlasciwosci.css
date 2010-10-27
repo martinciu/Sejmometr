@@ -12,6 +12,11 @@
 .mForm p.value {margin-left: 50px;}
 .mForm label.label {width: 50px;}
 
-#duplikaty_table {width: 100%;}
+#duplikaty_div {background-color: #CCC; padding: 10px; margin-bottom: 10px; -moz-border-radius: 5px;}
+
+#duplikaty_table {width: 100%; background-color: white;}
 #duplikaty_table td, #duplikaty_table th {border: 1px solid #CCC; text-align: center; padding: 3px; width: 1%;}
 #duplikaty_table th {font-weight: bold;}
+#duplikaty_table tr.buttons {background-color:#EEE; text-align: center}
+
+.mBrowser .item .msg {background-color: #DEE; padding: 10px; text-align: center; margin-bottom: 10px; -moz-border-radius: 5px; font-size: 16px;}

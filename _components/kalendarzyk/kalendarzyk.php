@@ -1,6 +1,6 @@
 <?
   function sm_kalendarzyk($data){
-    $_miesiace = array('STY', 'LUTY', 'MAR', 'KWIE', 'MAJ', 'CZE', 'LIP', 'SIE', 'WRZ', 'PAZ', 'LIS', 'GRU');
+    $_miesiace = array('STY', 'LUTY', 'MAR', 'KWIE', 'MAJ', 'CZE', 'LIP', 'SIE', 'WRZ', 'PAŹ', 'LIS', 'GRU');
     $data = explode('-', $data);
     
     $rok = (int) $data[0];

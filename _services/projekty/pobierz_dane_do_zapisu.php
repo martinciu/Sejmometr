@@ -43,7 +43,7 @@
       $etapy[$i] = $etap;
     }
     
-    if( $typ=='dodaj_wypowiedzi_bw' && $item_id ) {
+    if( $typ=='wypowiedzi_bw' && $item_id ) {
       $etap = array_merge($etap, $this->DB->selectAssoc("SELECT data FROM punkty_wypowiedzi_bz WHERE id='".$item_id."'"));
       $etapy[$i] = $etap;
     }
@@ -226,7 +226,7 @@
 		        $result['substatus'] = 1;
 		      }
 		    
-		    } elseif( $ostatni_etap['typ']=='druk' && $ostatni_etap['subtyp']=='1' ) {
+		    } elseif( $ostatni_etap['typ']=='druk' && ($ostatni_etap['subtyp']=='1' || $ostatni_etap['subtyp']=='9') ) {
 		      $result['substatus'] = 2;
 		    } elseif( $ostatni_etap['typ']=='czytanie_komisje') {
 		      $result['substatus'] = 3;
@@ -235,6 +235,8 @@
 		    } elseif( $ostatni_etap['typ']=='wypowiedzi' && $ostatni_etap['debata_typ']=='2') {
 		      $result['substatus'] = 6;
 		    } elseif( $ostatni_etap['typ']=='wypowiedzi' && $ostatni_etap['debata_typ']=='1') {
+		      $result['substatus'] = 9;
+		    } elseif( $ostatni_etap['typ']=='glosowania' && $ostatni_etap['debata_typ']=='1') {
 		      $result['substatus'] = 9;
 		    } elseif( $ostatni_etap['typ']=='wyrok' || $ostatni_etap['wynik']=='2' ) {
 		      $result['status'] = 4;
@@ -339,7 +341,7 @@
 	    $result = array('status' => 1, 'substatus'=>'6', 'data_przyjecia'=>$ostatni_etap['data'], 'data_ostatniego_procedowania' => $ostatni_etap['data']);
 	  } elseif( $html_status==6 || $html_status==9 ) {
 	    $result = array('status' => 1, 'data_przyjecia'=>$ostatni_etap['data'], 'data_ostatniego_procedowania' => $ostatni_etap['data']);
-	   	    
+	   	
 	    if( $ostatni_etap['typ']=='wypowiedzi_bw' || ($ostatni_etap['typ']=='wypowiedzi' && $ostatni_etap['debata_typ']=='1')) {
 	      $result['substatus'] = 1;
 	    } elseif( $ostatni_etap['typ']=='wypowiedzi' && $ostatni_etap['debata_typ']=='3') {

@@ -15,7 +15,7 @@
 
 .mBrowser .categories {margin-top:-22px; padding-bottom:7px; text-align:right;}
 .mBrowser .categories a {display: inline; margin: 0 10px; outline: none;}
-.mBrowser .categories a.selected {color: #333; text-decoration: none; cursor: default;}
+.mBrowser .categories a.selected {color: #333; text-decoration: none; cursor: default; font-weight: bold;}
 .mBrowser .categories a:first-child {margin-left: 0;}
 .mBrowser .categories a:last-child {margin-right: 0;}
 

@@ -17,64 +17,72 @@ var Projekt = Class.create({
     
     mBrowser.itemTitleUpdate(data.numer ? data.numer : '<i>Bez tytułu</i>');
     this.btnSave = mBrowser.addItemButton('save', 'Zapisz', this.save.bind(this));
+    this.btnSave = mBrowser.addItemButton('regrab', 'Pobierz', this.regrab.bind(this));
     
-    if($('btn_swap_ids')) $('btn_swap_ids').observe('click', this.swap_ids.bind(this));    
-    
-    // SIDE_DIV
-    
-    $('side_div').update(this.data.html).height_control();
-    if($('side_div').down('table')){
-      $('side_div').down('table').writeAttribute('width', '100%');
-      for( var i=0; i<3; i++ ) $('side_div').down('table tr').remove();
-    }
-    
-    $('side_div').select('a').each( function(a){
-      var match = a.readAttribute('href').match(/http:\/\/orka.sejm.gov.pl\/Druki6ka.nsf\/druk\?OpenAgent&([A-F0-9\-]+)/);
-      a.writeAttribute('href', '#').writeAttribute('onclick', 'return false;');
-      if( match ) a.addClassName('_druk').writeAttribute('numer', match[1]).observe('click', this.onDrukCick.bind(this));
-    }.bind(this) );
-    
-    
+    $$('#duplikaty_table .buttons input').invoke('observe', 'click', this.pobierz_projekt.bind(this));
     
     var suggestions = {};
-    try{
-
-	    suggestions['tytul'] = $('side_div').down('b').innerHTML;
+    
+    if( this.data.html===false ) {
+    
+      $('side_div').update("Projekt nie został jeszcze pobrany");
+    
+    } else {
+    
+	    $('side_div').update(this.data.html).height_control();
+	    if($('side_div').down('table')){
+	      $('side_div').down('table').writeAttribute('width', '100%');
+	      for( var i=0; i<3; i++ ) $('side_div').down('table tr').remove();
+	    }
+	    
+	    $('side_div').select('a').each( function(a){
+	      var match = a.readAttribute('href').match(/http:\/\/orka.sejm.gov.pl\/Druki6ka.nsf\/druk\?OpenAgent&([A-F0-9\-]+)/);
+	      a.writeAttribute('href', '#').writeAttribute('onclick', 'return false;');
+	      if( match ) a.addClassName('_druk').writeAttribute('numer', match[1]).observe('click', this.onDrukCick.bind(this));
+	    }.bind(this) );
+	    
+	    
+	    
+	    try{
 	
-	    var match = suggestions['tytul'].match(/^(.*?) projekt ustawy o zmianie(.*?)$/);
-	    if( match ) { suggestions['tytul'] = 'Zmiana'+match[2]; } else {
-	      var match = suggestions['tytul'].match(/^(.*?) projekt ustawy o(.*?)$/);
-	      if( match ) suggestions['tytul'] = 'Projekt ustawy o'+match[2];
-	    }
-	    
-	    var match = suggestions['tytul'].match(/^(.*?) projekt ustawy zmieniającej ustawę o zmianie(.*?)$/);
-	    if( match ) suggestions['tytul'] = 'Zmiana'+match[2];
-	    
-	    suggestions['tytul'] = suggestions['tytul'].replace(' oraz o zmianie niektórych innych ustaw', '');
-	    suggestions['tytul'] = suggestions['tytul'].replace(' oraz niektórych innych ustaw', '');
-	             
-	    var fonts = $('side_div').select('font');
-	    for( var i=0; i<fonts.length; i++ ) {
-	      var text = fonts[i].innerHTML;
-	      if( text.match(/opis projektu/i) ) {
-	        var opis = fonts[i].up('tr').next('tr').down('font').innerHTML;
-	        if( !opis.match('/\- wyrażenie przez Sejm RP zgody na dokonanie przez Prezydenta RP ratyfikacji ww\. Umowy\./i') ) {
-	          suggestions['opis'] = opis;
-	        }
-	      }
-	    }
-	    
-	    if(suggestions['opis']) {
-		    var match = suggestions['opis'].match(/^- p(.*?)$/);
-		    if( match ) suggestions['opis'] = 'P'+match[1];
+		    suggestions['tytul'] = $('side_div').down('b').innerHTML;
+		
+		    var match = suggestions['tytul'].match(/^(.*?) projekt ustawy o zmianie(.*?)$/);
+		    if( match ) { suggestions['tytul'] = 'Zmiana'+match[2]; } else {
+		      var match = suggestions['tytul'].match(/^(.*?) projekt ustawy o(.*?)$/);
+		      if( match ) suggestions['tytul'] = 'Projekt ustawy o'+match[2];
+		    }
 		    
-		    var match = suggestions['opis'].match(/^(.*?)\.$/);
-		    if( !match ) suggestions['opis'] = suggestions['opis']+'.';
-		    suggestions['opis'] = suggestions['opis'][0].toUpperCase()+suggestions['opis'].substr(1);
+		    var match = suggestions['tytul'].match(/^(.*?) projekt ustawy zmieniającej ustawę o zmianie(.*?)$/);
+		    if( match ) suggestions['tytul'] = 'Zmiana'+match[2];
+		    
+		    suggestions['tytul'] = suggestions['tytul'].replace(' oraz o zmianie niektórych innych ustaw', '');
+		    suggestions['tytul'] = suggestions['tytul'].replace(' oraz niektórych innych ustaw', '');
+		             
+		    var fonts = $('side_div').select('font');
+		    for( var i=0; i<fonts.length; i++ ) {
+		      var text = fonts[i].innerHTML;
+		      if( text.match(/opis projektu/i) ) {
+		        var opis = fonts[i].up('tr').next('tr').down('font').innerHTML;
+		        if( !opis.match('/\- wyrażenie przez Sejm RP zgody na dokonanie przez Prezydenta RP ratyfikacji ww\. Umowy\./i') ) {
+		          suggestions['opis'] = opis;
+		        }
+		      }
+		    }
+		    
+		    if(suggestions['opis']) {
+			    var match = suggestions['opis'].match(/^- p(.*?)$/);
+			    if( match ) suggestions['opis'] = 'P'+match[1];
+			    
+			    var match = suggestions['opis'].match(/^(.*?)\.$/);
+			    if( !match ) suggestions['opis'] = suggestions['opis']+'.';
+			    suggestions['opis'] = suggestions['opis'][0].toUpperCase()+suggestions['opis'].substr(1);
+		    }
+	    
+	    } catch(e){
+	      $('side_div').insert({top: '<p>Błąd parsowania</p>'});
 	    }
     
-    } catch(e){
-      alert('Suggestions error');
     }
     
     // FORM
@@ -91,6 +99,15 @@ var Projekt = Class.create({
     if( mBrowser.category.id=='doakceptu' && ( this.form.fields[3].getValue().match(/ratyfikacji/i) || this.form.fields[4].getValue().match(/ratyfikacji/i) ) ) {
 	    this.form.fields[2].setValue(4);
     } 
+  },
+  pobierz_projekt: function(event){
+       
+    var inp = event.findElement('input');
+    var projekt_id = inp.readAttribute('projekt_id');
+    inp.disable();
+    $S('graber/projekty/pobierz', projekt_id, function(result){
+      location.reload();
+    });  
   },
   onDrukCick: function(obj){
     
@@ -133,12 +150,6 @@ var Projekt = Class.create({
   regrab: function(){
     mBrowser.disable_loading();
     $S('graber/projekty/pobierz', this.id, function(){location.reload();});
-  },
-  swap_ids: function(){
-    // $('btn_swap_ids').disable();
-    $S('projekty/swap_ids', this.id, function(result){
-      alert('swaped');
-    });
   }
 });
 

@@ -1,7 +1,13 @@
 .mBrowser .list {width: 250px;}
 .mBrowser .item {margin-left: 250px;}
 
-#punkty_table {width: 100%; margin-top: 10px; border-top: 1px solid #CCC;}
-#punkty_table td {width: 50%;}
-#punkty_table a {display: block; margin: 15px 5px; color: #333; text-decoration: none;}
-#punkty_table a:hover {color: blue;}
+.punkty_row a {display: block; margin: 15px 5px; color: #333; text-decoration: none;}
+.punkty_row a:hover {color: blue;}
+
+#duplikaty_div {background-color: #CCC; padding: 10px; margin-bottom: 10px; -moz-border-radius: 5px;}
+
+#duplikaty_table {width: 100%; background-color: white;}
+#duplikaty_table td, #duplikaty_table th {border: 1px solid #CCC; text-align: center; padding: 3px; width: 1%;}
+#duplikaty_table th {font-weight: bold;}
+#duplikaty_table tr.buttons {background-color:#EEE; text-align: center}
+#duplikaty_table i {color: #AAA;}

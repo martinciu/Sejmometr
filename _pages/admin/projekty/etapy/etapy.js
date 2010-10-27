@@ -21,6 +21,8 @@ var Projekt = Class.create({
     mBrowser.itemTitleUpdate(data.numer ? data.numer : '<i>Bez tytułu</i>');
     this.btnSave = mBrowser.addItemButton('save', 'Zapisz', this.save.bind(this));
     this.btnNochanges = mBrowser.addItemButton('nochanges', 'Brak zmian', this.nochanges.bind(this));
+    this.btnRegrab = mBrowser.addItemButton('regrab', 'Pobierz', this.regrab.bind(this));
+
     
     $('autor_a').update( _autor_label(this.data.autor_id) );
     $('typ_span').update( _projekt_typ_label(this.data.typ_id) );
@@ -30,7 +32,11 @@ var Projekt = Class.create({
     $('druki_ul').update('').scrollTop = 0;
     $('wypowiedzi_ul').update('').scrollTop = 0;
     $('glosowania_ul').update('').scrollTop = 0;
-    if( !this.data.html ) return confirm('Brak HTML. Regrab?') ? this.regrab() : false; 
+    if( !this.data.html ) {
+      $('side_div').update('<p class="msg">Brak HTML</p>');
+      return false;
+    }
+    
     $('side_div').update(this.data.html).scrollTop = 0;
     if($('side_div').down('table')){
       $('side_div').down('table').writeAttribute('width', '100%');
@@ -869,8 +875,7 @@ var Projekt = Class.create({
 		  }
 		});
 		if(error) {
-		  alert('Nie wszystkie sejmowe linki zostały dodane');
-		  return false;
+		  if( !confirm("Nie wszystkie sejmowe linki zostały dodane.\nCzy chcesz kontynuować?") ) return false;
 		}
 	  
 	  var error = false;

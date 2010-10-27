@@ -52,13 +52,6 @@
         'druk_id' => $id,
         'recznie' => '1',
       ));
-      if( $this->DB->affected_rows ) {
-        $projekty_affected = true;
-        $data = array();
-		    $data['html_zmiana'] = '1';
-		    $data['html_zmiana_data'] = 'NOW()';
-		    $this->DB->update_assoc('projekty', $data, $projekt);
-      }
       $this->S("druki/dodaj_projekt_punkty", array($projekt, array($id)));
     }
     if( $projekty_affected ) $this->S('liczniki/nastaw/projekty-etapy'); 
@@ -66,9 +59,7 @@
   
   } else return 3;
   
-  
-  $this->S('druki/oznacz_nieprzypisane');
+  $this->S('druki/przypisz', $id);
   $this->S('liczniki/nastaw/druki');
-  $this->S('liczniki/nastaw/druki_nieprzypisane');
   return 4;
 ?>

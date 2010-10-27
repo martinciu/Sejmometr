@@ -1,5 +1,14 @@
 <?
-  return $this->DB->selectValues("SELECT id FROM `projekty` WHERE data_sprawdzenia='0000-00-00 00:00:00'");
+  // return $this->DB->selectValues("SELECT id FROM druki WHERE przypisany='0' AND zalacznik='1'");
+
+
+  $where = '1';
+  $where = "akcept='0'";
+  return $this->DB->selectValues("SELECT id FROM `projekty` WHERE $where ORDER BY data_dodania ASC");
+
+
+
+
 
   // return $this->DB->selectValues("SELECT id FROM `dokumenty` WHERE _temp_obraz='0'");
   

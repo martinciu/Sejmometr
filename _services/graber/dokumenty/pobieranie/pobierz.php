@@ -16,7 +16,7 @@
   $this->DB->q("UPDATE dokumenty SET pobrano='1', akcept='0', data_pobrania=NOW() WHERE id='$id'");
   
   @unlink($dest);
-  if( copy('http://macysz.com/proxy.php?url='.urlencode($source), $dest) ) {
+  if( copy($source, $dest) ) {
     
     $this->DB->q("UPDATE graber_pobieranie_dokumentow SET size='".filesize($dest)."' WHERE id='$session_id'");
     

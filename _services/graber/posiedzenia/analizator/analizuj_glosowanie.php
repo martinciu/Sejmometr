@@ -20,11 +20,12 @@
   if( empty($statusy) ) {
     
     $this->DB->update_assoc('posiedzenia_dni', array('analiza_glosowania'=>'4'), $dzien_id);
+    $this->S('liczniki/nastaw/dni');
     return 4;
     
   } elseif( count($statusy)==1 && $statusy[0]=='2' ) {
     
-    // $this->DB->update_assoc('posiedzenia_dni', array('analiza_glosowania'=>'1'), $dzien_id);
+    $this->DB->update_assoc('posiedzenia_dni', array('analiza_glosowania'=>'1'), $dzien_id);
     
     $data = $this->DB->selectAssocs("SELECT glosowania.id, glosowania_modele.punkt FROM glosowania LEFT JOIN glosowania_modele ON glosowania.id=glosowania_modele.glosowanie_id WHERE glosowania.dzien_id='$dzien_id' ORDER BY glosowania.numer ASC");
            
@@ -89,7 +90,8 @@
     
     if( $this->DB->selectCountBoolean("SELECT COUNT(*) FROM glosowania WHERE punkt_id!='' AND dzien_id='$dzien_id'") ) {
       $this->DB->update_assoc('posiedzenia_dni', array('analiza_glosowania'=>'3'), $dzien_id);
-      return '3';
+      $this->S('liczniki/nastaw/dni');
+      return 3;
     } else {
     
 	    for( $i=0; $i<count($data); $i++ ) {
@@ -115,9 +117,11 @@
     
     
     $this->DB->update_assoc('posiedzenia_dni', array('analiza_glosowania'=>'4'), $dzien_id);
+    $this->S('liczniki/nastaw/dni');
     return 4;
   } else {
     $this->DB->update_assoc('posiedzenia_dni', array('analiza_glosowania'=>'0'), $dzien_id);
+    $this->S('liczniki/nastaw/dni');
     return 5;
   }
 ?>

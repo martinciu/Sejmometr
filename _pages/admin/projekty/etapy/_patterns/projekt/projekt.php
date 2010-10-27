@@ -4,7 +4,7 @@
   
   $_etapy_typy = array('druk', 'czytanie_komisje', 'wypowiedzi', 'glosowania', 'skierowanie');
 
-  $projekt = $this->DB->selectAssoc("SELECT projekty.id, projekty.sejm_id, projekty.druk_id, druki.numer, projekty.autor_id, projekty.typ_id, projekty.status_slowny, projekty.opis FROM projekty LEFT JOIN druki ON projekty.druk_id=druki.id WHERE projekty.id='$id'");
+  $projekt = $this->DB->selectAssoc("SELECT projekty.id, projekty.sejm_id, projekty.druk_id, druki.numer, projekty.autor_id, projekty.typ_id, projekty.status_slowny, projekty.opis, projekty.html_zmiana FROM projekty LEFT JOIN druki ON projekty.druk_id=druki.id WHERE projekty.id='$id'");
   $projekt['html'] = @file_get_contents( ROOT.'/graber_cache/projekty/'.$id.'.html' );
  
   $druki = $this->DB->selectAssocs("SELECT druki.id, druki.numer, druki.data, druki.dokument_id, druki.tytul_oryginalny, druki_autorzy.autor, druki_typy.label as 'typ' FROM projekty_druki LEFT JOIN druki ON projekty_druki.druk_id=druki.id LEFT JOIN druki_autorzy ON druki.autorA_id=druki_autorzy.id LEFT JOIN druki_typy ON druki_typy.id=druki.typ_id WHERE projekty_druki.projekt_id='$id' ORDER BY druki.data ASC");

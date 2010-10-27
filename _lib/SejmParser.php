@@ -3,8 +3,10 @@
     
     function getData($s, $use_cache=false) {
       if( $use_cache && isset( $_SESSION['_SEJMPARSER_'.$s] ) ) { return $_SESSION['_SEJMPARSER_'.$s]; } else {
-        $txt = @file_get_contents( 'http://macysz.com/proxy.php?url='.urlencode($s) );
-
+        $txt = @file_get_contents( $s );
+        preg_match('/HTTP\/(.*?) (.*?) (.*?)$/i', $http_response_header[0], $matches);
+			  $this->response_status = (int) $matches[2];
+        
         if( $txt!==false ) {
           // $size=mb_strlen($txt, '8bit');
           
@@ -37,10 +39,12 @@
     
     function getDataUTF($s, $use_cache=true) {
       if( $use_cache && isset( $_SESSION['_SEJMPARSER_'.$s] ) ) { return $_SESSION['_SEJMPARSER_'.$s]; } else {
-        $txt = @file_get_contents( 'http://macysz.com/proxy.php?url='.urlencode($s) );
-        if( $txt!==false ) {          
-          $_SESSION['_SEJMPARSER_'.$s] = $txt;
-        }
+        $txt = @file_get_contents( $s );
+        preg_match('/HTTP\/(.*?) (.*?) (.*?)$/i', $http_response_header[0], $matches);
+			  $this->response_status = (int) $matches[2];
+        
+        if( $txt!==false ) $_SESSION['_SEJMPARSER_'.$s] = $txt;
+        
         return $txt;
       }
     }
@@ -325,9 +329,9 @@
     function projekt_info_html($id){
       return trim( $this->getData("http://orka.sejm.gov.pl/proc6.nsf/$id?OpenDocument") );
     }
-    
-    function projekt_info($id){
-      $txt = $this->projekt_info_html($id);
+        
+    function projekt_info($id, $txt=false){
+      $txt = $txt ? $txt : $this->projekt_info_html($id);
       $result = array();
       
       preg_match('/\<BODY(.*?)\<\/body\>/i', $txt, $matches);

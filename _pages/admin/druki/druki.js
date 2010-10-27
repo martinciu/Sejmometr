@@ -5,7 +5,12 @@ var Druk = Class.create({
    
     mBrowser.itemTitleUpdate(this.data.numer);
     this.btnSave = mBrowser.addItemButton('save', 'Zapisz', this.save.bind(this));
-        
+    
+    
+    $$('#duplikaty_table .buttons input').invoke('observe', 'click', this.usun_projekt.bind(this));
+
+    
+    
     var fields = $A();
     fields.push({name: 'zalacznik', label: 'Załącznik', type: 'radio', options: [[0, 'Druk główny'], [1, 'Załącznik']], value: this.data.zalacznik});
     fields.push({name: 'data', label: 'Data', type: 'date', value: this.data.data});
@@ -215,7 +220,17 @@ var Druk = Class.create({
     } else alert('Druk nie został zapisany');
     mBrowser.enable_loading();
     this.btnSave.enable();
-  }
+  },
+  usun_projekt: function(event){
+    if( confirm('Czy na pewno chcesz usunąć ten projekt?') ) {
+	    var inp = event.findElement('input');
+	    var projekt_id = inp.readAttribute('projekt_id');
+	    inp.disable();
+	    $S('projekty/usun', projekt_id, function(result){
+	      location.reload();
+	    });  
+    }
+  },
 });
 
 var MBrowser = Class.create(MBrowser, {

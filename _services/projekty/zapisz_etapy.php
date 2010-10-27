@@ -50,22 +50,42 @@
   
   $this->DB->q("DELETE FROM projekty_etapy WHERE projekt_id='$projekt_id'");
   
-  for( $i=0; $i<count($model); $i++ ) $this->DB->insert_assoc('projekty_etapy', array(
-    'projekt_id' => $projekt_id,
-    'typ_id' => $model[$i]['typ_id'],
-    'subtyp' => $model[$i]['subtyp'],
-    'etap_id' => $model[$i]['etap_id'],
-    'ord' => $i,
-  ));
+  for( $i=0; $i<count($model); $i++ ) {
+    $this->DB->insert_assoc('projekty_etapy', array(
+	    'projekt_id' => $projekt_id,
+	    'typ_id' => $model[$i]['typ_id'],
+	    'subtyp' => $model[$i]['subtyp'],
+	    'etap_id' => $model[$i]['etap_id'],
+	    'ord' => $i,
+	  ));
+	  if( $this->DB->affected_rows ) {
+	    switch( $model[$i]['typ_id'] ) {
+	      case 0: {
+	        $this->DB->q("UPDATE projekty_druki SET przypisany='1' WHERE projekt_id='$projekt_id' AND druk_id='".$model[$i]['etap_id']."'");
+	        break;
+	      }
+	      case 2: {
+	        $this->DB->q("UPDATE projekty_punkty_wypowiedzi SET przypisany='1' WHERE projekt_id='$projekt_id' AND punkt_id='".$model[$i]['etap_id']."'");
+	        break;
+	      }
+	      case 3: {
+	        $this->DB->q("UPDATE projekty_punkty_glosowania SET przypisany='1' WHERE projekt_id='$projekt_id' AND punkt_id='".$model[$i]['etap_id']."'");
+	        break;
+	      }
+	      case 5: {
+	        $this->DB->q("UPDATE projekty_wyroki SET przypisany='1' WHERE projekt_id='$projekt_id' AND wyrok_id='".$model[$i]['etap_id']."'");
+	        break;
+	      }
+	    }
+	  }
+  }
   
   unset( $data['typ'] );
   $this->DB->update_assoc('projekty', $data, $projekt_id);
   
-  $this->S('druki/oznacz_nieprzypisane');
   
   $this->S('liczniki/nastaw/projekty-wlasciwosci');
   $this->S('liczniki/nastaw/projekty-etapy');
-  $this->S('liczniki/nastaw/druki_nieprzypisane');
   
   return array(
     'status' => 4,

@@ -30,7 +30,6 @@
 	      'projekt_id' => $projekt_id,
 	      'punkt_id' => $id,
 	    ));
-	    if( $this->DB->affected_rows ) $this->DB->q("UPDATE projekty SET html_zmiana='1' WHERE id='$projekt_id'");
     }
 
     

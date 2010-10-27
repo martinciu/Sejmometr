@@ -15,19 +15,90 @@
 	  }
   }
 
-
   $id = $_PARAMS;
   if( strlen($id)!=5 ) return false;
-    
-  $sejm_id = $this->DB->selectValue("SELECT sejm_id FROM projekty WHERE id='$id'");
-  $projekt = $SP->projekt_info($sejm_id);
-    
-  if( trim($projekt['txt'])=='' ) return false;
-   
   
+  
+  
+  
+  
+  
+  
+  list($sejm_id, $druk_id) = $this->DB->selectRow("SELECT sejm_id, druk_id FROM projekty WHERE id='$id'");
+  
+  if( empty($sejm_id) ) return false;
+  
+  $etapy_count = $this->DB->selectCount("SELECT COUNT(*) FROM projekty_etapy WHERE projekt_id='$id'");
+  $this->DB->update_assoc('projekty', array('response_status'=>0), $id);
+  
+  $projekt = $SP->projekt_info($sejm_id);
+  $response_status = $SP->response_status;
+  
+  $this->DB->update_assoc('projekty', array('response_status'=>$response_status), $id);
+  
+  if( $response_status==404 ) {
+    
+    if( $druk_id=='' && $etapy_count==0 ) $this->S('projekty/usun', $id);
+    return false;
+
+  } elseif( $response_status!=200 ) return false;
+  
+    
   // DRUKI
   $this->S('projekty/dodaj_druki', array($id, $projekt['DRUKI']));
     
+  
+  
+  
+  
+  
+  
+  
+  // SPRAWDZANIE DUPLIKATÓW
+  
+  $glowny_druk_id = $this->DB->selectValue("SELECT druk_id FROM projekty_druki WHERE projekt_id='$id' ORDER BY id ASC");
+  
+  if( empty($glowny_druk_id) ) {
+  
+    $projekty = $this->DB->selectAssocs("SELECT projekty.id, projekty.sejm_id, projekty.tytul, projekty.autor_id, projekty.druk_id, projekty.response_status FROM projekty_specjalne LEFT JOIN projekty ON projekty_specjalne.id=projekty.id WHERE projekty_specjalne.tytul='".$projekt['tytul']."' AND projekty.id!='$id'");
+  
+  } else {        
+    $projekty = $this->DB->selectAssocs("SELECT projekty.id, projekty.sejm_id, projekty.tytul, projekty.autor_id, projekty.druk_id, projekty.response_status FROM projekty_druki LEFT JOIN projekty ON projekty_druki.projekt_id=projekty.id WHERE projekty_druki.druk_id='$glowny_druk_id' AND projekty.id!='$id'");
+    
+    $_projekty = array();
+    foreach( $projekty as $i=>$_projekt ) {      
+      if( $_projekt['druk_id']==$glowny_druk_id ) $_projekty[] = $_projekt;
+    }
+    $projekty = $_projekty;
+  }
+      
+
+  if( count($projekty)==1 ) {
+        
+    $_projekt = $projekty[0];
+    
+    if( $etapy_count==0 && $response_status==200 && $_projekt['response_status']==404 ) {
+                
+      $this->S('projekty/usun', $id);
+      $this->DB->update_assoc('projekty', array(
+        'sejm_id' => $sejm_id,
+        'response_status' => 200,
+      ), $_projekt['id']);
+      
+      $this->S('liczniki/nastaw/projekty');
+      return false;
+    
+    }
+    
+  }
+    
+  
+  
+  
+  
+  
+  
+  
   
   
   // BAS
@@ -65,6 +136,7 @@
 	    'projekt_id' => $id,
 	    'bas_id' => $bas_id,
 	  ));
+	  if( $this->DB->affected_rows ) $this->S('projekty/policz_opinie', $id);
 	  
   }
   
@@ -97,13 +169,7 @@
 		  ));
 	  }
 	}
-       
-   
-   
-   
-   
-   
-   
+      
    
    
   
@@ -128,6 +194,5 @@
   }
     
   $this->DB->update_assoc('projekty', $data, $id);
-  $this->S('liczniki/nastaw/projekty-wlasciwosci');
-  $this->S('liczniki/nastaw/projekty-etapy'); 
+  $this->S('liczniki/nastaw/projekty');
 ?>

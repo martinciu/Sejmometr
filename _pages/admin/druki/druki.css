@@ -16,3 +16,10 @@
 #scribd .msg {position: relative; top: 50%; margin-top: -8px;}
 
 .druk_title_bar {background-color: #EEE; padding: 5px 8px; -moz-border-radius: 5px; margin-bottom: 10px;}
+
+#duplikaty_div {background-color: #CCC; padding: 10px; margin-bottom: 10px; -moz-border-radius: 5px;}
+
+#duplikaty_table {width: 100%; background-color: white;}
+#duplikaty_table td, #duplikaty_table th {border: 1px solid #CCC; text-align: center; padding: 3px; width: 1%;}
+#duplikaty_table th {font-weight: bold;}
+#duplikaty_table tr.buttons {background-color:#EEE; text-align: center}

@@ -2,6 +2,7 @@
   $id = $_PARAMS;
   if( strlen($id)!=5 ) return false;
   
+  
   require_once( ROOT.'/_lib/SejmParser.php' );
   $SP = new SejmParser();
   
@@ -18,6 +19,7 @@
   
   $lista = $SP->posiedzenia_dni_lista( $temp_id );  
   
+  
   if( !is_array($lista) ) return false;
     
   $sejm_ids = array();
@@ -28,9 +30,14 @@
   }
   $db_ids = $this->DB->selectValues("SELECT sejm_id FROM posiedzenia_dni WHERE posiedzenie_id='$id'");
   
+  $dni_utrzymane = array_intersect($sejm_ids, $db_ids);
   $dni_dodane = array_diff($sejm_ids, $db_ids);
   $dni_skasowane = array_diff($db_ids, $sejm_ids);
-  $dni_utrzymane = array_intersect($sejm_ids, $db_ids);
+
+  // var_export($dni_utrzymane);
+  // var_export($dni_dodane);
+  // var_export($dni_skasowane);
+  // die();
   
   
   // DNI UTRZYMANE
@@ -38,7 +45,10 @@
     $sejm_model_count = count($SP->posiedzenia_model_dnia($_id));
     $__id = $this->DB->selectValue("SELECT id FROM posiedzenia_dni WHERE sejm_id='$_id'");
     $db_model_count = $this->DB->selectCount("SELECT COUNT(*) FROM `dni_modele` WHERE dzien_id='$__id'");
-    if( $sejm_model_count!=$db_model_count ) $this->DB->update_assoc('posiedzenia_dni', array('analiza_wystapienia'=>'7'), $__id);
+    if( $sejm_model_count!=$db_model_count ) {
+      echo 'analiza - 7';
+      $this->DB->update_assoc('posiedzenia_dni', array('analiza_wystapienia'=>'7'), $__id);
+    }
   }
   
  
@@ -58,5 +68,7 @@
   if( is_array($dni_skasowane) ) foreach($dni_skasowane as $_id) {    
     $this->DB->update_assoc('posiedzenia_dni', array('analiza_wystapienia'=>'6'), $_id);
   }
-
+  
+  
+  $this->S('liczniki/nastaw/dni');
 ?>

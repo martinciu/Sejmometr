@@ -7,12 +7,14 @@
   foreach( $_autorzy_names as $_autor_name ) {
     $value = $druk['autor'.$_autor_name.'_id'];
     if($value) $druk['autorzy'][] = $value;
-  }
-  
-  
-  
+  }  
   
   $result = array();
+  
+  
+  
+  $result['projekty'] = $this->DB->selectAssocs("SELECT id, sejm_id, tytul, autor_id, druk_id, response_status FROM projekty WHERE druk_id='$id'"); 
+  foreach( $result['projekty'] as &$_projekt ) $_projekt['etapy_count'] = $this->DB->selectCount("SELECT COUNT(*) FROM projekty_etapy WHERE projekt_id='".$_projekt['id']."'");
   
   
   
