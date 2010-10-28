@@ -5,7 +5,7 @@
 
 .mForm .field.suggestion textarea.value, .mForm .field.suggestion input.value {background-color: #fdffe9;}
 
-.mForm label.label {display: block; width: 20%; text-align: right; padding-right: 5px; float: left; padding-top: 0.64%; font-weight: bold; color: #444;}
+.mForm label.label {display: block; width: 20%; text-align: right; padding-right: 5px; float: left; padding-top: 0.48%; font-weight: bold; color: #444;}
 .mForm p.value {margin-left: 20%; padding-left: 5px; padding-right: 15px;}
 
 .mForm input.value.validate_error {border-color: red;}

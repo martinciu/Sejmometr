@@ -42,7 +42,7 @@
         $txt = @file_get_contents( $s );
         preg_match('/HTTP\/(.*?) (.*?) (.*?)$/i', $http_response_header[0], $matches);
 			  $this->response_status = (int) $matches[2];
-        
+
         if( $txt!==false ) $_SESSION['_SEJMPARSER_'.$s] = $txt;
         
         return $txt;
@@ -469,5 +469,99 @@
       preg_match_all('/glosowania(.*?)\?OpenAgent&([0-9]+)&([0-9]+)&([0-9]+)/i', $txt, $matches);
       return array_unique($matches[0]);
     }
+    
+    
+    
+    
+    
+    
+    
+    // POSŁOWIE
+    
+    function poslowie_lista(){
+      $txt = $this->getData('http://sejm.gov.pl/poslowie/lista6.htm');
+      $txt .= "/n".$this->getData('http://sejm.gov.pl/poslowie/kluby/pos_arch.htm');
+      $txt .= "/n".$this->getData('http://sejm.gov.pl/poslowie/kluby/pos_nowi.htm');
+      
+      preg_match_all('/posel6\/(.*?)\.htm/i', $txt, $matches);
+       
+      return array_values( array_unique( $matches[1] ) );
+    }
+    
+    
+    
+    
+    
+    function posel_info($id){  
+      $_fields = array(
+        'Wybrany dnia' => 'data_wybrania',
+        'Wybrana dnia' => 'data_wybrania',
+        'lista' => 'lista',
+        'okręg wyborczy' => 'okreg_nr',
+        'liczba głosów' => 'liczba_glosow',
+        'Staż parlamentarny' => 'staz',
+        'Data urodzenia' => 'data_urodzenia',
+        'Miejsce urodzenia' => 'miejsce_urodzenia',
+        'Stan cywilny' => 'stan_cywilny',
+        'Wykształcenie' => 'wyksztalcenie',
+        'Ukończona szkoła' => 'szkola',
+        'Zawód' => 'zawod',
+        'Ślubował dnia' => 'data_slubowania',
+        'Ślubowała dnia' => 'data_slubowania',
+        'Tytuł/stopień naukowy' => 'tytul',
+        'Wygaśnięcie mandatu' => 'data_wygasniecia',
+      );
+    
+      $txt = $this->getData('http://sejm.gov.pl/poslowie/posel6/'.$id.'.htm');
+      preg_match_all('/\<b\>(.*?)\<\/b\>(.*?)\</i', $txt, $matches);
+      
+      
+      $result = array();
+      $pola = array();
+      
+      for( $i=0; $i<count($matches[0]); $i++ ){
+        if( strpos($matches[1][$i], ':')!==false ) {
+        
+	        $key = trim( str_replace(':', '', $matches[1][$i]) );
+	        $val = trim( $matches[2][$i] );
+	        if ( $key=='okręg wyborczy' ) {
+	          preg_match('/([0-9]+)/i', $val, $m);
+	          $val = $m[1];
+	        }
+	        
+	        if ( $key=='Data i miejsce urodzenia' ) {
+	          $parts = explode(',', $val);
+	          $pola['Data urodzenia'] = trim( $parts[0] );
+	          $pola['Miejsce urodzenia'] = trim( $parts[1] );
+	        } elseif( $key!='Aktywność poselska' ) $pola[$key] = $val;
+        
+        }
+      }
+      
+      foreach( $pola as $k=>$v ) {
+        $key = $_fields[$k]=='' ? $k : $_fields[$k];
+        $result[$key] = trim($v);
+      }
+      
+      
+      
+      // NAZWISKO
+      preg_match('/\<p (.*?)class=\"naz\"\>(.*?)\<\//i', $txt, $matches);
+      $result['nazwisko'] = trim( strip_tags( $matches[2] ) );
+      
+      
+      // KLUB 
+      preg_match('/class=\"naz2\"\>\<a href=\"\.\.\/kluby\/(.*?)\.htm/i', $txt, $matches);
+      $result['klub'] = trim( str_replace('kont_', '', $matches[1]));
+      
+      
+      // OBRAZEK
+      preg_match('/\/jpg\/posel6\/(.*?)\.jpg/i', $txt, $matches);
+      $result['image_url'] = 'http://sejm.gov.pl/jpg/posel6/'.$matches[1].'.jpg';
+      $result['image_md5'] = md5( file_get_contents( $result['image_url'] ) );
+      
+      return $result;
+    }
+    
   }
 ?>

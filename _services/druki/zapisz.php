@@ -52,6 +52,7 @@
         'druk_id' => $id,
         'recznie' => '1',
       ));
+      if( $this->DB->affected_rows ) $projekty_affected = true;
       $this->S("druki/dodaj_projekt_punkty", array($projekt, array($id)));
     }
     if( $projekty_affected ) $this->S('liczniki/nastaw/projekty-etapy'); 
