@@ -174,14 +174,17 @@ _mFormTypes.register('integer', Class.create(mFormField, {
 
 _mFormTypes.register('date', Class.create(_mFormTypes.getClass('varchar'), {
   _miesiace: ['stycznia', 'lutego', 'marca', 'kwietnia', 'maja', 'czerwca', 'lipca', 'sierpnia', 'września', 'października', 'listopada', 'grudnia'],
+  _canBeEmpty: false,
   initialize: function(params){
     this.name = params.name;
-    this.params = params.params;
+    this.params = params.params ? params.params : {};
     this.suggestion = params.suggestion;
     this.div = new Element('div', {className: 'field'});
     
     if( Object.isFunction(this.onInit) ) this.onInit(params);
     this.build();
+    
+    if( this.params.canBeEmpty ) this._canBeEmpty = true;
     
     this.setLabel( params.label );
     if( params.value!='0000-00-00' && params.value!='' ) { this.setValue( params.value ); } else {
@@ -206,6 +209,10 @@ _mFormTypes.register('date', Class.create(_mFormTypes.getClass('varchar'), {
     }
   },
   _validate: function(){
+    if( this._canBeEmpty && ($F(this.input).strip()=='' || $F(this.input).strip()=='0000-00-00') ) {
+      this.input.value = '0000-00-00';
+      return true;
+    }
     return Boolean( $F(this.input).match(/^(19|20)\d\d([- /.])(0[1-9]|1[012])\2(0[1-9]|[12][0-9]|3[01])$/) )
   },
   setValue: function($super, value){
@@ -232,6 +239,7 @@ _mFormTypes.register('select', Class.create(mFormField, {
 }));
 
 _mFormTypes.register('radio', Class.create(mFormField, {
+  canBeEmpty: false,
   getValueDiv: function(){
     this.inputs = $A();
     var p = new Element('p', {className: 'radios border'});
@@ -266,7 +274,9 @@ _mFormTypes.register('radio', Class.create(mFormField, {
     return false;
   },
   _validate: function(){
-    return this.getValue()!==false;
+    if( this.canBeEmpty ) {return true;}
+    else {return this.getValue()!==false;}
+    
   }
 }));
 

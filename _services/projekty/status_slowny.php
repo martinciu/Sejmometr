@@ -25,6 +25,7 @@
 		    if( $substatus=='7' ) return $data_przyjecia.' przyjęto w Sejmie. '.$data_ostatniego_procedowania.' rozpatrywano poprawki Senatu.';
 		    if( $substatus=='8' ) return $data_przyjecia.' przyjęto w Sejmie.';
 		    if( $substatus=='9' ) return $data_ostatniego_procedowania.' przeprowadzono pierwsze czytanie.';
+		    if( $substatus=='10' ) return $data_ostatniego_procedowania.' Senat przedstawił poprawki.';
 		    break;
 		  }
 		  case '3': {
@@ -70,6 +71,9 @@
 	      if( $substatus=='3' ) return $data_ostatniego_procedowania.' skierowano do pierwszego czytania.';
 		    if( $substatus=='4' ) return $data_ostatniego_procedowania.' skierowano do pierwszego czytania w komisjach.';
 		    if( $substatus=='5' ) return $data_ostatniego_procedowania.' projekt wpłynął, ale nie skierowano go do dalszych prac.';
+		    if( $substatus=='6' ) return $data_ostatniego_procedowania.' przeprowadzono pierwsze czytanie';
+		    if( $substatus=='7' ) return $data_ostatniego_procedowania.' przeprowadzono drugie czytanie';
+		    if( $substatus=='8' ) return $data_ostatniego_procedowania.' przeprowadzono trzecie czytanie';
 	      break;
 	    }
 	    case '3': {

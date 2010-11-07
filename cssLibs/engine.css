@@ -39,11 +39,11 @@ h2 {font-weight: normal; font-size: 14px; color: #58595B;}
 .input_cont {margin-right: 12px;}
 span.separator {margin: 0 5px; position: relative; top: 2px;}
 
-#_MAIN_CONTAINER {background-color: #DBDBDB; border: 10px solid #FFF; width: 970px; margin: auto;}
+#_MAIN_CONTAINER {background-color: white; border: 10px solid #FFF; width: 970px; margin: auto;}
 #_OVERLAY {background: black; width: 100%; height: 100%; top: 0; left: 0; position: fixed; z-index: 50; opacity: .5; filter:alpha(opacity=50);}
 #_LIGHTBOXES {position: fixed; width: 100%; z-index: 100;}
-#_CONTAINER {padding: 0 10px;}
-#_HEADER {height: 97px; background: url(/g/_HEADER_BG.gif) repeat-x 0 0;}
+#_CONTAINER {padding: 0; clear: both;}
+#_HEADER {height: 82px; background: url(/g/_HEADER_BG.gif) repeat-x 0 0; overflow: hidden;}
 #_LOGO_A {display: block; padding: 5px; margin: 5px; width: 75px; height: 60px; float: left; outline: none; margin-right: 15px;}
 #_LOGO_IMG {width: 71px; height: 58px;}
 
@@ -52,7 +52,7 @@ span.separator {margin: 0 5px; position: relative; top: 2px;}
 #_MAIN_MENU_UL li a {color: white; padding: 8px 17px; outline: none; font-size: 14px; color: #FFF;}
 #_MAIN_MENU_UL li.selected {background: url(/g/_MAIN_MENU_LI_SELECTED_BG.gif) repeat-x 0 0;}
 
-#_FOOTER {height: 33px; background: url(/g/_FOOTER_BG.gif) repeat-x 0 0; padding-top: 35px; padding-left: 15px;}
+#_FOOTER {height: 33px; background: url(/g/_FOOTER_BG.gif) repeat-x 0 -15px; padding-top: 20px; padding-left: 15px;}
 #_FOOTER a {color: #FFF; outline: none;}
 #_FOOTER a:hover {text-decoration: none;}
 #_FOOTER span.separator {color: #EEE;}

@@ -42,7 +42,7 @@
 	  list($dzien_id, $ord_min, $ord_max) = $data;
 	  $ord_max++;
 	  	  
-	  $q = "SELECT wypowiedzi.id, wypowiedzi.autor_id, wypowiedzi.text, wypowiedzi.funkcja, ludzie.imie, ludzie.nazwisko FROM `wypowiedzi` LEFT JOIN ludzie ON wypowiedzi.autor_id=ludzie.id WHERE wypowiedzi.dzien_id='$dzien_id' AND wypowiedzi.ord>='$ord_min' AND wypowiedzi.ord<='$ord_max' ORDER BY wypowiedzi.ord ASC LIMIT 100";
+	  $q = "SELECT wypowiedzi.id, wypowiedzi.autor_id, wypowiedzi.text, wypowiedzi.typ, ludzie.nazwa FROM `wypowiedzi` LEFT JOIN ludzie ON wypowiedzi.autor_id=ludzie.id WHERE wypowiedzi.dzien_id='$dzien_id' AND wypowiedzi.ord>='$ord_min' AND wypowiedzi.ord<='$ord_max' ORDER BY wypowiedzi.ord ASC LIMIT 100";
 	  $result['wypowiedzi'] = $this->DB->selectAssocs($q);
 	    
 	  

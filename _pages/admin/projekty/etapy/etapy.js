@@ -1085,7 +1085,7 @@ function _autorzy_to_id(_adresaci){
   var match = _adresaci.match(/(.*?), z zaleceniem zasięgnięcia opinii (.*?)/i);
   if( match ) _adresaci = match[1];
   
-  _adresaci = _adresaci.replace(' , ', ' oraz ').replace(', Komisji', ' oraz Komisji').split(' oraz ');
+  _adresaci = _adresaci.replace(' , ', ' oraz ').replace(', Komisji', ' oraz Komisji').replace(' oraz projektów ustaw z nimi związanych', '').split(' oraz ');
   
   for( var j=0; j<_adresaci.length; j++ ) {
 	  var found = false;

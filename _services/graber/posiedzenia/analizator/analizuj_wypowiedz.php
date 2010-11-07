@@ -10,6 +10,7 @@
   
   $dzien_id = $_PARAMS;
   if( strlen($dzien_id)!=5 ) return false;
+  $_funkcje = $this->DB->selectAssocs("SELECT id, fraza FROM wypowiedzi_funkcje ORDER BY LENGTH(fraza) DESC");
   
   $this->DB->q("INSERT INTO analizator (dzien_id, typ) VALUES ('$dzien_id', '0')");
   
@@ -55,42 +56,18 @@
       }
     }
     
-    
-    // IDENTIFY AUTHORS
-    $errors = false;
-    foreach( $data as &$item ) {
-      $autor = trim($item['autor']);
-      if( $autor=='' ) {
-        $item['autor_typ'] = '0';
-      } else {
-	      $analiza_autora = $this->S('graber/posiedzenia/wypowiedzi/indentyfikuj_autora', $autor);
-	      if( !$analiza_autora ) {
-	        $item['autor_typ'] = '1';
-	        $errors = true;
-	      } else {
-		      list( $autorId, $funkcja, $autorTyp ) = $analiza_autora;
-		      $item['autor'] = $autorId;
-		      $item['funkcja'] = $funkcja;
-		      $item['autor_typ'] = $autorTyp==1 ? '3' : '2';
-	      }
-      }
-    }
-    if( $errors ) {
-      $this->DB->update_assoc('posiedzenia_dni', array('analiza_wystapienia'=>'2'), $dzien_id);
-      $this->S('liczniki/nastaw/dni');
-      return '2';
-    }
-           
+              
     
     // MERGE
 	  $result = array();
 	  for( $i=0; $i<count($data); $i++ ) {
 	    $item = $data[$i];
+	    if( $item['typ']=='1' ) $item['typ']='0';
 	    $parserControl = $item['_parser_stamp'];
 	    unset($item['_parser_stamp']);
 	    if( ($parserControl) && ($lastParserControl)  ) {
 	      if( $item['typ']=='3' ) { $result[count($result)-1]['text'] .= '<p class="wMarszalek">'.$item['funkcja'].': '.$item['text'].'</p>'; }
-	      if( $item['typ']=='1' )  { $result[count($result)-1]['text'] .= $item['text']; }
+	      if( $item['typ']=='0' )  { $result[count($result)-1]['text'] .= $item['text']; }
 	      if($item['sejm_id'][0]) $result[count($result)-1]['sejm_id'][] = $item['sejm_id'][0];
 	    } else { $result[] = $item; }  
 	        
@@ -102,15 +79,80 @@
 	    $pierwszy = array_shift($result);
 	    $result[0]['text'] = $pierwszy['text'].$result[0]['text'];
 	  }
-	   
-	   
-    $data = $result;
+	  unset($data);
+	  
+	  
+	  
+	  // IDENTIFY AUTHORS
+	  foreach( $result as &$item ) {
+	    $item['status'] = '0';
+	    if( $item['typ']=='0' ) {
+	      $autor = trim($item['autor']);
+	      unset( $item['autor'] );
+	      if( $autor=='' ) { $item['status']='1'; } else {
+	        
+	        $funkcja_id = false;
+			    reset($_funkcje);
+			    
+			    foreach( $_funkcje as $_funkcja ) {
+			      if( stripos($autor, $_funkcja['fraza'])===0 ) {
+			        $funkcja_id = $_funkcja['id'];
+			        break;
+			      }
+			    }
+			   
+			    
+			    if( $funkcja_id!==false ) {
+			    
+			      $autor_fraza = trim(str_replace($_funkcja['fraza'], '', $autor));
+			      $autor_id = $this->DB->selectValue("SELECT id FROM ludzie WHERE fraza='$autor_fraza'");
+			      if( $autor_id ) {
+			        
+			        $item['autor_id'] = $autor_id;
+			        $item['funkcja_id'] = $funkcja_id;
+			        $item['status'] = '4';
+			        
+			      } else {
+			        
+			        //  NIE ROZPOZNANO AUTORA
+			        $autor_id = $this->DB->selectValue("SELECT id FROM wypowiedzi_nierozpoznani_autorzy WHERE autor='$autor'");
+				      if( !$autor_id ) {
+				        $this->DB->insert_ignore_assoc('wypowiedzi_nierozpoznani_autorzy', array('autor' => $autor));
+				        $autor_id = $this->DB->insert_id;
+				      }
+				      $this->DB->insert_ignore_assoc('wypowiedzi_id-nierozpoznani_autorzy', array(
+			          'wyp_id' => $wyp_id,
+			          'autor_id' => $autor_id,
+			        ));
+			        $item['status'] = '3';
+			        
+			      }
+			    } else {
+			      
+			      // NIE ROZPONANO FUNKCJI
+			      $autor_id = $this->DB->selectValue("SELECT id FROM wypowiedzi_nierozpoznani_autorzy WHERE autor='$autor'");
+			      if( !$autor_id ) {
+			        $this->DB->insert_ignore_assoc('wypowiedzi_nierozpoznani_autorzy', array('autor' => $autor));
+			        $autor_id = $this->DB->insert_id;
+			      }
+			      $this->DB->insert_ignore_assoc('wypowiedzi_id-nierozpoznani_autorzy', array(
+		          'wyp_id' => $wyp_id,
+		          'autor_id' => $autor_id,
+		        ));
+			      $item['status'] = '2';
+			      
+			    }
+	        
+	      }
+	    }
+	  }
     
+    $data = $result;
     
     // PUNKTY
     $punkty = array();
     for( $i=0; $i<count($data); $i++ ) {
-      if( $data[$i]['typ']=='1' ) {
+      if( $data[$i]['typ']=='0' ) {
         $p = trim($data[$i]['punkty']);
         if( $p!='' ) {
           
@@ -155,7 +197,7 @@
 	        'data_dodania' => 'NOW()',
 	      ), $punkt_id);
 	      for( $i=0; $i<count($data); $i++ ) {
-		      if( $data[$i]['typ']=='1' && isset($data[$i]['punkt_id']) && $data[$i]['punkt_id']==$punkt['id'] ) { $data[$i]['punkt_id'] = $punkt_id; }
+		      if( $data[$i]['typ']=='0' && isset($data[$i]['punkt_id']) && $data[$i]['punkt_id']==$punkt['id'] ) { $data[$i]['punkt_id'] = $punkt_id; }
 		    }
 		    
       }
@@ -179,9 +221,9 @@
 	        'typ' => $item['typ'],
 	        'dzien_id' => $dzien_id,
 	        'punkt_id' => $item['punkt_id'],
-	        'autor_id' => $item['autor'],
-	        'autor_typ' => $item['autor_typ'],
-	        'funkcja' => $item['funkcja'],
+	        'autor_id' => $item['autor_id'],
+	        'funkcja_id' => $item['funkcja_id'],
+					'status' => $item['status'],
 	        'glosowanie_id' => $item['glosowanie_id'],
 	        'text' => addslashes($item['text']),
 	        'ord' => $iterator,
@@ -189,7 +231,7 @@
 	      
 	      $sejm_ids = $item['sejm_id'];
 	      if( is_array($sejm_ids) ) foreach( $sejm_ids as $sejm_id ) {
-	        $this->DB->insert_assoc('wypowiedzi_sejm_id', array(
+	        $this->DB->insert_ignore_assoc('wypowiedzi_sejm_id', array(
 	          'wypowiedz_id' => $wypowiedz_id,
 	          'sejm_id' => $sejm_id,
 	        ));
@@ -198,9 +240,10 @@
 	    
     }
     
-    
+    $this->DB->q("UPDATE wypowiedzi LEFT JOIN punkty_wypowiedzi ON wypowiedzi.punkt_id=punkty_wypowiedzi.id SET wypowiedzi.typ='2' WHERE wypowiedzi.punkt_id!='' AND punkty_wypowiedzi.sejm_id='Oświadczenia'");
     $this->DB->update_assoc('posiedzenia_dni', array('analiza_wystapienia'=>'4'), $dzien_id);
     $this->S('liczniki/nastaw/dni');
+    $this->S('liczniki/nastaw/funkcje');
 
     return 4;
   } else {

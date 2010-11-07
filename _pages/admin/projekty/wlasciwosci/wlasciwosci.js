@@ -106,7 +106,7 @@ var Projekt = Class.create({
     var projekt_id = inp.readAttribute('projekt_id');
     inp.disable();
     $S('graber/projekty/pobierz', projekt_id, function(result){
-      location.reload();
+      mBrowser.refreshItem();
     });  
   },
   onDrukCick: function(obj){
@@ -149,7 +149,10 @@ var Projekt = Class.create({
   },
   regrab: function(){
     mBrowser.disable_loading();
-    $S('graber/projekty/pobierz', this.id, function(){location.reload();});
+    $S('graber/projekty/pobierz', this.id, function(result){
+      alert('onRegrab');
+      mBrowser.refreshItem();
+    }.bind(this));
   }
 });
 

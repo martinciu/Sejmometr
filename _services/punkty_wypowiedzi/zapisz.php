@@ -10,6 +10,15 @@
   $id = $_PARAMS['id'];
   if( strlen($id)!=5 ) { return 2; }
   
+  $_wyp_typy = array(
+    '1' => '1', // legislacja
+    '2' => '5', // sprawy bieżące
+    '3' => '4', // informacje bieżące
+    '4' => '7', // specjalne
+    '5' => '6', // ślubowania
+  );
+  $wyp_typ = $_wyp_typy[ $_PARAMS['typ_id'] ];
+  
   $punkt = array(
     'id' => $id,
     'akcept' => '1',
@@ -37,10 +46,13 @@
 	  if( is_array($druki) ) foreach( $druki as $druk ) {
 	    $this->DB->q("INSERT IGNORE INTO punkty_wypowiedzi_druki (`punkt_id`, `druk_id`) VALUE ('$id', '$druk')");
 	  }
+	  
+	  $this->DB->q("UPDATE wypowiedzi SET typ='$wyp_typ' WHERE punkt_id='$id'");
   
   } else return 3;
   
   $this->S('liczniki/nastaw/punkty_wypowiedzi');
   $this->S('liczniki/nastaw/projekty-etapy');
+  $this->S('liczniki/nastaw/wypowiedzi');
   return 4;
 ?>

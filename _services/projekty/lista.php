@@ -3,6 +3,7 @@
   $filtry = $_PARAMS['filtry'];
   $s = $_PARAMS['sort'];
   $miesiac = $_PARAMS['miesiac'];
+  $search_q = $_PARAMS['q'];
   
   $_fields = array(
     'autor' => 'autor_id',
@@ -10,7 +11,7 @@
   );
   
   $w = "projekty.akcept='1' AND projekty.status!=0 AND (projekty.typ_id=".implode(" OR projekty.typ_id=", $typ_ids).")";
-    
+  if( $search_q ) $w .= 'AND projekty.tytul LIKE "%'.$search_q.'%"';
 
    
   if( is_array($filtry) ) foreach( $filtry as $k=>$v ) {

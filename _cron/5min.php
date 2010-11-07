@@ -46,4 +46,11 @@
   
   echo "posiedzenia - głosowania\n";
   $M->S('graber/posiedzenia/glosowania/pobierz_nowe');
+  
+  echo "głosowania - głosy\n";
+  $M->S('graber/posiedzenia/glosowania/pobierz_kluby');
+  
+  echo "głosowania - rozpoznowanie posłów\n";
+  $M->S('graber/glosowania/rozpoznawanie/wszystkie');
+ 
 ?>

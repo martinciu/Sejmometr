@@ -168,7 +168,7 @@ var MBrowser = Class.create({
     data = data[1];
     this.listDiv.update('');
     for( var i=0; i<data.length; i++ ) {
-      var div = Element('div').update( this.getListItemInnerHTML(data[i]) );
+      var div = new Element('div').update( this.getListItemInnerHTML(data[i]) );
       div.addClassName('listitem');
       div.writeAttribute('mid', data[i]['id']);
       div.observe('click', this.onListitemClick.bind(this));
@@ -242,6 +242,10 @@ var MBrowser = Class.create({
       
       $P(this.params['item_pattern'], {id: mid, c: this.category.id}, this.onLoadItem.bind(this), this.onLoadFail.bind(this));        
     }
+  },
+  
+  refreshItem: function(){
+    if(this.mid) this.loadItem( this.mid );
   },
   
   loadPrevItem: function(){

@@ -73,6 +73,7 @@
     'filtry' => $_filtry,
     'sort' => $s,
     'miesiac' => $miesiac,
+    'q' => $_GET['q'],
   ));
   
   function sm_miesiac($m){

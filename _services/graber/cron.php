@@ -21,14 +21,12 @@
       $this->DB->q("UPDATE `graber_schedule` SET `lastRun`=NOW() WHERE action='$action'");
       switch( $action ) {
         case 'druki/pobierz_nowe': { $this->service('graber/druki/pobierz_nowe'); break; }
-        case 'posiedzenia/pobierz_nowe': {
-          $this->service('graber/posiedzenia/pobierz_nowe');
-          $this->service('graber/posiedzenia/sprawdz_ostatnie');
-          break;
-        }
+        case 'posiedzenia/pobierz_nowe': { $this->service('graber/posiedzenia/pobierz_nowe'); break; }
+        case 'posiedzenia/sprawdz_ostatnie': { $this->service('graber/posiedzenia/sprawdz_ostatnie'); break; }
         case 'projekty/dodaj_nowe': { $this->service('graber/projekty/dodaj_nowe'); break; }
         case 'projekty/sprawdz_ostatnie': { $this->service('graber/projekty/sprawdz_ostatnie'); break; }
         case 'glosowania_pp/pobierz_nowe_dni': { $this->service('graber/glosowania_pp/pobierz_nowe_dni'); break; }
+        case 'poslowie/sprawdz': { $this->service('graber/poslowie/sprawdz'); break; }
       }
     }
   }

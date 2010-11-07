@@ -205,8 +205,7 @@
 		    }
 	    
 	    } else {
-	      
-	      
+	      	      
 	      $result = array('status' => 2, 'data_ostatniego_procedowania' => $ostatni_etap['data']);
 		    if( $ostatni_etap['typ']=='skierowanie' ) {
 		      
@@ -232,6 +231,8 @@
 		      $result['substatus'] = 3;
 		    } elseif( $ostatni_etap['typ']=='druk' && $ostatni_etap['subtyp']=='16' ) {
 		      $result['substatus'] = 5;
+		    } elseif( $ostatni_etap['typ']=='druk' && $ostatni_etap['subtyp']=='8' ) {
+		      $result['substatus'] = 10;
 		    } elseif( $ostatni_etap['typ']=='wypowiedzi' && $ostatni_etap['debata_typ']=='2') {
 		      $result['substatus'] = 6;
 		    } elseif( $ostatni_etap['typ']=='wypowiedzi' && $ostatni_etap['debata_typ']=='1') {
@@ -241,7 +242,7 @@
 		    } elseif( $ostatni_etap['typ']=='wyrok' || $ostatni_etap['wynik']=='2' ) {
 		      $result['status'] = 4;
 		      $result['substatus'] = 1;
-		    } elseif( $ostatni_etap['typ']=='glosowania' && $ostatni_etap['debata_typ']=='4' ) {
+		    } elseif( ($ostatni_etap['typ']=='glosowania' || $ostatni_etap['typ']=='wypowiedzi') && $ostatni_etap['debata_typ']=='4' ) {
 		      $result['data_przyjecia'] = $model[$ostatnie_glosowanie_trzecie_czytanie]['data'];
 		      $result['status'] = 2;
 		      $result['substatus'] = 7;
@@ -263,7 +264,7 @@
     $result['isap_id'] = $isap_id;
 
 	} elseif($_schemat=='2') {
-	  
+	  	  
 	  if( $html_status==9 || ($isap_id && $html_status!=8) ) {
 	    $isap = $this->DB->selectAssoc("SELECT data_obowiazywania, data_ogloszenia, data_uchylenia, data_wejscia_w_zycie, data_wydania FROM isap WHERE id='$isap_id'");
 	    $result = array(
@@ -320,8 +321,15 @@
 	    $result = array('status' => 2, 'data_ostatniego_procedowania' => $ostatni_etap['data']);
 	    if( $ostatni_etap['typ']=='czytanie_komisje') {
 		    $result['substatus'] = 1;
+		  } elseif( ($ostatni_etap['typ']=='wypowiedzi' || $ostatni_etap['typ']=='glosowania') && $ostatni_etap['debata_typ']=='1') {
+		    $result['substatus'] = 6;
+		  } elseif( $ostatni_etap['typ']=='wypowiedzi' && $ostatni_etap['debata_typ']=='2') {
+		    $result['substatus'] = 7;
+		  } elseif( $ostatni_etap['typ']=='wypowiedzi' && $ostatni_etap['debata_typ']=='3') {
+		    $result['substatus'] = 8;
 		  }
 	  }
+	
 	
 	} elseif($_schemat=='3') {
 	  

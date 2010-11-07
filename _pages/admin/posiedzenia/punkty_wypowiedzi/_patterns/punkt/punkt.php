@@ -31,12 +31,8 @@
   
   
   list($dzien_id, $ord) = $this->DB->selectRow("SELECT dzien_id, ord FROM `wypowiedzi` WHERE punkt_id='$id' ORDER BY ord ASC LIMIT 1");
-  $result['wypowiedzi'] = $this->DB->selectAssocs("SELECT wypowiedzi.id, wypowiedzi.autor_id, wypowiedzi.text, wypowiedzi.funkcja, ludzie.imie, ludzie.nazwisko FROM `wypowiedzi` LEFT JOIN ludzie ON wypowiedzi.autor_id=ludzie.id WHERE wypowiedzi.punkt_id='$id' OR ( wypowiedzi.dzien_id='$dzien_id' AND wypowiedzi.ord+1=$ord ) ORDER BY wypowiedzi.ord ASC LIMIT 10");
-  foreach( $result['wypowiedzi'] as &$item ) {
-    $item['imie'] = (string) $item['imie'];
-    $item['nazwisko'] = (string) $item['nazwisko'];
-    $item['text'] = mark_druki( $item['text'] );
-  }
+  $result['wypowiedzi'] = $this->DB->selectAssocs("SELECT wypowiedzi.id, wypowiedzi.autor_id, wypowiedzi.text, wypowiedzi.typ, ludzie.nazwa FROM `wypowiedzi` LEFT JOIN ludzie ON wypowiedzi.autor_id=ludzie.id WHERE wypowiedzi.punkt_id='$id' OR ( wypowiedzi.dzien_id='$dzien_id' AND wypowiedzi.ord+1=$ord ) ORDER BY wypowiedzi.ord ASC LIMIT 10");
+  foreach( $result['wypowiedzi'] as &$item ) $item['text'] = mark_druki( $item['text'] );
       
   return $result;
 ?>

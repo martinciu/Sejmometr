@@ -1,4 +1,21 @@
 <?
+  $punkt_id = $_PARAMS;
+  $this->DB->update_assoc('punkty_wypowiedzi', array(
+    'przeliczono' => '1',
+  ), $punkt_id);
+  
+  
+  
+  $count = $this->DB->selectCount("SELECT COUNT(*) FROM wypowiedzi WHERE punkt_id='$punkt_id'");
+  
+  
+  $this->DB->update_assoc('punkty_wypowiedzi', array(
+    'ilosc_wypowiedzi' => $count,
+    'przeliczono' => '2',
+  ), $punkt_id);
+
+  die();
+
   $id = $_PARAMS;
   if( strlen($id)!=5 ) return false;
     

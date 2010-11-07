@@ -4,7 +4,7 @@
 .punkty_row a {display: block; margin: 15px 5px; color: #333; text-decoration: none;}
 .punkty_row a:hover {color: blue;}
 
-#duplikaty_div {background-color: #CCC; padding: 10px; margin-bottom: 10px; -moz-border-radius: 5px;}
+#duplikaty_div {background-color: #CCC; padding: 0; margin-bottom: 10px; -moz-border-radius: 5px;}
 
 #duplikaty_table {width: 100%; background-color: white;}
 #duplikaty_table td, #duplikaty_table th {border: 1px solid #CCC; text-align: center; padding: 3px; width: 1%;}

@@ -44,7 +44,8 @@ var Punkt = Class.create({
     
     
     for( var i=0; i<_wypowiedzi.length; i++ ) {
-      $('side_div').insert('<hr/><b>'+_wypowiedzi[i]['funkcja']+'</b> <a href="#" onclick="return false;">'+String(_wypowiedzi[i]['imie'])+' '+String(_wypowiedzi[i]['nazwisko'])+'</a><br/><div wypowiedz_id="'+_wypowiedzi[i]['id']+'">'+_wypowiedzi[i]['text']+'</div>');
+      var s = _wypowiedzi[i]['typ']=='3' ? '<b>Marszałek</b>' : '<a href="#" onclick="return false;">'+String(_wypowiedzi[i]['nazwa'])+'</a>';
+      $('side_div').insert('<hr/>'+s+'<br/><div wypowiedz_id="'+_wypowiedzi[i]['id']+'">'+_wypowiedzi[i]['text']+'</div>');
     }    
     $('side_div').height_control().select('._druk').invoke('observe', 'click', function(event){
       var numer = event.findElement('._druk').readAttribute('numer');

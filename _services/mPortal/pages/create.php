@@ -17,9 +17,8 @@
   $pagename = $pathparts['filename'];
   $abspath = ROOT.'/_pages/'.$path;
 
-  if( file_exists($abspath) ) { return 3; } 
+  if( !file_exists($abspath) || !is_dir($abspath) ) force_mkdir($abspath);
   
-  force_mkdir($abspath);
   @file_put_contents( $abspath.'/'.$pagename.'.tpl', '' );
   @mkdir( $abspath.'/_templates_c' );
   @mkdir( $abspath.'/_configs' );

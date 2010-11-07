@@ -264,6 +264,18 @@
     function glosowanie_info($id){
       $html = $this->glosowanie_info_html($id);
       
+      $result['rodzaj'] = (stripos($id, 'glosowaniaL')==0) ? '2' : '1';
+      
+      $kluby = array();
+      preg_match_all('/InfoForPPID\?OpenAgent\&(.*?)\&(.*?)\"/i', $html, $matches);
+      for( $i=0; $i<count($matches[0]); $i++ ) {
+        $kluby[] = array(
+          'url' => $matches[1][$i].'&'.$matches[2][$i],
+          'klub_id' => $matches[2][$i],
+        );
+      }
+      $result['kluby'] = $kluby;
+      
       preg_match( '/\<TD(.*)class\="nazc"\>(.*?)Nr(.*?)-(.*?)\<B\>([0-9]{2})-([0-9]{2})-([0-9]{4})\<\/B\>(.*?)\<B\>([0-9]{2})\:([0-9]{2})\<(.*?)\<\/TD\>/i', $html, $matches );    
 	    preg_match('/POSIEDZENIE (.*?)\./i', $matches[4], $mmm);
 	    $result['posiedzenie_numer'] = trim( $mmm[1] );
@@ -559,6 +571,29 @@
       preg_match('/\/jpg\/posel6\/(.*?)\.jpg/i', $txt, $matches);
       $result['image_url'] = 'http://sejm.gov.pl/jpg/posel6/'.$matches[1].'.jpg';
       $result['image_md5'] = md5( file_get_contents( $result['image_url'] ) );
+      
+      return $result;
+    }
+    
+    function glosy($id){
+      $html = $this->getData('http://orka.sejm.gov.pl/SQL.nsf/InfoForPPID?OpenAgent&'.$id);
+      $_glosy = array(
+        'Za' => '1',
+        'Przeciw' => '2',
+        'Wstrzymał się' => '3',
+        'Nieobecny' => '4',
+      );
+      
+      $result = array();
+      preg_match_all('/\<TD\>(.*?)\<\/TD\>\<TD\>\<FONT(.*?)\>(.*?)\<\/FONT\>\<\/TD\>/i', $html, $matches);
+      for( $i=0; $i<count($matches[0]); $i++ ) {
+        $glos = $_glosy[ $matches[3][$i] ];
+        if( !$glos ) $glos = '0';
+        $result[] = array(
+          'posel' => $matches[1][$i],
+          'glos' => $glos,
+        );
+      }
       
       return $result;
     }

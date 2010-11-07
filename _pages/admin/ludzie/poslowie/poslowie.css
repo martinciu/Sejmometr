@@ -1,0 +1,30 @@
+.mBrowser .list {width: 150px;}
+.mBrowser .item {margin-left: 150px;}
+
+.mBrowser .item .tools {}
+.mBrowser .item .tools a {display: block; margin: 5px;}
+
+.mBrowser .item ul.flags {margin-left:110px; min-height:140px;}
+.mBrowser .item ul.flags li {list-style: disc inside; padding: 5px;}
+.mBrowser .item ul.flags .error {color: #C00;}
+.mBrowser .item ul.flags .ok {color: #060;}
+
+.mBrowser .mid {width: inherit; display: inline;}
+
+#_COL_RIGHT {padding-right: 0;}
+#browser {width: 50%; float: left;}
+#side_div {margin-left: 50%;}
+
+#zmiany {background-color: #DDD; margin-left: 10px; -moz-border-radius-bottomleft: 5px; -moz-border-radius-topleft: 5px;}
+#zmiany li {background-color: #FFF; margin: 5px; -moz-border-radius-bottomleft: 5px; -moz-border-radius-topleft: 5px; cursor: pointer;}
+#zmiany li:hover {background-color: #FFD;}
+#zmiany li.done {background-color: #DFD;}
+#zmiany li p.nazwa {padding: 5px; padding-bottom: 1px;}
+#zmiany li span.nazwa {font-weight: bold;}
+#zmiany li p.wartosc {padding: 5px; padding-top: 1px;}
+
+.mForm label.radio {width: 25%;}
+
+#item .inner_title_bar {overflow: auto; background-color: #DDD; height: 152px;}
+#item .inner_title_bar img {float: left; margin: 3px; padding: 3px; background-color: white; -moz-border-radius: 3px;}
+#item .inner_title_bar img.selected {background-color: #627AAD;}

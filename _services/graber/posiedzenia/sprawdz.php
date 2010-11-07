@@ -34,10 +34,6 @@
   $dni_dodane = array_diff($sejm_ids, $db_ids);
   $dni_skasowane = array_diff($db_ids, $sejm_ids);
 
-  // var_export($dni_utrzymane);
-  // var_export($dni_dodane);
-  // var_export($dni_skasowane);
-  // die();
   
   
   // DNI UTRZYMANE
