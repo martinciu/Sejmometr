@@ -8,10 +8,10 @@ h1 a._BTN {font-size: 12px; position: relative; top: -2px;}
 #glowny_post {}
 #glowny_post h2 {font-size: 16px;}
 #glowny_post .admin_buttons {padding: 5px 0;}
-#glowny_post .info, #ostatnie_wpisy .data {font-size: 11px; margin-top: 1px;}
+#glowny_post .info {font-size: 11px; margin-top: 1px;}
 #glowny_post .baner {width: 550px; margin: 5px 0;}
 #glowny_post .opis {font-size: 13px; margin: 10px 0 18px;}
-#glowny_post .tresc {font-size: 13px;}
+#glowny_post .tresc {font-size: 13px; margin-top: 10px;}
 #glowny_post .tresc p {margin: 10px 0;}
 #glowny_post .tresc p:first-child {margin-top: 0;}
 #glowny_post .tresc p:last-child {margin-bottom: 0;}
@@ -39,6 +39,7 @@ padding:4px 5px;}
 #blog_info .tytul {}
 #blog_info .rss {}
 
-#ostatnie_wpisy .tytul {font-size: 13px;}
+#ostatnie_wpisy .data {font-size: 11px;}
+#ostatnie_wpisy .tytul {font-size: 14px;}
 #ostatnie_wpisy .post {border-bottom: 1px solid #CCC; padding: 5px 0;}
 #ostatnie_wpisy .post:last-child {border-bottom: none;}

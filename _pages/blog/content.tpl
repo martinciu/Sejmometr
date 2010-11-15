@@ -6,7 +6,7 @@
 		  <a href="/blog/edytuj/{$glowny_post.id}" class="_BTN orange">Edytuj</a> <a id="btnUsun" href="#" onclick="usun_post({$glowny_post.id}); return false;" class="_BTN orange">Usuń</a>
 		</p>{/if}
 		<p class="info">{$glowny_post.data_zapisu|data_slowna}</p>
-		<img class="baner" src="/resources/blog/{$glowny_post.img}.jpg">
+		{if $glowny_post.image}<img class="baner" src="/resources/blog/{$glowny_post.image}.jpg">{/if}
 		<div class="tresc">{$glowny_post.tresc}</div>
 	</div>
 	
@@ -24,7 +24,7 @@
   </div>
 	
 	<div id="blog_tools">
-	  <a href="#">Subskrybuj przez RSS</a>
+	  <a href="#" onclick="return false;">Subskrybuj przez RSS</a>
 	</div>
   
   <div id="ostatnie_wpisy">
