@@ -1,11 +1,9 @@
-._BOX_FOOTER {
-  text-align: center;
-  font-size: 12px;
-}
-._BOX_FOOTER a {margin: 0 5px; position: relative; top: 2px;}
-
-
 #formDiv {width: 697px; margin: 0 auto;}
-#form textarea {width: 685px; border: 1px solid #D3D3D3; -moz-border-radius: 4px; -webkit-border-radius: 5px; padding: 2px; color: #58595B; font-size: 12px;}
+#form textarea {width: 670px; border: 1px solid #D3D3D3; -moz-border-radius: 4px; -webkit-border-radius: 5px; padding: 2px; color: #58595B; font-size: 12px;}
 #form .f {padding-top: 10px;}
-#form h2 {margin-bottom: 1px; color: #0083B8; margin-left: 2px;}
+#form .f.first {padding-top: 0;}
+#form h2 {color: #0083B8; margin: 5px 2px 1px;}
+#form h2:first-child {margin-top: 0;}
+.admin_buttons {text-align: center; margin: 10px 0;}
+.admin_buttons a {margin: 0 3px;}
+span.cke_skin_kama {border: none !important; padding: 0 !important;}

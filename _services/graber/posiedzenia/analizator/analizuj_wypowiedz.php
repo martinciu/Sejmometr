@@ -227,6 +227,7 @@
 	        'glosowanie_id' => $item['glosowanie_id'],
 	        'text' => addslashes($item['text']),
 	        'ord' => $iterator,
+	        'ilosc_slow' => $this->S('utils/policz_slowa', $item['text']),
 	      ));
 	      
 	      $sejm_ids = $item['sejm_id'];

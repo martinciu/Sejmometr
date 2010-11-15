@@ -1,7 +1,7 @@
 <div class="projekty">
 {section name="projekty" loop=$projekty}{assign var="p" value=$projekty[projekty]}
 <div class="p">
-  {if $p.dokument_id}<a class="dokument d" href="/projekt/{$p.id}"><img class="d" dokument_id="{$p.dokument_id}" src="/d/3/{$p.dokument_id}.gif" /></a>{/if}
+  {if $p.dokument_id}<a class="dokument d" href="/projekt/{$p.id}"><img class="d" dokument_id="{$p.dokument_id}" src="/d/3/{$p.dokument_id}.gif" /><span class="druk_nr">druk nr <b>{$p.numer}</b></span></a>{/if}
   <div class="pc">
     <p class="tytul"><a href="/projekt/{$p.id}">{$p.tytul}</a></p>
     <div class="autorstatus">

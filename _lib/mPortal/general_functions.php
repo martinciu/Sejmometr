@@ -32,6 +32,38 @@
 	  return $count.'&nbsp;'.$r;
 	}
 	
+	function sm_data_slowna($data) {
+	  $_miesiace = array(
+	    1 => 'stycznia',
+	    2 => 'lutego',
+	    3 => 'marca',
+	    4 => 'kwietnia',
+	    5 => 'maja',
+	    6 => 'czerwca',
+	    7 => 'lipca',
+	    8 => 'sierpnia',
+	    9 => 'września',
+	    10 => 'października',
+	    11 => 'listopada',
+	    12 => 'grudnia',
+	  );
+	  
+	  $parts = explode('-', $data);
+	  if( count($parts)!=3 ) return $data;
+	  return $parts[2].' '.$_miesiace[ $parts[1] ].' '.$parts[0];
+	}
+	
+	function url_title($string){
+	  $chars = 'qwertyuiopasdfghjklzxcvbnm1234567890';
+	  $result = '';
+	  $string = translate_polish_letters( trim( $string ) );
+	  for( $i=0; $i<strlen($string); $i++ ) {
+	    $c = $string[$i];
+	    if( $c==' ' ) { $result.='_'; } else { if( stripos($chars, $c)!==false ) $result.=$c; }
+	  }
+	  return $result;
+	}
+	
 	function sm_dataWzglednaEngine($data, $params=null){
 		if( !empty($data) ) {
 	    $params = (int) $params;

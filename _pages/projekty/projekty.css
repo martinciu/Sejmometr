@@ -5,7 +5,8 @@
 .p {padding-bottom: 20px; border-bottom: 1px solid #CCC; margin: 25px 10px;}
 .p:first-child {margin-top: 10px;}
 .p:last-child {border-bottom: none; margin-bottom: 0;}
-.p .dokument {float: left;}
+.p .dokument {float: left; line-height: 15px;}
+.p .dokument .druk_nr {background-color:#EEE; color:#58595B; display:block; font-size:11px; margin:-25px 1px 0; padding:4px 0 2px; position:relative; text-align:center; line-height: 15px;}
 .p .dokument.lb {position: absolute;}
 .p .tytul {font-size: 15px;}
 .p .tytul a {color: #0083B8;}

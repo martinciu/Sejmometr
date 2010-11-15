@@ -4,7 +4,7 @@
 .p .opis {margin: 10px 0 20px;}
 .kalendarzyk {float: left; margin-right: 8px;}
 
-.e {padding: 1px 7px 7px; min-height: 37px;}
+.e {padding: 1px 7px 7px; min-height: 37px; display: block; outline: none;}
 .e.nowa_data {border-top:  1px solid #DDD; padding: 7px;}
 .e.nowa_data:first-child {border-top: none;}
 .e .c {margin-left: 91px;}
@@ -30,18 +30,8 @@
 .ikona_legislacyjna.wycofanie {background-position: -222px 0;}
 .ikona_legislacyjna.anulowanie {background-position: -259px 0;}
 
-.e:hover .ikona_legislacyjna.wplynal {background-position: 0 -37px;}
-.e:hover .ikona_legislacyjna.skierowanie {background-position: -37px -37px;}
 .e:hover .ikona_legislacyjna.druk {background-position: -296px -37px;}
-.e:hover .ikona_legislacyjna.czytanie_komisje {background-position: -74px -37px;}
-.e:hover .ikona_legislacyjna.wypowiedzi {background-position: -74px -37px;}
-.e:hover .ikona_legislacyjna.glosowania {background-position: -111px -37px;}
 .e:hover .ikona_legislacyjna.wyrok {background-position: -296px -37px;}
-.e:hover .ikona_legislacyjna.aklamacja {background-position: -148px -37px;}
-.e:hover .ikona_legislacyjna.wypowiedzi_bw {background-position: -148px -37px;}
-.e:hover .ikona_legislacyjna.podpisanie {background-position: -185px -37px;}
-.e:hover .ikona_legislacyjna.wycofanie {background-position: -222px -37px;}
-.e:hover .ikona_legislacyjna.anulowanie {background-position: -259px -37px;}
 
 .e.nowa_data .ikona_legislacyjna {margin-left: 0;}
 
@@ -59,3 +49,5 @@
 .opinie_box.pozostale a.dokument {margin-right: 5px;}
 .opinie_box a.dokument .overlay_bg {background-color: #F2F2F2;}
 .opinie_box a.dokument img.d {-moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none;}
+
+.druk_nr {}

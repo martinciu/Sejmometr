@@ -32,6 +32,7 @@
   
   if( $rows==1 ) {
     
+    if( $_PARAMS['typ_id']=='4' ) $this->DB->insert_ignore_assoc('debaty_specjalne', array('id'=>$id));
     
     $projekty = $this->DB->selectValues("SELECT DISTINCT(projekt_id) FROM projekty_druki WHERE druk_id='".implode("' OR druk_id='", $druki)."'");
     foreach( $projekty as $projekt_id ){

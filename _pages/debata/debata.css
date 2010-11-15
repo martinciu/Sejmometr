@@ -1,16 +1,55 @@
-._BOX_TABLE ._LEFT_TD {width: 44%; padding-right: 0 !important;}
-._BOX_TABLE ._MAIN_TR td {padding: 0 7px;}
-.wyp {margin: 7px 0; display: block; color: #58595B; outline: none; cursor: pointer; -moz-border-radius-topleft: 5px; -moz-border-radius-bottomleft: 5px; -webkit-border-bottom-left-radius: 5px; -webkit-border-top-left-radius: 5px;}
+._BOX_HEADER {overflow: auto;}
+._BOX_FOOTER {background:url("/g/_FOOTER_BG.gif") repeat-x scroll 0 -17px #FFF; font-size:16px; min-height:22px; padding:10px; -moz-border-radius: 0; -webkit-border-radius: 0;}
+._BOX_TABLE ._LEFT_TD {width: 44%; padding: 0 !important;}
+._BOX_TABLE ._MAIN_TR td {padding: 0 10px;}
+
+._BOX_HEADER .kalendarzyk {float: left;}
+._BOX_HEADER .ikona_legislacyjna {width: 37px; height: 37px; background: url(/g/ikony_sprite.gif) no-repeat -74px -37px; float: left; margin-left: 10px;}
+._BOX_HEADER .tytul {margin: -4px 0 0 95px;}
+
+.avatar {padding: 1px; background-color: #FFF; border: 1px solid #BBB; -moz-border-radius: 3px; -webkit-border-radius: 3px;}
+.avatar.c {width: 50px; height: 50px;}
+.avatar.d {width: 33px; height: 33px;}
+
+.avatar {float: left;}
+
+.wyp {padding: 10px 10px; display: block; color: #58595B; outline: none; cursor: pointer; border-bottom: 1px solid #BFBFBF !important;}
+.wyp:last-child {border-bottom: none !important;}
 .wyp:hover, .wyp:visited, .wyp:active {color: #58595B;}
-.wyp:hover .wyp_inner {background-color: #FFF;}
-.wyp:first-child {margin-top: 0;}
-.wyp:last-child {margin-bottom: 0;}
-.wyp.selected {background-color: #FFF; border: 1px solid #CCC; border-right: none; padding-right: 1px;}
-.wyp.selected .wyp_inner {background-color: #FFF; border: none;}
+.wyp:hover {background-color: #F3F3F3;}
+.wyp.selected {background-color: #FFF; border-bottom-color: white !important;}
+.wyp.beforeselected {border-bottom-color: white !important;}
 
-.wyp .wyp_inner {background-color: #F3F3F3; -moz-border-radius: 5px; margin-right: 7px; padding: 5px; border: 1px solid #CCC;}
+.wyp .header {overflow: auto; margin-bottom: 1px;}
 
-.wyp .s_avatar {float: left;}
-.wyp .p_info {height: 35px; margin: -2px 0 5px 38px;}
-.wyp .p_info .autor {font-size: 14px;}
-.wyp .p_info .funkcja {font-size: 11px; font-weight: bold;}
+.wyp .numer {float: left; font-size: 13px; padding: 0 7px 1px; background-color: #DADADA; -moz-border-radius: 4px; -webkit-border-radius: 4px; margin: 1px 0 0 5px; line-height: 15px; height: 16px;}
+.wyp:hover .numer {background-color: #E5E5E5;}
+.wyp.selected .numer {background: url("/g/_HEADER_BG.gif") repeat-x scroll 0 0 transparent; color: #FFF;}
+
+.wyp .info {height: 35px; margin-left: 5px; float: left;}
+.wyp .info .autor {font-size: 14px;}
+.wyp .info .funkcja {font-size: 11px;}
+.wyp .info .funkcja span.f {font-weight: bold;}
+
+#wyp_div {position: fixed;}
+#wyp_info {min-height: 54px;}
+#wyp_info .info {margin-left: 59px;}
+#wyp_info .info .autor {font-size: 14px;}
+#wyp_info .info .funkcja {font-size: 11px;}
+#wyp_info .info .funkcja span.f {font-weight: bold;}
+
+#wyp_text {border-right:1px solid #FFF; font-size:13px; margin-right:10px; overflow:hidden; padding-right:15px; width:512px;}
+#wyp_text.high:hover {border-right-color: #CCC;}
+#wyp_text p {margin: 10px 0;}
+#wyp_text p.wMarszalek {padding: 5px; background-color: #EEEEF5; -moz-border-radius: 5px; -webkit-border-radius: 5px; color: #777;}
+
+#navbar {position: fixed; background: url("/g/_FOOTER_BG.gif") repeat-x scroll 0 -15px transparent; left: 50%; width: 950px; margin-left: -485px; height: 22px; color: #FFF; padding: 10px;}
+#navbar .pages {font-size: 14px;}
+
+#wyp_input {border: none; width: 30px; text-align: center; padding: 1px; font-size: 13px; margin-right: 1px;}
+
+#_FOOTER {background: url("/g/_HEADER_BG.gif") repeat-x scroll 0 -15px transparent;}
+
+.text_shadow {height: 10px; background-color: red; position: fixed; width: 534px; background: url(/g/text_shadow.png) repeat-x transparent; margin-left: -49px; left: 50%;}
+.text_shadow.top {background-position: 0 0;}
+.text_shadow.bottom {background-position: 0 -10px;}

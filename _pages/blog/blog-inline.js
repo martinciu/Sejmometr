@@ -1,4 +1,12 @@
 {if $can_manage}{literal}
+  Event.observe(window, 'keypress', function(event){
+    if( event.ctrlKey && event.charCode==100 ) {
+      var elements = $$('._admin_hidden');
+			if( elements ) elements.invoke('toggle');
+    }
+  }.bind(this));
+
+  
   function usun_post(id){
     if( confirm('Czy na pewno chcesz usunąć ten post?') ) {
       $('btnUsun').update('Usuwam...');

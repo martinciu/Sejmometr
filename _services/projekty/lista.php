@@ -30,7 +30,7 @@
   $_str = $strona-1;
   $_limit_start = $_str*$na_strone;
   
-  $q = "SELECT SQL_CALC_FOUND_ROWS projekty.id, druki.dokument_id, druki_autorzy.autor, projekty.tytul, projekty.opis, projekty.status_slowny, projekty.data_wplynal FROM projekty LEFT JOIN druki ON projekty.druk_id=druki.id LEFT JOIN druki_autorzy ON projekty.autor_id=druki_autorzy.id WHERE $w ORDER BY $s LIMIT $_limit_start, $na_strone";
+  $q = "SELECT SQL_CALC_FOUND_ROWS projekty.id, druki.dokument_id, druki_autorzy.autor, druki.numer, projekty.tytul, projekty.opis, projekty.status_slowny, projekty.data_wplynal FROM projekty LEFT JOIN druki ON projekty.druk_id=druki.id LEFT JOIN druki_autorzy ON projekty.autor_id=druki_autorzy.id WHERE $w ORDER BY $s LIMIT $_limit_start, $na_strone";
   $projekty = $this->DB->selectAssocs($q);
   
   $total = $this->DB->found_rows();

@@ -17,6 +17,7 @@ RewriteRule ^projekt/([a-zA-Z]{5})\,(.*?)$ servers/page.php?_PAGE=projekt&_ID=$1
 RewriteRule ^debata/([a-zA-Z]{5})$ servers/page.php?_PAGE=debata&_ID=$1&%{QUERY_STRING} [L]
 
 RewriteRule ^blog/([0-9]+)$ servers/page.php?_PAGE=blog&_ID=$1&%{QUERY_STRING} [L]
+RewriteRule ^blog/([0-9]+),(.*?)$ servers/page.php?_PAGE=blog&_ID=$1&%{QUERY_STRING} [L]
 RewriteRule ^blog/edytuj/([0-9]+)$ servers/page.php?_PAGE=blog/edytuj&_ID=$1&%{QUERY_STRING} [L]
 RewriteRule ^blog/nowy_post$ servers/page.php?_PAGE=blog/edytuj&%{QUERY_STRING} [L]
 

@@ -21,3 +21,6 @@ input[type=text], input[type=password] {width: 250px; padding: 1px 3px 0 3px;}
 h1 {font-weight: normal;}
 h2 {font-weight: normal; font-size: 14px; color: #58595B;}
 body {padding: 5px;}
+p {margin: 10px 0;}
+p:first-child {margin-top: 0;}
+p:last-child {margin-bottom: 0;}

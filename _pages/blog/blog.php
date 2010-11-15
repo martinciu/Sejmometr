@@ -1,4 +1,5 @@
 <?
+  $this->addLib('google');
   $posty = $this->S('blog/lista');
   
   $glowny_post_id = is_numeric($_GET['_ID']) ? $_GET['_ID'] : $posty[0]['id'];  

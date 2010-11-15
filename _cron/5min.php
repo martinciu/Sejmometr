@@ -50,6 +50,18 @@
   echo "głosowania - głosy\n";
   $M->S('graber/posiedzenia/glosowania/pobierz_kluby');
   
+  
+  /*
+  while( $id = $M->DB->selectValue("SELECT id FROM wypowiedzi WHERE typ='1' AND _temp='1'") ) {
+    $M->DB->update_assoc('wypowiedzi', array('_temp'=>'2'), $id);
+    $skrot = $M->S('wypowiedzi/skrot', $id);
+    $M->DB->update_assoc('wypowiedzi', array('skrot'=>addslashes($skrot), '_temp'=>'3'), $id);
+  }
+  */
+  
+ 
+  
+  
   echo "głosowania - rozpoznowanie posłów\n";
   $M->S('graber/glosowania/rozpoznawanie/wszystkie');
  

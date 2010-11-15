@@ -1,7 +1,7 @@
 <div id="_MAIN_CONTAINER">
  
   <div id="_HEADER">
-    {if $M.ID ne "oportalu"}<p id="_POWITANIE">
+    {if !$nie_pokazuj_powitania}<p id="_POWITANIE">
       Witaj na portalu Sejmometr! Znajdziesz tu informacje o pracach Sejmu i zmianach prawa w Polsce. <a href="/oportalu">więcej &raquo;</a>
     </p>{/if}
     <a href="/" id="_LOGO_A" ><img id="_LOGO_IMG" src="/g/_LOGO.gif" /></a>

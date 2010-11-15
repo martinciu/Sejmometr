@@ -1,0 +1,10 @@
+#debaty {margin: 0 auto; overflow: auto; padding: 0 150px;}
+#debaty .d {padding: 15px 10px; overflow: auto; clear: both; border-bottom: 1px solid #DDD;}
+#debaty .d:last-child {border-bottom: none}
+#debaty .d .kalendarzyk {float: left;}
+#debaty .d .c {margin: -2px 0 0 45px;}
+#debaty .d .tytul {font-size: 15px; margin-bottom: 5px;}
+#debaty .d .baner {float: left; margin-right: 5px; border: 1px solid #BBB; -moz-border-radius: 2px; -webkit-border-radius: 2px;}
+#debaty .d .info {}
+
+h1._BOX_HEADER span.p {font-size: 12px; color: #58595B; display: block;}

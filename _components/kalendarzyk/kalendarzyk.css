@@ -1,4 +1,4 @@
-.kalendarzyk {width: 37px; font-weight: bold;}
+.kalendarzyk {width: 37px; font-weight: bold; font-size: 12px;}
 .kalendarzyk .miesiac, .kalendarzyk .rok {color: white; font-size: 74%; height: 11px; line-height: 11px;}
 .kalendarzyk .miesiac {background: url(/g/sprite01.png) repeat-x -71px 0;}
 .kalendarzyk .rok {background: url(/g/sprite01.png) repeat-x -71px -11px;}

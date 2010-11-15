@@ -12,15 +12,20 @@ function cssToNumber(css){
 
 function getScrollTop(){
   if(typeof pageYOffset!= 'undefined'){
-    //most browsers
-    return pageYOffset;
+	  //most browsers
+	  return pageYOffset;
   }
-  else{
+  else {
 	  var B= document.body; //IE 'quirks'
 	  var D= document.documentElement; //IE with doctype
 	  D= (D.clientHeight)? D: B;
 	  return D.scrollTop;
   }
+}
+
+function setScrollTop(val){
+  var t = getScrollTop();
+  scrollBy(0, val-t);
 }
 
 function isIE(){

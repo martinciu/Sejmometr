@@ -104,14 +104,5 @@ class PATTERN extends REQUEST {
 	  $this->SMARTY->assign($varname, $data);
 	  return $data;
 	}
-	
-	// REMOVE THIS AS SOON AS POSSIBLE
-	// This function will move a service file from general folder to page folder
-	function massignService($varname, $service=null, $params=null){
-	  $service = $service ? $service : $varname;
-	  $dir = ROOT.'/pages/'.$this->ID.'/services';
-	  if( !is_dir($dir) ) { mkdir($dir); }
-	  @rename(ROOT.'/services/'.$service.'.php', $dir.'/'.$service.'.php');
-	}
 }
 ?>

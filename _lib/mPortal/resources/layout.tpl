@@ -61,12 +61,13 @@
       var CURRENT_PAGE = '{$M.ID}';
 			var _PAGEDATA = {ldelim}'ID':'{$M.ID}', 'NAME':'{$M.NAME}'{rdelim};
 			{if $M.jsInline}{include file=$M.NAME|cat:"-inline.js"}{/if}
-			{literal}
+			{if $M.USER.group ne 2}{literal}
 			var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
 			document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
 	  </script>
-		<script type="text/javascript">try { var pageTracker = _gat._getTracker("UA-3303173-6"); pageTracker._trackPageview(); } catch(err) {}</script>
-		  {/literal}
+		<script type="text/javascript">try { var pageTracker = _gat._getTracker("UA-3303173-6"); pageTracker._trackPageview(); } catch(err) {}
+		  {/literal}{/if}
+		</script>
   </body>
 </html>    
     
