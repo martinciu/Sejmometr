@@ -17,6 +17,6 @@
   </div>
   
   <div id="_FOOTER">
-    <a href="#">Fundacja ePaństwo</a><span class="separator">·</span><a href="/oportalu">O portalu</a>
+    <a href="#">Fundacja ePaństwo</a><span class="separator">·</span><a href="/oportalu">O portalu</a><span class="separator">·</span><a href="/blog">Blog</a><span class="separator">·</span><a href="/media">Dla mediów</a>
   </div>
 </div>

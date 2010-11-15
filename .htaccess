@@ -11,6 +11,7 @@ RewriteRule ^rezolucje$ servers/page.php?_PAGE=projekty&_TYPE=rezolucje&%{QUERY_
 RewriteRule ^zmiany_regulaminu$ servers/page.php?_PAGE=projekty&_TYPE=zmiany_regulaminu&%{QUERY_STRING} [L]
 RewriteRule ^inne$ servers/page.php?_PAGE=projekty&_TYPE=inne&%{QUERY_STRING} [L]
 
+
 RewriteRule ^projekt/([a-zA-Z]{5})$ servers/page.php?_PAGE=projekt&_ID=$1&_TAB=proces&%{QUERY_STRING} [L]
 RewriteRule ^projekt/([a-zA-Z]{5})\,(.*?)$ servers/page.php?_PAGE=projekt&_ID=$1&_TAB=$2&%{QUERY_STRING} [L]
 

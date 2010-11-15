@@ -50,7 +50,7 @@
 {/section}
 
 {if $smarty.get._TYPE eq "ustawy"}
-  <a id="ofensywa" href="/ofensywa">
+  <a id="ofensywa" href="/blog/2,W_poszukiwaniu_ofensywy">
     <h3>Ofensywa Legislacyjna Rządu</h3>
     <span>Zobacz szczegóły &raquo;</span>
   </a>
