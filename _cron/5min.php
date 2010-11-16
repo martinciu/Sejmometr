@@ -59,6 +59,15 @@
   }
   */
   
+  while( $id = $M->DB->selectValue("SELECT id FROM punkty_wypowiedzi WHERE status='0'") ) {
+    
+    $M->DB->update_assoc('punkty_wypowiedzi', array('status'=>'1'), $id);
+    $opis = $M->S('debaty/info', $id);
+    $M->DB->update_assoc('punkty_wypowiedzi', array('opis'=>addslashes($opis), 'status'=>'2'), $id);
+    
+  }
+  
+  
  
   
   

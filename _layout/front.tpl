@@ -6,10 +6,24 @@
     </p>{/if}
     <a href="/" id="_LOGO_A" ><img id="_LOGO_IMG" src="/g/_LOGO.gif" /></a>
     <ul id="_MAIN_MENU_UL">
-      {section name="menu" loop=$M.TEMPMENU}{assign var="o" value=$M.TEMPMENU[menu]}
-	      <li{if $smarty.get._TYPE eq $o[0]} class="selected"{/if}><a href="/{$o[0]}">{$o[1]}</a></li>
+      {section name="menu" loop=$M.FRONT_MENU}{assign var="o" value=$M.FRONT_MENU[menu]}
+	      <li {if $o.selected}class="selected"{/if}><a href="/{$o.id}">{$o.label}</a></li>
       {/section}
     </ul>
+  </div>
+  
+  <div id="_SUBMENUS">
+  {section name="menus" loop=$M.FRONT_SUBMENUS}
+    {assign var="menu" value=$M.FRONT_SUBMENUS[menus]}
+    {assign var="menuid" value=$menu.id}
+    {assign var="show" value=$menu.show}
+    {assign var="menu" value=$menu.menu}
+    <ul class="_SUBMENU_MENU_UL" menuid="{$menuid}"{if !$show} style="display: none;"{/if}>
+      {section name="menu" loop=$menu}{assign var="o" value=$menu[menu]}
+      <li {if $o.selected}class="selected"{/if}><a href="/{$o.id}">{$o.label}</a></li>
+      {/section}
+    </ul>
+  {/section}
   </div>
   
   <div id="_CONTAINER">

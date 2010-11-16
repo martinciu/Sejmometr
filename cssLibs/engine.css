@@ -52,6 +52,13 @@ span.separator {margin: 0 5px; position: relative; top: 2px;}
 #_MAIN_MENU_UL li a {color: white; padding: 8px 17px; outline: none; font-size: 14px; color: #FFF;}
 #_MAIN_MENU_UL li.selected {background: url(/g/_MAIN_MENU_LI_SELECTED_BG.gif) repeat-x 0 0;}
 
+._SUBMENU_MENU_UL {height: 25px; background: url(/g/_SUBMENU_MENU_UL_BG.gif) repeat-x 0 0 white; overflow: hidden; font-size: 13px; line-height: 16px;}
+._SUBMENU_MENU_UL li {float: left; height: 20px; margin: 0 3px; padding: 3px 0px 1px; line-height: 16px;}
+._SUBMENU_MENU_UL li a:visited, ._SUBMENU_MENU_UL li a:hover, ._SUBMENU_MENU_UL li a:active {color: #484848;}
+._SUBMENU_MENU_UL li a {display:block; float:left; height:17px; padding:0 10px 1px; color: #484848; -moz-border-radius: 10px; -webkit-border-radius: 10px; outline: none; text-shadow: 1px 1px 1px #FFF; line-height: 16px;}
+._SUBMENU_MENU_UL li a:hover {background-color: #B3B3B3; color: white; text-shadow: 1px 1px 1px #555;}
+._SUBMENU_MENU_UL li.selected a {background-color: #999; color: white; text-shadow: 1px 1px 1px #555;}
+
 #_FOOTER {height: 33px; background: url(/g/_FOOTER_BG.gif) repeat-x 0 -15px; padding-top: 20px; padding-left: 15px;}
 #_FOOTER a {color: #FFF; outline: none;}
 #_FOOTER a:hover {text-decoration: none;}

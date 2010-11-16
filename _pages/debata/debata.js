@@ -98,7 +98,7 @@ var Debata = Class.create({
   onWindowResize: function(event){
 		var d = $$('html').first().getHeight()-getScrollTop()-$$('html').first().clientHeight;
 
-    var height = $$('html').first().clientHeight -272 + Math.min(this.initial_offset-7, getScrollTop()) - Math.max(0, 75-d);
+    var height = $$('html').first().clientHeight -286 + Math.min(this.initial_offset-7, getScrollTop()) - Math.max(0, 75-d);
     $('wyp_text').setStyle({height: height+'px'});
     this.text_ratio_update();
     

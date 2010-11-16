@@ -32,6 +32,7 @@
       '3' => 'Wysłuchanie',
     ),
   );
+  $_typy_hyperlink = array(2);
   
   $projekt_id = $_PARAMS;
   
@@ -229,6 +230,7 @@
   foreach( $proces as $etap ) {
     
     $etap['typ'] = $_etapy_typy[ $etap['typ_id'] ];
+    $etap['hyperlink'] = in_array($etap['typ_id'], $_typy_hyperlink);
     $etap_id = $etap['etap_id'];
     $data = array();
     
@@ -250,7 +252,7 @@
         break;
       }
       case 2: {
-        $data = $this->DB->selectAssoc("SELECT posiedzenia_dni.data, punkty_wypowiedzi.ilosc_wypowiedzi FROM punkty_wypowiedzi LEFT JOIN posiedzenia_dni ON punkty_wypowiedzi.dzien_id=posiedzenia_dni.id WHERE punkty_wypowiedzi.id='$etap_id'");
+        $data = $this->DB->selectAssoc("SELECT posiedzenia_dni.data, punkty_wypowiedzi.opis, punkty_wypowiedzi.ilosc_wypowiedzi FROM punkty_wypowiedzi LEFT JOIN posiedzenia_dni ON punkty_wypowiedzi.dzien_id=posiedzenia_dni.id WHERE punkty_wypowiedzi.id='$etap_id'");
         $data['tytul'] = $czytania_typy[ $etap['subtyp'] ];
         break;
       }

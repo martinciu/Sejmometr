@@ -15,6 +15,7 @@
 .e.druk .dokument, .e.wyrok .dokument, .e.podpisanie .dokument {float: left;}
 .e.druk .ccc, .e.wyrok .ccc, .e.podpisanie .ccc {margin-left: 90px;}
 
+.e.wypowiedzi .cc {overflow: auto; margin: 5px 0 0 0;}
 
 .ikona_legislacyjna {width: 37px; height: 37px; background: url(/g/ikony_sprite.gif) no-repeat; float: left; margin-right: 8px; margin-left: 45px;}
 .ikona_legislacyjna.wplynal {background-position: 0 0;}
@@ -32,6 +33,8 @@
 
 .e:hover .ikona_legislacyjna.druk {background-position: -296px -37px;}
 .e:hover .ikona_legislacyjna.wyrok {background-position: -296px -37px;}
+.e:hover .ikona_legislacyjna.wypowiedzi {background-position: -74px -37px;}
+
 
 .e.nowa_data .ikona_legislacyjna {margin-left: 0;}
 
@@ -50,4 +53,4 @@
 .opinie_box a.dokument .overlay_bg {background-color: #F2F2F2;}
 .opinie_box a.dokument img.d {-moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none;}
 
-.druk_nr {}
+.debata_baner {float: left; margin-right: 5px; border: 1px solid #BBB; -moz-border-radius: 2px; -webkit-border-radius: 2px;}

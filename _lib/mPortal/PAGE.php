@@ -2,7 +2,7 @@
 require_once( $_SERVER['DOCUMENT_ROOT'].'/_lib/mPortal/PATTERN.php' );
 
 class PAGE extends PATTERN {
-	var $ID, $NAME, $TITLE, $LOGIN, $FULLSCREEN, $LAYOUT;
+	var $ID, $NAME, $TITLE, $LOGIN, $FULLSCREEN, $LAYOUT, $FRONT_MENU, $FRONT_SUBMENUS, $FRONT_MENU_SELECTED;
 	var $META = array();
   var $JSSLIBS = array();
   var $CSSLIBS = array();
@@ -105,6 +105,37 @@ class PAGE extends PATTERN {
 		  }		  
 		}
 		
+		  
+	  $front_menu_items = $this->MENU[7];
+	  $this->FRONT_MENU = array();
+	  $this->FRONT_SUBMENUS = array();
+	  foreach( $front_menu_items as &$menu_item ) {
+	    
+	    $selected = false;
+	    if( is_array($menu_item['SUBMENU']) ) {		      
+	      foreach( $menu_item['SUBMENU'] as &$item ) if( ($item['id']==$_GET['_PAGE']) || ($_GET['_TYPE']!='' && $item['id']==$_GET['_TYPE']) ) {
+	        $item['selected'] = true;
+	        $selected = true;
+	        break;
+	      }
+	      
+	      $this->FRONT_SUBMENUS[] = array(
+	        'id' => $menu_item['id'],
+	        'menu' => $menu_item['SUBMENU'],
+	        'show' => $selected,
+	      );
+	      
+	      unset( $menu_item['SUBMENU'] );
+	    }
+	    
+	    
+	    if( $selected || $menu_item['id']==$_GET['_PAGE'] ) {
+	      $menu_item['selected'] = true;
+	      $this->FRONT_MENU_SELECTED = $menu_item['id'];
+	    }
+	    $this->FRONT_MENU[] = $menu_item;
+	  }
+		  
 		
 	  // Przygotowujemy sekcję META
 	  $smarty_params = array(
@@ -132,6 +163,9 @@ class PAGE extends PATTERN {
 	    'FULLSCREEN' => $this->FULLSCREEN,
 	    'DEFAULT_PAGE_TITLE' => DEFAULT_PAGE_TITLE,
 	    'STAMPS' => $this->STAMPS,
+	    'FRONT_MENU' => $this->FRONT_MENU,
+	    'FRONT_SUBMENUS' => $this->FRONT_SUBMENUS,
+	    'FRONT_MENU_SELECTED' => $this->FRONT_MENU_SELECTED,
 	  );
 	  
 	  

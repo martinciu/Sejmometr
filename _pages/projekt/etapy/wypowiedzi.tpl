@@ -1,4 +1,5 @@
-<p class="tytul">{$etap.tytul}</p>
+<p class="tytul"><a href="/debata/{$etap.etap_id}">{$etap.tytul}</a></p>
 <div class="cc">
-  {$etap.ilosc_wypowiedzi|dopelniacz:'wypowiedź':'wypowiedzi':'wypowiedzi'}
+  <a href="/debata/{$etap.etap_id}"><img class="debata_baner" src="/resources/debaty/banery/{$etap.etap_id}.jpg" /></a>
+  <p class="opis">{$etap.opis}</p>
 </div>
