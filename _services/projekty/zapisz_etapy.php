@@ -11,6 +11,13 @@
   if( $data['error'] ) return $data;
   
   
+  
+  
+  
+  $multidebaty = array();
+  $multidebaty_ids = $this->DB->selectValues("SELECT projekty_etapy.etap_id FROM projekty_etapy JOIN multidebaty ON projekty_etapy.etap_id=multidebaty.id WHERE projekt_id='$projekt_id' AND typ_id=2");
+  foreach( $multidebaty_ids as $mdid ) $multidebaty[ $mdid ] = implode( ',', $this->DB->selectValues("SELECT projekt_id FROM projekty_etapy WHERE typ_id=2 AND etap_id='$mdid' ORDER BY projekt_id ASC") );
+  
   $model = array();
   for( $i=0; $i<count($etapy); $i++ ) {
     $etap = $etapy[$i];
@@ -50,6 +57,7 @@
   
   $this->DB->q("DELETE FROM projekty_etapy WHERE projekt_id='$projekt_id'");
   
+  $debaty_ids = array();
   for( $i=0; $i<count($model); $i++ ) {
     $this->DB->insert_assoc('projekty_etapy', array(
 	    'projekt_id' => $projekt_id,
@@ -65,6 +73,7 @@
 	        break;
 	      }
 	      case 2: {
+	        $debaty_ids[] = $model[$i]['etap_id'];
 	        $this->DB->q("UPDATE projekty_punkty_wypowiedzi SET przypisany='1' WHERE projekt_id='$projekt_id' AND punkt_id='".$model[$i]['etap_id']."'");
 	        break;
 	      }
@@ -81,11 +90,40 @@
   }
   
   unset( $data['typ'] );
+  
+  
+  
+  
+  
+  
+  
+  
+  // MULTIDEBATY START
+  foreach( $debaty_ids as $did ) {
+    if( in_array($did, $multidebaty_ids) ) {
+      
+      if( implode(',', $this->DB->selectValues("SELECT projekt_id FROM projekty_etapy WHERE typ_id=2 AND etap_id='$did' ORDER BY projekt_id ASC"))!=$multidebaty[$did] ) $this->DB->update_assoc('multidebaty', array('akcept'=>'0'), $did);
+    
+    } else {
+      
+      if( $this->DB->selectCount("SELECT COUNT(DISTINCT(projekt_id)) FROM projekty_etapy WHERE typ_id=2 AND etap_id='$did' AND projekt_id!='$projekt_id'") ) $this->DB->insert_assoc('multidebaty', array('id'=>$did));
+      
+    }
+  }
+  // MULTIDEBATY END
+  
+  
+  
+  
+  
+  
+  
   $this->DB->update_assoc('projekty', $data, $projekt_id);
   
   
   $this->S('liczniki/nastaw/projekty-wlasciwosci');
   $this->S('liczniki/nastaw/projekty-etapy');
+  $this->S('liczniki/nastaw/multidebaty');
   
   return array(
     'status' => 4,

@@ -38,7 +38,7 @@
 #wyp_info .info .funkcja {font-size: 11px;}
 #wyp_info .info .funkcja span.f {font-weight: bold;}
 
-#wyp_text {border-right:1px solid #FFF; font-size:112%; margin-right:10px; overflow:hidden; padding-right:15px; width:512px; line-height: 1.35em;}
+#wyp_text {border-right:1px solid #FFF; font-size:13px; margin-right:10px; overflow:hidden; padding-right:15px; width:512px;}
 #wyp_text.high:hover {border-right-color: #CCC;}
 #wyp_text p {margin: 10px 0;}
 #wyp_text p.wMarszalek {padding: 5px; background-color: #EEEEF5; -moz-border-radius: 5px; -webkit-border-radius: 5px; color: #777;}
@@ -59,6 +59,6 @@
 #projekty .projekt {margin-top: 5px;}
 #projekty .projekt .dokument {float: left;}
 #projekty .projekt .c {margin-left: 60px; position: relative; top: -2px;}
-#projekty .t {font-size: 14px; margin-bottom: 2px; font-weight: bold;}
-#projekty .t a, #projekty .projekt .t a:visited {color: #58595B;}
-#projekty .t a:hover, #projekty .projekt .t a.active {color: #0083B8;}
+#projekty .projekt .t {font-size: 14px; margin-bottom: 2px;}
+#projekty .projekt .t a, #projekty .projekt .t a:visited {color: #58595B;}
+#projekty .projekt .t a:hover, #projekty .projekt .t a.active {color: #0083B8;}

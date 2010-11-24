@@ -1,4 +1,8 @@
 <?
+
+  $this->S('graber/poslowie/pobieranie/pobierz', $_PARAMS);
+
+  /*
   $punkt_id = $_PARAMS;
   $this->DB->update_assoc('punkty_wypowiedzi', array(
     'przeliczono' => '1',
@@ -22,4 +26,5 @@
   // $this->S('druki/przypisz_zalacznik', $id);
   
   $this->S('graber/projekty/pobierz', $id);
+  */
 ?>

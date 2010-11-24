@@ -327,6 +327,8 @@
 		    $result['substatus'] = 7;
 		  } elseif( $ostatni_etap['typ']=='wypowiedzi' && $ostatni_etap['debata_typ']=='3') {
 		    $result['substatus'] = 8;
+		  } elseif( $ostatni_etap['typ']=='druk' && $ostatni_etap['subtyp']=='16') {
+		    $result['substatus'] = 9;
 		  }
 	  }
 	
@@ -376,6 +378,12 @@
 	    $result = array(
 	      'status' => 2,
 	      'substatus' => 2,
+	      'data_ostatniego_procedowania' => $ostatni_etap['data'],
+	    );
+	  } elseif ( $ostatni_etap['typ']=='druk' && $ostatni_etap['subtyp']=='4' ) {
+	    $result = array(
+	      'status' => 2,
+	      'substatus' => 6,
 	      'data_ostatniego_procedowania' => $ostatni_etap['data'],
 	    );
 	  }

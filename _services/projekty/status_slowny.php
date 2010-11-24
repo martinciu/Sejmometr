@@ -32,7 +32,7 @@
 		    if( $substatus=='1' ) return $data_przyjecia.' przyjęto w Sejmie. '.$data_ostatniego_procedowania.' skierowano do Senatu.';
 		  }
 		  case '4': {
-		    if( $substatus=='1' ) return $data_ostatniego_procedowania.' skierowano do Prezydenta, po wyroku Trybunału Konstytucyjnego';
+		    if( $substatus=='1' ) return $data_ostatniego_procedowania.' skierowano do Prezydenta, po wyroku Trybunału Konstytucyjnego.';
 		    if( $substatus=='2' ) return $data_przyjecia.' przyjęto w Sejmie. '.$data_ostatniego_procedowania.' skierowano do Prezydenta.';
 		    break;
 		  }
@@ -71,9 +71,10 @@
 	      if( $substatus=='3' ) return $data_ostatniego_procedowania.' skierowano do pierwszego czytania.';
 		    if( $substatus=='4' ) return $data_ostatniego_procedowania.' skierowano do pierwszego czytania w komisjach.';
 		    if( $substatus=='5' ) return $data_ostatniego_procedowania.' projekt wpłynął, ale nie skierowano go do dalszych prac.';
-		    if( $substatus=='6' ) return $data_ostatniego_procedowania.' przeprowadzono pierwsze czytanie';
-		    if( $substatus=='7' ) return $data_ostatniego_procedowania.' przeprowadzono drugie czytanie';
-		    if( $substatus=='8' ) return $data_ostatniego_procedowania.' przeprowadzono trzecie czytanie';
+		    if( $substatus=='6' ) return $data_ostatniego_procedowania.' przeprowadzono pierwsze czytanie.';
+		    if( $substatus=='7' ) return $data_ostatniego_procedowania.' przeprowadzono drugie czytanie.';
+		    if( $substatus=='8' ) return $data_ostatniego_procedowania.' przeprowadzono trzecie czytanie.';
+		    if( $substatus=='9' ) return $data_ostatniego_procedowania.' zgłoszono autopoprawkę.';
 	      break;
 	    }
 	    case '3': {
@@ -108,6 +109,7 @@
 	      if( $substatus=='3' ) return $data_ostatniego_procedowania.' skierowano do rozpatrywania.';
 		    if( $substatus=='4' ) return $data_ostatniego_procedowania.' skierowano do rozpatrywania w komisjach.';
 		    if( $substatus=='5' ) return $data_ostatniego_procedowania.' dokument wpłynął, ale nie skierowano go do dalszych prac.';
+		    if( $substatus=='6' ) return $data_ostatniego_procedowania.' komisja przedstawiła opinię.';
 	      break;
 	    }
 	    case '3': {

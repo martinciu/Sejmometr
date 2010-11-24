@@ -9,7 +9,8 @@ var Item = Class.create({
     
     mBrowser.itemTitleUpdate(this.data.nazwa ? this.data.nazwa : '<i>Brak nazwy</i>');
     this.btnSave = mBrowser.addItemButton('save', 'Zapisz', this.save.bind(this));
-    this.btnAplikuj = mBrowser.addItemButton('aplikuj', 'Aplikuj zmiany', this.aplikuj_zmiany.bind(this));
+    // this.btnAplikuj = mBrowser.addItemButton('aplikuj', 'Aplikuj zmiany', this.aplikuj_zmiany.bind(this));
+    this.btnRegrab = mBrowser.addItemButton('regrab', 'Regrab', this.regrab.bind(this));
     this.btnAvatar = mBrowser.addItemButton('avatar', 'Aktualizuj avatar', this.aktualizuj_avatar.bind(this));
     
     this.refresh_avatars();
@@ -60,6 +61,12 @@ var Item = Class.create({
     }
     
     $('zmiany').height_control();
+  },
+  regrab: function(){
+    this.btnRegrab.disable();
+    $S('graber/poslowie/pobieranie/pobierz', this.id, function(){
+      mBrowser.refreshItem();
+    });
   },
   zmiana_click: function(event){
     this.aplikuj_zmiane( event.findElement('li').readAttribute('zmiana_id') );
@@ -227,6 +234,17 @@ var Item = Class.create({
   },
   save: function(){
     if( mBrowser.enabled ) {
+      
+      var complete = true;
+      var lis = $$('#zmiany li');
+      for( var i=0; i<lis.length; i++ ) {
+        if( !lis[i].hasClassName('done') ) {
+          complete = false;
+          break;
+        }
+      }
+      if( !complete ) return alert('Nie wszystkie zmiany zostały dodane');
+      
       var params = {};
       var canBeEmpty = this.form.fields[8].getValue()!='0000-00-00' && this.form.fields[8].getValue()!='';
       this.form.fields[4].canBeEmpty = canBeEmpty;

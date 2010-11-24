@@ -1,11 +1,14 @@
 <?
+  return $this->DB->selectValues("SELECT id FROM poslowie");
+
+  /*
   return $this->DB->selectValues("SELECT id FROM punkty_wypowiedzi WHERE przeliczono='0'");
   
 
   $where = '1';
   // $where = "akcept='0'";
   return $this->DB->selectValues("SELECT id FROM `projekty` WHERE $where ORDER BY data_dodania ASC");
-
+  */
 
 
 

@@ -1,5 +1,5 @@
 <?
-  if($q!='') $data = $this->DB->selectAssocs("SELECT ludzie.imie, ludzie.nazwisko, ludzie.partia_id, druki_autorzy.autor as 'partia' FROM ludzie LEFT JOIN druki_autorzy ON ludzie.partia_id=druki_autorzy.id WHERE ludzie.nazwisko LIKE '".$q."%' ORDER BY ludzie.nazwisko ASC, ludzie.imie ASC LIMIT 15");
+  if($q!='') $data = $this->DB->selectAssocs("SELECT poslowie.imie, poslowie.nazwisko, poslowie.klub, druki_autorzy.autor as 'partia' FROM poslowie LEFT JOIN druki_autorzy ON poslowie.klub=druki_autorzy.id WHERE poslowie.nazwisko LIKE '".$q."%' ORDER BY poslowie.nazwisko ASC, poslowie.imie ASC LIMIT 15");
   
   $html = '';
   foreach( $data as $item ) {

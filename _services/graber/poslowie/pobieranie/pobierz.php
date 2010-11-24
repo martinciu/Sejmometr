@@ -11,7 +11,6 @@
   $sejm_posel = $SP->posel_info($sejm_id);  
   if( $SP->response_status!=200 ) return false;
   
-  
   $sejm_pola = array_keys( $sejm_posel );
   
   $db_posel = array();
@@ -42,7 +41,7 @@
     $this->DB->insert_assoc('poslowie_pola', array(
       'posel_id' => $id,
       'nazwa' => $key,
-      'wartosc' => addslashes( $db_posel[$key] ),
+      'wartosc' => addslashes( $sejm_posel[$key] ),
       'typ' => 'A',
     ));
     $pole_id = $this->DB->insert_id;    
@@ -58,7 +57,7 @@
     $this->DB->insert_assoc('poslowie_pola', array(
       'posel_id' => $id,
       'nazwa' => $key,
-      'wartosc' => addslashes( $db_posel[$key] ),
+      'wartosc' => addslashes( $sejm_posel[$key] ),
       'typ' => 'M',
     ));
     $pole_id = $this->DB->insert_id;    

@@ -12,8 +12,8 @@
 .mBrowser .mid {width: inherit; display: inline;}
 
 #_COL_RIGHT {padding-right: 0;}
-#browser {width: 50%; float: left;}
-#side_div {margin-left: 50%;}
+#browser {width: 65%; float: left;}
+#side_div {margin-left: 65%;}
 
 #zmiany {background-color: #DDD; margin-left: 10px; -moz-border-radius-bottomleft: 5px; -moz-border-radius-topleft: 5px;}
 #zmiany li {background-color: #FFF; margin: 5px; -moz-border-radius-bottomleft: 5px; -moz-border-radius-topleft: 5px; cursor: pointer;}
@@ -28,3 +28,6 @@
 #item .inner_title_bar {overflow: auto; background-color: #DDD; height: 152px;}
 #item .inner_title_bar img {float: left; margin: 3px; padding: 3px; background-color: white; -moz-border-radius: 3px;}
 #item .inner_title_bar img.selected {background-color: #627AAD;}
+
+.mBrowser .title_bar {margin-bottom: 1px; padding-bottom: 0;}
+#item .inner_title_bar {margin-top: 3px;}

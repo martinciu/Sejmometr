@@ -129,7 +129,7 @@ class PAGE extends PATTERN {
 	    }
 	    
 	    
-	    if( $selected || $menu_item['id']==$_GET['_PAGE'] ) {
+	    if( $selected || $menu_item['id']==$_GET['_PAGE'] || $menu_item['id']==$_GET['_FRONT_MENU_SELECTED'] ) {
 	      $menu_item['selected'] = true;
 	      $this->FRONT_MENU_SELECTED = $menu_item['id'];
 	    }
