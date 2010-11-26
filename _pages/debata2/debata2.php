@@ -40,34 +40,49 @@
   switch( $debata['typ_id'] ) {
     case '1': {
 
-      $projekty = $this->DB->selectAssocs("SELECT projekty.id, projekty.tytul, projekty_etapy.subtyp, projekty_typy.menu_id, projekty.typ_id, druki.numer, druki.dokument_id, druki_autorzy.autor FROM projekty_etapy LEFT JOIN projekty ON projekty_etapy.projekt_id=projekty.id LEFT JOIN projekty_typy ON projekty.typ_id=projekty_typy.id LEFT JOIN druki ON projekty.druk_id=druki.id LEFT JOIN druki_autorzy ON druki_autorzy.id=projekty.autor_id WHERE projekty_etapy.typ_id=2 AND projekty_etapy.etap_id='$debata_id'");
-      if( count($projekty)==1 ) {
+      $multidebata = $this->DB->selectAssoc("SELECT multidebaty.typ, multidebaty.tytul, multidebaty.projekty_typ, multidebaty.ilosc_projektow, projekty_typy.menu_id FROM multidebaty LEFT JOIN projekty_typy ON multidebaty.projekty_typ=projekty_typy.id WHERE multidebaty.id='$debata_id' AND multidebaty.akcept='1'");
       
-        $projekt = $projekty[0];
-        $schemat = $_typy_schematy[ $projekt['typ_id'] ];
-        $czytanie_label = $_czytania_typy[ $schemat ][ $projekt['subtyp'] ];
-        $projekt['czytanie_label'] = $czytanie_label;
-        
-        $_GET['_TYPE'] = $projekt['menu_id'];
-        $this->TITLE = $czytanie_label.', '.$projekt['tytul'];
-        
-        $this->SMARTY->assign('debata_typ', 1);
+      if( empty($multidebata) ) {
+      
+        $projekt = $this->DB->selectAssoc("SELECT projekty.id, projekty.tytul, projekty_etapy.subtyp, projekty_typy.menu_id, projekty.typ_id, druki.numer, druki.dokument_id, druki_autorzy.autor FROM projekty_etapy LEFT JOIN projekty ON projekty_etapy.projekt_id=projekty.id LEFT JOIN projekty_typy ON projekty.typ_id=projekty_typy.id LEFT JOIN druki ON projekty.druk_id=druki.id LEFT JOIN druki_autorzy ON druki_autorzy.id=projekty.autor_id WHERE projekty_etapy.typ_id=2 AND projekty_etapy.etap_id='$debata_id' LIMIT 1");
+        $typ_id = $projekt['typ_id'];
+        $subtyp = $projekt['subtyp'];
+        $menu_id = $projekt['menu_id'];
+        $debata_typ = 1;
+        $tytul = $projekt['tytul'];
         $this->SMARTY->assign('projekt', $projekt);
         
-      }
+      } else {
         
+        $typ_id = $multidebata['projekty_typ'];
+        $subtyp = $multidebata['typ'];
+        $menu_id = $multidebata['menu_id'];
+        $tytul = $multidebata['tytul'];
+        $debata_typ = 2;
+        $this->SMARTY->assign('tytul', $tytul);
+        $this->SMARTY->assign('ilosc_projektow', $multidebata['ilosc_projektow']);
+      
+      }
+      
+      $schemat = $_typy_schematy[ $typ_id ];
+      $czytanie_label = $_czytania_typy[ $schemat ][ $subtyp ];
+      
+      $_GET['_TYPE'] = $menu_id;
+      $this->TITLE = $czytanie_label.', '.$tytul;
+      $this->SMARTY->assign('debata_typ', $debata_typ);
+      $this->SMARTY->assign('label', $czytanie_label);   
       break;
     }
     case '4': {
       $_GET['_FRONT_MENU_SELECTED'] = 'debaty_specjalne';
       $debata = array_merge($debata, $this->DB->selectAssoc("SELECT tytul FROM debaty_specjalne WHERE id='$debata_id'"));
       $this->TITLE = $debata['tytul'];
+      $this->SMARTY->assign('debata_tytul', $debata['tytul']);
       break;
     }
   }
   
   
- 
-  $this->SMARTY->assign('debata', $debata); 
+  $this->SMARTY->assign('debata', $debata);
   $this->assignService('wypowiedzi_lista', 'wypowiedzi_lista', $debata_id);
 ?>

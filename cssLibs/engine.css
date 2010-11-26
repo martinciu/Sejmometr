@@ -47,10 +47,12 @@ span.separator {margin: 0 5px; position: relative; top: 2px;}
 #_LOGO_A {display: block; padding: 5px; margin: 5px; width: 75px; height: 60px; float: left; outline: none; margin-right: 15px;}
 #_LOGO_IMG {width: 71px; height: 58px;}
 
-#_MAIN_MENU_UL {position: relative; top: 25px; height: 55px; margin-left: 100px; overflow: hidden;}
-#_MAIN_MENU_UL li {float: left; height: 55px; padding-top: 28px;}
-#_MAIN_MENU_UL li a {color: white; padding: 8px 17px; outline: none; font-size: 14px; color: #FFF;}
-#_MAIN_MENU_UL li.selected {background: url(/g/_MAIN_MENU_LI_SELECTED_BG.gif) repeat-x 0 0;}
+._MAIN_MENU_UL {position: relative; top: 25px; height: 55px; overflow: hidden;}
+._MAIN_MENU_UL li {float: left; height: 55px; padding-top: 28px;}
+._MAIN_MENU_UL li a {color: white; padding: 8px 17px; outline: none; font-size: 14px; color: #FFF;}
+._MAIN_MENU_UL li.selected {background: url(/g/_MAIN_MENU_LI_SELECTED_BG.gif) repeat-x 0 0;}
+._MAIN_MENU_UL.r {margin-top: -55px; float: right;}
+._MAIN_MENU_UL.r li {float: right;}
 
 ._SUBMENU_MENU_UL {height: 25px; background: url(/g/_SUBMENU_MENU_UL_BG.gif) repeat-x 0 0 white; overflow: hidden; font-size: 13px; line-height: 16px;}
 ._SUBMENU_MENU_UL li {float: left; height: 20px; margin: 0 3px; padding: 3px 0px 1px; line-height: 16px;}

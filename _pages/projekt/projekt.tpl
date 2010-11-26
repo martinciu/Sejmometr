@@ -1,1 +1,1 @@
-{box type="horizontal" title=$projekt.tytul}
+{box type="horizontal"}

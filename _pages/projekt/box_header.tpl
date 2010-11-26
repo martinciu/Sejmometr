@@ -1,0 +1,1 @@
+<a href="/projekt/{$projekt.id}">{$projekt.tytul}</a>

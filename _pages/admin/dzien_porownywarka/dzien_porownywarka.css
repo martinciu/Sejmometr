@@ -1,0 +1,4 @@
+#main_table {width: 100%;}
+#main_table td {width: 50%; padding: 0 5px;}
+div.i {margin: 10px 0;}
+div.i.error {background-color: #FEE;}

@@ -1,6 +1,6 @@
 {if $can_manage}{literal}
-  Event.observe(window, 'keypress', function(event){
-    if( event.ctrlKey && event.charCode==100 ) {
+  Event.observe(window, 'keydown', function(event){
+   if( event.ctrlKey && event.keyCode==68 ) {
       var elements = $$('._admin_hidden');
 			if( elements ) elements.invoke('toggle');
     }

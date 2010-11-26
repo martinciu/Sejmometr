@@ -3,11 +3,10 @@ var Debata = Class.create({
     return this.lista_div.select('a.wyp');
   },
   enabled: true,
-  initialize: function(){    
+  initialize: function(){
     this.lista_div = $('wyp_lista');
     this.wyp_div = $('wyp_div');
     this.initial_offset = this.wyp_div.positionedOffset()[1];
-        
     this.length = this.get_wyps().length;
     this.text_shadow_top = $$('.text_shadow.top').first();
     this.text_shadow_bottom = $$('.text_shadow.bottom').first();
@@ -16,6 +15,7 @@ var Debata = Class.create({
     Event.observe(window, 'resize', this.onWindowResize.bind(this));
     Event.observe('wyp_text', 'DOMMouseScroll', this.onMouseWheel.bind(this));
     Event.observe('wyp_text', 'mousewheel', this.onMouseWheel.bind(this));
+    // window.onmousewheel = document.onmousewheel = this.onMouseWheel.bind(this);
     
     /*
     $$('#navbar ._BOX_FOOTER a').invoke('observe', 'click', function(event){
@@ -31,7 +31,7 @@ var Debata = Class.create({
   },
   init: function(){
     Event.observe(window, 'keydown', this.onWindowKeydown.bind(this));
-    Event.observe('wyp_input', 'change', this.onWypInputChange.bind(this));
+    Event.observe('wyp_input', 'keydown', this.onWypInputKeydown.bind(this));
     
     this.get_wyps().invoke('observe', 'click', this.wyp_a_click.bind(this));
     this.hash = location.hash.substr(1);
@@ -104,7 +104,7 @@ var Debata = Class.create({
 		
 		var d = window_outer_height-window_inner_height-getScrollTop();
 
-    var height = window_inner_height - 142 - $('_HEADER').getHeight() - $('_SUBMENUS').getHeight() - $('_BOX_HEADER').getHeight() + Math.min(this.initial_offset-7, getScrollTop()) - Math.max(0, 75-d);
+    var height = window_inner_height - 26 - $('_HEADER').getHeight() - $('_SUBMENUS').getHeight() - $$('#_CONTAINER ._BOX_HEADER').first().getHeight() - $('wyp_info').getHeight() - $('navbar').getHeight() + Math.min(this.initial_offset-7, getScrollTop()) - Math.max(0, 75-d);
     $('wyp_text').setStyle({height: height+'px'});
     this.text_ratio_update();
     
@@ -141,14 +141,16 @@ var Debata = Class.create({
     var wyp_a = this.wyp_a.previous('a.wyp');
     if( wyp_a ) this.wyp( wyp_a.readAttribute('wyp_i') );
   },
-  onWypInputChange: function(event){
-    var n = Number( $F('wyp_input') );
-    if( n==0 ) {
-      $('wyp_input').value = this.wyp_i;
-    } else {
-      if( this.lista_div.down('a.wyp[wyp_i='+n+']') ) {
-        this.wyp( n );
-      } else { $('wyp_input').value = this.wyp_i; }
+  onWypInputKeydown: function(event){
+    if( event.keyCode==13 ) {
+	    var n = Number( $F('wyp_input') );
+	    if( n==0 ) {
+	      $('wyp_input').value = this.wyp_i;
+	    } else {
+	      if( this.lista_div.down('a.wyp[wyp_i='+n+']') ) {
+	        this.wyp( n );
+	      } else { $('wyp_input').value = this.wyp_i; }
+	    }
     }
   },
 });

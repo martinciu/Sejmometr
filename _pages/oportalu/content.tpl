@@ -8,6 +8,11 @@
 		<p>Sejmometr jest obecnie w fazie intensywnego rozwoju. Zachęcamy do odwiedzin naszego <a href="/blog">Bloga</a>, gdzie na bieżąco informujemy o wprowadzaniu nowych funkcjonalności.</p>
   </div>
 	
+	<h1>Open Source</h1>
+	<div class="p">
+		<p>Kod źródłowy portalu dostępny jest pod adresem: <a href="https://github.com/epanstwo/Sejmometr" target="_blank">https://github.com/epanstwo/Sejmometr</a>.</p>
+	</div>
+	
 	<h1>Kontakt z redakcją:</h1>
 	<div class="p">
 	  <p><a href="mailto:redakcja@sejmometr.pl">redakcja@sejmometr.pl</a></p>

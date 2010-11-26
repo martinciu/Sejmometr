@@ -1,6 +1,7 @@
 <div class="p">
 	<div class="autorstatus">
 	  <p><span class="label">Autor:</span><span class="a">{$projekt.autor}</span></p>
+	  <p><span class="label">Wpłynał:</span>{$projekt.data_wplynal}</p>
 	  <p><span class="label">Status:</span>{$projekt.status_slowny}</p>
 	  
 	</div>

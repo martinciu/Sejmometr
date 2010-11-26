@@ -10,4 +10,5 @@
   $this->SMARTY->assign('can_manage', ($this->USER['group']==2 || $this->USER['group']==3));
   
   $this->TITLE = $post['tytul'];
+  $this->FRONT_MENU_SELECTED = 'oportalu';
 ?>
