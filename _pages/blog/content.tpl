@@ -9,14 +9,13 @@
 		{if $glowny_post.image}<img class="baner" src="/resources/blog/{$glowny_post.image}.jpg">{/if}
 		<div class="tresc">{$glowny_post.tresc}</div>
 	</div>
-	
-	<div id="fb-root"></div><script src="http://connect.facebook.net/en_US/all.js#appId=144885868891893&amp;xfbml=1"></script><fb:comments xid="blog_{$glowny_post.id}" width="550"></fb:comments>
+	<div id="fb-root"></div><script src="http://connect.facebook.net/en_US/all.js#appId=144885868891893&amp;xfbml=1"></script><fb:comments xid="blog_{$glowny_post.id}" width="550" publish_feed="true" numposts="10"></fb:comments>
 
 </div>
 <div id="side_div">
 
   <div id="blog_info">
-	  <img id="blog_logo" src="/g/logo_55.jpg" />
+	  <a href="/blog"><img id="blog_logo" src="/g/logo_55.jpg" /></a>
 	  <p class="tytul">To jest oficjalny blog redakcji portalu Sejmometr</p>
 	  {if $can_manage}<p class="_admin_hidden nowy_post_p" style="display: none;">
 		  <a href="/blog/nowy_post" class="_BTN orange">Nowy post</a>
@@ -24,7 +23,7 @@
   </div>
 	
 	<div id="blog_tools">
-	  <a href="#" onclick="return false;">Subskrybuj przez RSS</a>
+	  <a href="http://sejmometr.pl/rss/blog">Subskrybuj przez RSS</a>
 	</div>
   
   <div id="ostatnie_wpisy">

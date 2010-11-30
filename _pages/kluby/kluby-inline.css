@@ -1,0 +1,9 @@
+{literal}
+  #tabela {min-height: 237px; background-color: white;}
+  #info {text-align: center;}
+  ._BOX ._INNER {padding: 10px;}
+  .tableCell span.i {font-style: italic;}
+  .headerRow {background: url("/g/_HEADER_BG.gif") repeat-x scroll 0 0 transparent; color: white;}
+  .hoverTableRow {background-color: #D6E9FF;}
+  .tableCell {padding: 4px !important;}
+{/literal}

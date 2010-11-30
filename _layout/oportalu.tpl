@@ -10,6 +10,7 @@
 	      <p id="oportalu_menu">
 	        <a href="/oportalu"{if $selected eq "oportalu"} class="selected"{/if}>O portalu</a>
 		      <a href="/blog"{if $selected eq "blog"} class="selected"{/if}>Blog</a>
+		      <a href="/faq"{if $selected eq "faq"} class="selected"{/if}>FAQ</a>
 		      <a href="/media"{if $selected eq "media"} class="selected"{/if}>Dla mediów</a>
 	      </p>
 	      

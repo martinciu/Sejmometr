@@ -12,6 +12,7 @@ class PAGE extends PATTERN {
 	var $MENUGROUPS = array();
 	var $MENUGROUPSIDS = array();
 	var $STAMPS = array();
+	var $LINKS = array();
   
   var $LIBRARIES = array();
   
@@ -166,6 +167,7 @@ class PAGE extends PATTERN {
 	    'FRONT_MENU' => $this->FRONT_MENU,
 	    'FRONT_SUBMENUS' => $this->FRONT_SUBMENUS,
 	    'FRONT_MENU_SELECTED' => $this->FRONT_MENU_SELECTED,
+	    'LINKS' => $this->LINKS,
 	  );
 	  
 	  

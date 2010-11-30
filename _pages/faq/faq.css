@@ -1,0 +1,8 @@
+#content p {margin: 8px 0;}
+#content p.smaller {margin-top: -7px; color: #888; font-size: 11px;}
+
+#content {padding-right: 290px; min-height: 265px; font-size: 13px;}
+
+h1 {font-size: 16px; margin-top: 15px;}
+div.p {border-bottom: 1px solid #CCC; padding-bottom: 10px;}
+div.p.last {border-bottom: none; margin-bottom: 20px;}

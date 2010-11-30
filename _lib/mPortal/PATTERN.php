@@ -48,7 +48,7 @@ class PATTERN extends REQUEST {
 		$folder = empty($this->ID) ? ROOT.'/_patterns/_SMARTY/' : ROOT.'/_pages/'.$this->ID.'/';
 				
 		if( !file_exists($folder) ) { return false; }
-		
+				
 		$this->SMARTY->template_dir = $folder;
 		$this->SMARTY->compile_dir  = $folder.'_templates_c/';
 		$this->SMARTY->config_dir   = $folder.'_configs/';

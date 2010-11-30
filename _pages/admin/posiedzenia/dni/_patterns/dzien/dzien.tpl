@@ -1,7 +1,13 @@
 <div id="dzien" class="_height_controll">
   
   <div class="inner_title_bar" id="tools">
-    <a href="http://orka2.sejm.gov.pl/Debata6.nsf/{$DATA.dzien.sejm_id}?OpenDocument" target="_blank">Strona sejmowa</a><span class="separator">·</span><a href="/admin/dzien_porownywarka?dzien_id={$DATA.dzien.id}">Porównywarka</a><span class="separator">·</span>Posiedzenie id: <b>{$DATA.dzien.posiedzenie_id}</b><span class="separator">·</span>Posiedzenie nr: <b>{$DATA.dzien.posiedzenie_numer}</b><span class="separator">·</span>Status: <b>{$DATA.dzien.status}</b>
+    <a href="http://orka2.sejm.gov.pl/Debata6.nsf/{$DATA.dzien.sejm_id}?OpenDocument" target="_blank">Strona&nbsp;sejmowa</a> <span class="separator">·</span> <a href="/admin/dzien_porownywarka?dzien_id={$DATA.dzien.id}">Porównywarka</a>
+    <br/>
+    Posiedzenie&nbsp;id:&nbsp;<b>{$DATA.dzien.posiedzenie_id}</b> <span class="separator">·</span> Posiedzenie&nbsp;nr:&nbsp;<b>{$DATA.dzien.posiedzenie_numer}</b> <span class="separator">·</span> Status:&nbsp;<b>{$DATA.dzien.status}</b>
+    <br/>
+    Data&nbsp;pobrania&nbsp;modelu:&nbsp;<b>{$DATA.dzien.data_pobrania_modelu}</b>
+    <br/>
+    Data&nbsp;sprawdzenia&nbsp;posiedzenia:&nbsp;<b>{$DATA.dzien.data_sprawdzenia}</b>
   </div>
   
   

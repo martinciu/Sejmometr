@@ -22,7 +22,7 @@
   );
   
   
-  $dzien = $this->DB->selectAssoc("SELECT posiedzenia_dni.id, posiedzenia_dni.sejm_id, posiedzenia_dni.data, posiedzenia_dni.posiedzenie_id, posiedzenia_dni.status, posiedzenia_dni.analiza_wystapienia, posiedzenia_dni.analiza_glosowania, posiedzenia.numer as 'posiedzenie_numer' FROM posiedzenia_dni LEFT JOIN posiedzenia ON posiedzenia_dni.posiedzenie_id=posiedzenia.id WHERE posiedzenia_dni.id='$id'");
+  $dzien = $this->DB->selectAssoc("SELECT posiedzenia_dni.id, posiedzenia_dni.data_pobrania_modelu, posiedzenia_dni.sejm_id, posiedzenia_dni.data, posiedzenia_dni.posiedzenie_id, posiedzenia_dni.status, posiedzenia_dni.analiza_wystapienia, posiedzenia_dni.analiza_glosowania, posiedzenia.numer as 'posiedzenie_numer', posiedzenia.data_sprawdzenia FROM posiedzenia_dni LEFT JOIN posiedzenia ON posiedzenia_dni.posiedzenie_id=posiedzenia.id WHERE posiedzenia_dni.id='$id'");
   
   $dzien['analiza_wystapienia_slownie'] = $statusy_analizy_wystapienia[ $dzien['analiza_wystapienia'] ];
   $dzien['analiza_glosowania_slownie'] = $statusy_analizy_glosowania[ $dzien['analiza_glosowania'] ];

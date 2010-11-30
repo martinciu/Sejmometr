@@ -29,6 +29,8 @@
 		<link rel="stylesheet" href="/css/ie8.css" type="text/css" />		
 		<![endif]-->
     
+    {section name=links loop=$M.LINKS}<link href="{$M.LINKS[links].href}" title="{$M.LINKS[links].title}" type="{$M.LINKS[links].type}" rel="{$M.LINKS[links].rel}">{/section}
+    
     <script type="text/javascript" src="/jslibs/engine-{$M.STAMPS.engine_js}.js"></script>
     {if $smarty.request.dev eq 1}<script type="text/javascript" src="/jslibs/engine-dev.js"></script>{/if}
     

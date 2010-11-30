@@ -11,11 +11,13 @@ RewriteRule ^rezolucje$ servers/page.php?_PAGE=projekty&_TYPE=rezolucje&%{QUERY_
 RewriteRule ^zmiany_regulaminu$ servers/page.php?_PAGE=projekty&_TYPE=zmiany_regulaminu&%{QUERY_STRING} [L]
 RewriteRule ^inne$ servers/page.php?_PAGE=projekty&_TYPE=inne&%{QUERY_STRING} [L]
 
+RewriteRule ^rss/blog$ pattern/rss-blog [L]
 
 RewriteRule ^projekt/([a-zA-Z]{5})$ servers/page.php?_PAGE=projekt&_ID=$1&_TAB=proces&%{QUERY_STRING} [L]
 RewriteRule ^projekt/([a-zA-Z]{5})\,(.*?)$ servers/page.php?_PAGE=projekt&_ID=$1&_TAB=$2&%{QUERY_STRING} [L]
 
 RewriteRule ^debata/([a-zA-Z]{5})$ servers/page.php?_PAGE=debata&_ID=$1&%{QUERY_STRING} [L]
+RewriteRule ^wypowiedz/([a-zA-Z]{5})$ servers/page.php?_PAGE=wypowiedz&_ID=$1&%{QUERY_STRING} [L]
 RewriteRule ^debata2/([a-zA-Z]{5})$ servers/page.php?_PAGE=debata2&_ID=$1&%{QUERY_STRING} [L]
 
 RewriteRule ^blog/([0-9]+)$ servers/page.php?_PAGE=blog&_ID=$1&%{QUERY_STRING} [L]

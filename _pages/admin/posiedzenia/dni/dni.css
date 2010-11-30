@@ -11,3 +11,6 @@
 #duplikaty_table th {font-weight: bold;}
 #duplikaty_table tr.buttons {background-color:#EEE; text-align: center}
 #duplikaty_table i {color: #AAA;}
+
+span.separator {margin: 0 10px;}
+.mBrowser .inner_title_bar {line-height:  18px;}

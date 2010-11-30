@@ -38,13 +38,23 @@
   
   // DNI UTRZYMANE
   if( is_array( $dni_utrzymane ) ) foreach( $dni_utrzymane as $_id ) {
-    $sejm_model_count = count($SP->posiedzenia_model_dnia($_id));
-    $__id = $this->DB->selectValue("SELECT id FROM posiedzenia_dni WHERE sejm_id='$_id'");
-    $db_model_count = $this->DB->selectCount("SELECT COUNT(*) FROM `dni_modele` WHERE dzien_id='$__id'");
-    if( $sejm_model_count!=$db_model_count ) {
-      echo 'analiza - 7';
-      $this->DB->update_assoc('posiedzenia_dni', array('analiza_wystapienia'=>'7'), $__id);
-    }
+    
+    list($dzien_id, $dbmd5) = $this->DB->selectRow("SELECT id, md5 FROM posiedzenia_dni WHERE sejm_id='$_id'");
+    $model = $SP->posiedzenia_model_dnia( $_id );
+    
+    if( $SP->response_status==200 ) {
+		  $model_json = json_encode( $model );
+		  $md5 = md5($model_json);
+		  
+		  $file = ROOT.'/graber_cache/dni/'.$dzien_id.'.json';
+		  
+		  if( $md5!=$dbmd5 ) {
+		    @unlink($file);
+		    @file_put_contents($file, $model_json);
+		    $this->DB->q("UPDATE posiedzenia_dni SET `data_pobrania_modelu`=NOW(), `md5`='".$md5."', analiza_wystapienia='7' WHERE id='$dzien_id'");
+		  }
+    } else $this->DB->q("INSERT INTO graber_posiedzenia_nieudane_sesje (`dzien_id`, `status`) VALUES ('$dzien_id', ".$SP->response_status.")");
+    
   }
   
  
@@ -65,6 +75,8 @@
     $this->DB->update_assoc('posiedzenia_dni', array('analiza_wystapienia'=>'6'), $_id);
   }
   
-  
+  $this->DB->update_assoc('posiedzenia', array(
+    'data_sprawdzenia' => 'NOW()',
+  ), $id);
   $this->S('liczniki/nastaw/dni');
 ?>

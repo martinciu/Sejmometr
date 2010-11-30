@@ -11,4 +11,11 @@
   
   $this->TITLE = $post['tytul'];
   $this->FRONT_MENU_SELECTED = 'oportalu';
+  
+  $this->LINKS[] = array(
+    'href' => '/rss/blog',
+    'title' => 'Sejmometr.pl - Blog',
+    'type' => 'application/rss+xml',
+    'rel' => 'alternate',
+  );
 ?>

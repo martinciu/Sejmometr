@@ -43,3 +43,52 @@ var Wykres = Class.create({
   
   }
 });
+
+
+var Tabela = Class.create({
+  google_loaded: false,
+  data_loaded: false,
+  initialize: function(div, dataset){
+    this.div = div;
+    this.dataset = dataset;
+    google.load("visualization", "1", {packages:["table"]});
+    google.setOnLoadCallback( function(){
+      this.google_loaded = true;
+      this.drawChart();
+    }.bind(this) );
+    $M.addInitCallback( this.init.bind(this) );
+  },
+  init: function(){
+    this.div = $(this.div);
+    $S('blog/wykresy/dane', this.dataset, function(data){
+      if( data ) {
+        this.data = data;
+        this.data_loaded = true;
+        this.drawChart();
+      }
+    }.bind(this));
+  },
+  drawChart: function(){
+    if( !this.google_loaded || !this.data_loaded ) return false;
+    
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Klub');
+    data.addColumn('number', 'Liczba posłów');
+    data.addColumn('number', 'Średnia wieku');
+    data.addColumn('number', 'Udział kobiet [%]');
+    data.addColumn('number', 'Udział "singli" [%]');
+
+    data.addRows( this.data.length );
+    for( var i=0; i<this.data.length; i++ ) {
+      for( var j=0; j<this.data[i].length; j++ ) {
+        var v = this.data[i][j];
+        v = (j==0) ? String(v) : Number(v);
+        data.setCell(i, j, v);
+      }
+    }
+
+    this.table = new google.visualization.Table( this.div );
+    this.table.draw(data, {sortColumn: 1, sortAscending: false, allowHtml: true, cssClassNames: {tableCell: 'tableCell'}});
+  
+  }
+});

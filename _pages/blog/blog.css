@@ -43,3 +43,8 @@ padding:4px 5px;}
 #ostatnie_wpisy .tytul {font-size: 14px;}
 #ostatnie_wpisy .post {border-bottom: 1px solid #CCC; padding: 5px 0;}
 #ostatnie_wpisy .post:last-child {border-bottom: none;}
+
+#tabela {background-color: white; padding: 10px 0 30px;}
+.tableCell span.i {font-style: italic;}
+.tableCell {padding: 4px !important; text-align: center !important;}
+.google-visualization-table-tr-head td {padding: 5px !important; text-align: center;}

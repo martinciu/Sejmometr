@@ -51,22 +51,23 @@
   $M->S('graber/posiedzenia/glosowania/pobierz_kluby');
   
   
-  /*
-  while( $id = $M->DB->selectValue("SELECT id FROM wypowiedzi WHERE typ='1' AND _temp='1'") ) {
+  $i = 0;
+  while( $id = $M->DB->selectValue("SELECT id FROM wypowiedzi WHERE typ='1' AND _temp='0'") ) {
+    $i++;
     $M->DB->update_assoc('wypowiedzi', array('_temp'=>'2'), $id);
     $skrot = $M->S('wypowiedzi/skrot', $id);
     $M->DB->update_assoc('wypowiedzi', array('skrot'=>addslashes($skrot), '_temp'=>'3'), $id);
   }
-  */
+  if($i) $M->S('liczniki/nastaw/wypowiedzi');
   
+  $i = 0;
   while( $id = $M->DB->selectValue("SELECT id FROM punkty_wypowiedzi WHERE status='0'") ) {
-    
+    $i++;
     $M->DB->update_assoc('punkty_wypowiedzi', array('status'=>'1'), $id);
     $opis = $M->S('debaty/info', $id);
     $M->DB->update_assoc('punkty_wypowiedzi', array('opis'=>addslashes($opis), 'status'=>'2'), $id);
-    
   }
-  
+  if($i) $M->S('liczniki/nastaw/punkty_wypowiedzi');
   
  
   
