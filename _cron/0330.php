@@ -7,5 +7,7 @@
   $DB = &$M->DB;
   $M->USER['group'] = '2';  
   
+  $M->S('liczniki/nastaw_wszystkie');
+  $M->S('utils/ofensywa/refresh');
   $M->S('kontrola/dokumenty/sprawdz_kolejne', 100);
 ?>

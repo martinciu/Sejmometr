@@ -10,11 +10,27 @@
   
   $dzien_id = $_PARAMS;
   if( strlen($dzien_id)!=5 ) return false;
+  
+  
+  
+  
+  if( $this->DB->selectCount("SELECT COUNT(*) FROM wypowiedzi WHERE dzien_id='$dzien_id'") ) return 10;
+  if( $this->DB->selectCount("SELECT COUNT(*) FROM glosowania WHERE dzien_id='$dzien_id'") ) return 11;
+  if( $this->DB->selectCount("SELECT COUNT(*) FROM punkty_wypowiedzi WHERE dzien_id='$dzien_id'") ) return 12;
+  if( $this->DB->selectCount("SELECT COUNT(*) FROM punkty_glosowania WHERE dzien_id='$dzien_id'") ) return 13;
+  
+  
+  
+  
+  
+  
+  
   $_funkcje = $this->DB->selectAssocs("SELECT id, fraza FROM wypowiedzi_funkcje ORDER BY LENGTH(fraza) DESC");
   
   $this->DB->q("INSERT INTO analizator (dzien_id, typ) VALUES ('$dzien_id', '0')");
   
-  $statusy = $this->DB->selectValues("SELECT DISTINCT(status) FROM `dni_modele` WHERE `dzien_id`='$dzien_id' AND `typ`='1'");  
+  $statusy = $this->DB->selectValues("SELECT DISTINCT(status) FROM `dni_modele` WHERE `dzien_id`='$dzien_id' AND `typ`='1'");
+    
   if( count($statusy)==1 && $statusy[0]=='2' ) {
     
     $this->DB->update_assoc('posiedzenia_dni', array('analiza_wystapienia'=>'1'), $dzien_id);
@@ -121,7 +137,7 @@
 				        $autor_id = $this->DB->insert_id;
 				      }
 				      $this->DB->insert_ignore_assoc('wypowiedzi_id-nierozpoznani_autorzy', array(
-			          'wyp_id' => $wyp_id,
+			          'wyp_id' => $item['id'],
 			          'autor_id' => $autor_id,
 			        ));
 			        $item['status'] = '3';
@@ -136,7 +152,7 @@
 			        $autor_id = $this->DB->insert_id;
 			      }
 			      $this->DB->insert_ignore_assoc('wypowiedzi_id-nierozpoznani_autorzy', array(
-		          'wyp_id' => $wyp_id,
+		          'wyp_id' => $item['id'],
 		          'autor_id' => $autor_id,
 		        ));
 			      $item['status'] = '2';
@@ -216,14 +232,17 @@
 	    for( $i=0; $i<count($data); $i++ ) {
 	      $iterator = $i+1;
 	      $item = $data[$i];
-	            
+	      
+	      $typ = '0';
+	      if( $item['typ']=='1' ) { $typ = '1'; }
+	      elseif( $item['typ']=='3' ) { $typ = '2'; }
+	      
 	      $wypowiedz_id = $this->DB->insert_assoc_create_id('wypowiedzi', array(
-	        'typ' => $item['typ'],
+	        'typ' => $typ,
 	        'dzien_id' => $dzien_id,
 	        'punkt_id' => $item['punkt_id'],
 	        'autor_id' => $item['autor_id'],
 	        'funkcja_id' => $item['funkcja_id'],
-					'status' => $item['status'],
 	        'glosowanie_id' => $item['glosowanie_id'],
 	        'text' => addslashes($item['text']),
 	        'ord' => $iterator,

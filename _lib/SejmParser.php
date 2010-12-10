@@ -339,7 +339,18 @@
     }
     
     function projekt_info_html($id){
-      return trim( $this->getData("http://orka.sejm.gov.pl/proc6.nsf/$id?OpenDocument") );
+      $txt = $this->getData("http://orka.sejm.gov.pl/proc6.nsf/$id?OpenDocument");
+      switch( $id ) {
+        case '0/8EAA3EEBD998E198C12577D1004F3E08': {
+          $txt = str_replace('WMP20102191442', 'WDU20102191442', $txt);
+          break;
+        }
+        case '0/53EF25018E0BD617C12577D1004F36BF': {
+          $txt = str_replace('WMP201000315 i 16', 'WMP20100030015', $txt);
+          break;
+        }
+      }
+      return trim( $txt );
     }
         
     function projekt_info($id, $txt=false){

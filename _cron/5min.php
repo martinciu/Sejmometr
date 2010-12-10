@@ -14,9 +14,11 @@
   $M->S('graber/cron');
 
 
+
   // ISAP
   echo "isap\n";
   $M->S('graber/isap/pobierz_wszystkie');
+
 
 
   // DOKUMENTY
@@ -47,32 +49,31 @@
   echo "posiedzenia - głosowania\n";
   $M->S('graber/posiedzenia/glosowania/pobierz_nowe');
   
+  
+  
+  
+  
+  
+  
+  // DEBATY
+  echo "debaty - generowanie opisów i banerów\n";
+  $M->S('debaty/info_wszystkie');
+  
+  echo "wypowiedzi - generowanie skrótów\n";
+  $M->S('wypowiedzi/skrot_wszystkie');
+  
+  
+  // GŁOSOWANIA
   echo "głosowania - głosy\n";
   $M->S('graber/posiedzenia/glosowania/pobierz_kluby');
   
-  
-  $i = 0;
-  while( $id = $M->DB->selectValue("SELECT id FROM wypowiedzi WHERE typ='1' AND _temp='0'") ) {
-    $i++;
-    $M->DB->update_assoc('wypowiedzi', array('_temp'=>'2'), $id);
-    $skrot = $M->S('wypowiedzi/skrot', $id);
-    $M->DB->update_assoc('wypowiedzi', array('skrot'=>addslashes($skrot), '_temp'=>'3'), $id);
-  }
-  if($i) $M->S('liczniki/nastaw/wypowiedzi');
-  
-  $i = 0;
-  while( $id = $M->DB->selectValue("SELECT id FROM punkty_wypowiedzi WHERE status='0'") ) {
-    $i++;
-    $M->DB->update_assoc('punkty_wypowiedzi', array('status'=>'1'), $id);
-    $opis = $M->S('debaty/info', $id);
-    $M->DB->update_assoc('punkty_wypowiedzi', array('opis'=>addslashes($opis), 'status'=>'2'), $id);
-  }
-  if($i) $M->S('liczniki/nastaw/punkty_wypowiedzi');
-  
- 
-  
-  
   echo "głosowania - rozpoznowanie posłów\n";
   $M->S('graber/glosowania/rozpoznawanie/wszystkie');
+  
+  
+  
  
+ 
+ 
+  // $M->S('poslowie/kluby_historia/przetworz_wszystkie');
 ?>

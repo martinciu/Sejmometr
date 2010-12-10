@@ -26,6 +26,7 @@ RewriteRule ^blog/edytuj/([0-9]+)$ servers/page.php?_PAGE=blog/edytuj&_ID=$1&%{Q
 RewriteRule ^blog/nowy_post$ servers/page.php?_PAGE=blog/edytuj&%{QUERY_STRING} [L]
 
 RewriteRule ^parser/([a-zA-Z0-9\_\%\/\-]+)$ SejmParser/index.php?_ACTION=$1&%{QUERY_STRING} [L]
+RewriteRule ^api/([a-zA-Z0-9\_\%\/\-]+)$ servers/api.php?_ACTION=$1&%{QUERY_STRING} [L]
 
 RewriteRule ^$ servers/page.php?_PAGE=projekty&_TYPE=ustawy&%{QUERY_STRING} [L]
 RewriteRule ^service/([a-zA-Z0-9\_\%\/\-]+)$ servers/service.php?_SERVICE=$1&%{QUERY_STRING} [L]

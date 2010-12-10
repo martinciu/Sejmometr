@@ -54,6 +54,7 @@
   
   $data['data_zapisania_etapow'] = 'NOW()';
   $data['html_zmiana'] = '0';
+  $data['alert'] = '0';
   
   $this->DB->q("DELETE FROM projekty_etapy WHERE projekt_id='$projekt_id'");
   

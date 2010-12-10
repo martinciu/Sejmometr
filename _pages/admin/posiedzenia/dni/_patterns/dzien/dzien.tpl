@@ -39,7 +39,10 @@
 			  </td>		  
 		  </tr>{if $DATA.punkty_wypowiedzi|@count eq 0 && $DATA.punkty_glosowania|@count eq 0}
 		  <tr class="buttons">
-		    <td colspan="2"><input id="usun_btn" type="button"value="Usuń ten dzień i sprawdź posiedzenie" /></td>
+		    <td colspan="2">
+		      <p><input id="usun_btn" type="button"value="Usuń ten dzień i sprawdź posiedzenie" /></p>
+		      <p><input id="analizuj_btn" type="button"value="Analizuj ten dzień ponownie" /></p>
+		    </td>
 		  </tr>{/if}
 		</table>
 	</div>
@@ -47,5 +50,5 @@
 
 </div>
 <script>
-  dzien = new Dzien({$DATA.dzien|@json_encode});
+  dzien = new Dzien({$DATA.dzien|@json_encode}, {$DATA.wypowiedzi|@json_encode});
 </script>

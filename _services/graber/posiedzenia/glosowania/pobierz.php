@@ -17,15 +17,6 @@
 	  
 	  $this->DB->q("INSERT INTO glosowania_modele (`glosowanie_id`, `punkt`, `posiedzenie_numer`) VALUES ('$id', '$punkt', '$posiedzenie_numer') ON DUPLICATE KEY UPDATE `posiedzenie_numer`='$posiedzenie_numer', `punkt`='$punkt'");
 	  
-	  $this->DB->update_assoc('glosowania', array(
-	    'data_pobrania' => 'NOW()',
-	    'numer' => $data['numer'],
-	    'czas' => $data['czas'],
-	    'rodzaj' => $data['rodzaj'],
-	    'tytul' => addslashes($data['tytul']),
-	    'status' => '2',
-	  ), $id);
-	  return $this->DB->affected_rows;
 	  
 	  if( $data['rodzaj']=='1' ) {
 		  if( is_array($data['kluby']) ) foreach( $data['kluby'] as $klub ) {
@@ -38,7 +29,17 @@
 		  }
 	  }
 	  
-	  $this->DB->q("UPDATE glosowania SET status='2', data_pobrania=NOW() WHERE id='$id'");
+	  $ilosc_klubow = $this->DB->selectCount("SELECT COUNT(*) FROM glosowania_kluby WHERE glosowanie_id='$id'");
+	  
+	  $this->DB->update_assoc('glosowania', array(
+	    'data_pobrania' => 'NOW()',
+	    'numer' => $data['numer'],
+	    'czas' => $data['czas'],
+	    'rodzaj' => $data['rodzaj'],
+	    'tytul' => addslashes($data['tytul']),
+	    'ilosc_klubow' => $ilosc_klubow,
+	    'status' => '2',
+	  ), $id);	  
   
   } else {
     $this->DB->q("UPDATE glosowania SET status='3', data_pobrania=NOW() WHERE id='$id'");

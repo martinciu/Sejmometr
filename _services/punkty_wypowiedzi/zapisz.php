@@ -47,9 +47,7 @@
 	  if( is_array($druki) ) foreach( $druki as $druk ) {
 	    $this->DB->q("INSERT IGNORE INTO punkty_wypowiedzi_druki (`punkt_id`, `druk_id`) VALUE ('$id', '$druk')");
 	  }
-	  
-	  $this->DB->q("UPDATE wypowiedzi SET typ='$wyp_typ' WHERE punkt_id='$id'");
-  
+	    
   } else return 3;
   
   $this->S('liczniki/nastaw/punkty_wypowiedzi');

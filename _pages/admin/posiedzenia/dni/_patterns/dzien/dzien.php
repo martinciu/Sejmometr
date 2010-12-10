@@ -35,11 +35,39 @@
   $punkty_wypowiedzi = $this->DB->selectAssocs("SELECT id, sejm_id, ilosc_wypowiedzi FROM punkty_wypowiedzi WHERE dzien_id='$id' ORDER BY ord ASC");
   $punkty_glosowania = $this->DB->selectAssocs("SELECT id, sejm_id, ilosc_glosowan FROM punkty_glosowania WHERE dzien_id='$id' AND aktywny='1' ORDER BY ord ASC");
   
+  
+  
+  $_classes = array(
+    '0' => 'blad',
+    '1' => 'wypowiedz',
+    '2' => 'wypowiedz_porzadkowa',
+    '3' => 'tekst_porzadkowy',
+    '4' => 'oświadczenie',
+    '5' => 'ogloszenie',
+  );
+  $_labels = array(
+    '0' => 'Błąd',
+    '1' => 'Wypowiedź',
+    '2' => 'Wypowiedź porządkowa',
+    '3' => 'Tekst porządkowy',
+    '4' => 'Oświadczenie',
+    '5' => 'Ogłoszenie',
+  );
+  $wypowiedzi = $this->DB->selectAssocs("SELECT wypowiedzi.id, wypowiedzi.typ, wypowiedzi.funkcja_id, wypowiedzi_funkcje.nazwa as 'funkcja', wypowiedzi.autor_id, wypowiedzi.text, ludzie.nazwa as 'autor' FROM wypowiedzi LEFT JOIN ludzie ON wypowiedzi.autor_id=ludzie.id LEFT JOIN wypowiedzi_funkcje ON wypowiedzi.funkcja_id=wypowiedzi_funkcje.id WHERE wypowiedzi.dzien_id='$id' ORDER BY wypowiedzi.ord ASC");
+  foreach( $wypowiedzi as &$wyp ) {
+    if( $wyp['typ']=='1' ) unset( $wyp['text'] );
+    $wyp['class'] = $_classes[ $wyp['typ'] ];
+    $wyp['label'] = $_labels[ $wyp['typ'] ];
+  }
+  
+  
+  
   return array(
     'dzien' => $dzien,
     'statusy_wypowiedzi' => $statusy_wypowiedzi,
     'statusy_glosowania' => $statusy_glosowania,
     'punkty_wypowiedzi' => $punkty_wypowiedzi,
     'punkty_glosowania' => $punkty_glosowania,
+    'wypowiedzi' => $wypowiedzi,
   );
 ?>

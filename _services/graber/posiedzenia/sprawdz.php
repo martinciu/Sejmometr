@@ -33,7 +33,9 @@
   $dni_utrzymane = array_intersect($sejm_ids, $db_ids);
   $dni_dodane = array_diff($sejm_ids, $db_ids);
   $dni_skasowane = array_diff($db_ids, $sejm_ids);
+  
 
+  
   
   
   // DNI UTRZYMANE
@@ -71,8 +73,9 @@
   
   
   // DNI SKASOWANE
-  if( is_array($dni_skasowane) ) foreach($dni_skasowane as $_id) {    
-    $this->DB->update_assoc('posiedzenia_dni', array('analiza_wystapienia'=>'6'), $_id);
+  if( is_array($dni_skasowane) ) foreach($dni_skasowane as $_id) {
+    $dzien_id = $this->DB->selectValue("SELECT id FROM posiedzenia_dni WHERE sejm_id='$_id'");
+    $this->DB->update_assoc('posiedzenia_dni', array('analiza_wystapienia'=>'6'), $dzien_id);
   }
   
   $this->DB->update_assoc('posiedzenia', array(

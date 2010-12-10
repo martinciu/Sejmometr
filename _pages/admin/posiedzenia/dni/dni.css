@@ -1,3 +1,9 @@
+#_COL_RIGHT {padding-right: 0;}
+#browser {width: 57%; float: left;}
+#side_div_cont {width: 43%; overflow: auto;}
+#side_div {margin-left: 10px; text-align: left; background-color:#EEE; border:1px dashed #CCC; font-size:13px; overflow: auto; -moz-border-radius: 5px;}
+#side_div .msg {position: relative; top: 50%; margin-top: -8px;}
+
 .mBrowser .list {width: 250px;}
 .mBrowser .item {margin-left: 250px;}
 
@@ -14,3 +20,13 @@
 
 span.separator {margin: 0 10px;}
 .mBrowser .inner_title_bar {line-height:  18px;}
+
+.buttons p {margin: 5px 0;}
+
+.wyp {background-color: #FFF; margin: 10px 5px; border: 1px solid #BBB; -moz-border-radius: 4px;}
+.wyp .bar {background-color: #CCC; -moz-border-radius-topleft: 4px; -moz-border-radius-topright: 4px; padding: 2px 5px;}
+.wyp .text { padding: 5px;}
+.wyp .bar i {color: #A33;}
+
+.wyp.wypowiedz {border: 1px solid #CCC;}
+.wyp.wypowiedz .bar {color: #999; background-color: #E3E3E3;}

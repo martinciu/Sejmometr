@@ -1,7 +1,7 @@
 <?
   $id = $_PARAMS;
   
-  // $this->DB->update_assoc('poslowie', array('status' => '1', 'data_sprawdzenia' => 'NOW()'), $id);
+  $this->DB->update_assoc('poslowie', array('status' => '1', 'data_sprawdzenia' => 'NOW()'), $id);
  
   
   $sejm_id = $this->DB->selectValue("SELECT sejm_id FROM poslowie WHERE id='$id'");
@@ -14,9 +14,12 @@
   $sejm_pola = array_keys( $sejm_posel );
   
   $db_posel = array();
-  $_db_posel = $this->DB->selectRows("SELECT nazwa, wartosc FROM poslowie_pola WHERE posel_id='$id' GROUP BY nazwa ORDER BY id DESC");
-  foreach( $_db_posel as $row ) $db_posel[ $row[0] ] = $row[1];
-  
+  $_db_posel = $this->DB->selectRows("SELECT nazwa, wartosc, COUNT(*) as 'c' FROM poslowie_pola WHERE posel_id='$id' GROUP BY nazwa ORDER BY id DESC");
+  foreach( $_db_posel as &$row ) {
+    $c = (int) $row[2];
+    if( $c>1 ) $row[1] = $this->DB->selectValue("SELECT wartosc FROM poslowie_pola WHERE posel_id='$id' AND nazwa='".$row[0]."' ORDER BY id DESC LIMIT 1");
+  }
+  foreach( $_db_posel as $row ) $db_posel[ $row[0] ] = $row[1];  
   
   $sejm_keys = array_keys($sejm_posel);
   $db_keys = array_keys($db_posel);

@@ -5,7 +5,8 @@
        
   $_SERVICE = $_REQUEST['_SERVICE'];
   $_PARAMS = $_REQUEST['_PARAMS'];
-    
+  
+  
   if( empty($_SERVICE) ) { die(); }
   $M->render_pattern($_SERVICE, $_PARAMS ? params_decode($_PARAMS) : null);
 ?>

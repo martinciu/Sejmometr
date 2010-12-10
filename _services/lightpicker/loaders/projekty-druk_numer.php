@@ -1,12 +1,7 @@
 <?    
   if( strlen($q)<3 ) { $html=''; } else {
-    
-    $where = 'projekty.id IS NOT NULL';
-    
-    $a = "SELECT projekty_druki.projekt_id FROM projekty_druki LEFT JOIN druki ON projekty_druki.druk_id=druki.id WHERE druki.numer LIKE '".$q."%'";
-    
-    
-	  $q = "SELECT projekty.id, druki.numer, druki_autorzy.autor, projekty.tytul, druki.numer FROM druki LEFT JOIN projekty ON druki.id=projekty.druk_id LEFT JOIN druki_autorzy ON projekty.autor_id=druki_autorzy.id WHERE projekty.id IN ($a) AND ($where) ORDER BY druki.numer ASC LIMIT 10";
+       
+	  $q = "select projekty.id, druki.numer, druki_autorzy.autor, projekty.tytul, pdruki.numer from druki join projekty_etapy on druki.id=projekty_etapy.etap_id join projekty ON projekty_etapy.projekt_id=projekty.id left join druki_autorzy on projekty.autor_id=druki_autorzy.id join druki as pdruki on projekty.druk_id=pdruki.id where projekty_etapy.typ_id=0 AND druki.numer LIKE \"%$q%\" LIMIT 10";
 	  $data = $this->DB->selectAssocs($q);
 	  
 	  $html = '';

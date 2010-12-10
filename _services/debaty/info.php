@@ -3,15 +3,15 @@
   if( strlen($id)!=5 ) return false;
   
     
-  $ilosc_wypowiedzi = $this->DB->selectCount("SELECT COUNT(*) FROM wypowiedzi WHERE punkt_id='$id' AND wypowiedzi.typ!='3'");
+  $ilosc_wypowiedzi = $this->DB->selectCount("SELECT COUNT(*) FROM wypowiedzi WHERE punkt_id='$id' AND wypowiedzi.typ='1'");
   
-  $urzednicy = $this->DB->selectValues("SELECT wypowiedzi_funkcje.dopelniacz FROM wypowiedzi LEFT JOIN wypowiedzi_funkcje ON wypowiedzi.funkcja_id=wypowiedzi_funkcje.id WHERE wypowiedzi.punkt_id='".$id."' AND wypowiedzi.typ!='3' AND wypowiedzi.funkcja_id!=1 GROUP BY wypowiedzi.funkcja_id ORDER BY wypowiedzi.ord");
+  $urzednicy = $this->DB->selectValues("SELECT wypowiedzi_funkcje.dopelniacz FROM wypowiedzi LEFT JOIN wypowiedzi_funkcje ON wypowiedzi.funkcja_id=wypowiedzi_funkcje.id WHERE wypowiedzi.punkt_id='".$id."' AND wypowiedzi.typ='1' AND wypowiedzi.funkcja_id!=1 GROUP BY wypowiedzi.funkcja_id ORDER BY wypowiedzi.ord");
   $urzednicy_count = count($urzednicy);
   
-  $poslowie = $this->DB->selectValues("SELECT DISTINCT(poslowie.id) FROM wypowiedzi LEFT JOIN poslowie ON wypowiedzi.autor_id=poslowie.id WHERE wypowiedzi.punkt_id='".$id."' AND wypowiedzi.typ!='3' AND wypowiedzi.funkcja_id=1 GROUP BY poslowie.id");
+  $poslowie = $this->DB->selectValues("SELECT DISTINCT(poslowie.id) FROM wypowiedzi LEFT JOIN poslowie ON wypowiedzi.autor_id=poslowie.id WHERE wypowiedzi.punkt_id='".$id."' AND wypowiedzi.typ='1' AND wypowiedzi.funkcja_id=1 GROUP BY poslowie.id");
   $poslowie_count = count($poslowie);
 
-  $ludzie = $this->DB->selectRows("SELECT ludzie.id, ludzie.avatar FROM wypowiedzi LEFT JOIN ludzie ON wypowiedzi.autor_id=ludzie.id WHERE wypowiedzi.punkt_id='".$id."' AND wypowiedzi.typ!='3' GROUP BY ludzie.id ORDER BY SUM(wypowiedzi.ilosc_slow) DESC");
+  $ludzie = $this->DB->selectRows("SELECT ludzie.id, ludzie.avatar FROM wypowiedzi LEFT JOIN ludzie ON wypowiedzi.autor_id=ludzie.id WHERE wypowiedzi.punkt_id='".$id."' AND wypowiedzi.typ='1' GROUP BY ludzie.id ORDER BY SUM(wypowiedzi.ilosc_slow) DESC");
   
   
   
