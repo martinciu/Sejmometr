@@ -1,7 +1,8 @@
 <?
-
-  $this->S('graber/poslowie/pobieranie/pobierz', $_PARAMS);
-
+  $id = $_PARAMS;
+  $this->S('projekty/dodatkowe_dokumenty/policz', $id);
+  $this->DB->q("UPDATE projekty SET _temp='1' WHERE id='$id'");
+  
   /*
   $punkt_id = $_PARAMS;
   $this->DB->update_assoc('punkty_wypowiedzi', array(

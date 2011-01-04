@@ -1,7 +1,12 @@
 <div id="punkt" class="_height_controll">
   <div class="inner_title_bar">
     <p class="data">posiedzenie <b>{$DATA.punkt.posiedznie_numer}</b>, {$DATA.punkt.data}</p>
-    <p>{$DATA.punkt.sejm_id}</p>
+    <p class="sejm_id">{$DATA.punkt.sejm_id}</p>
+  </div>
+  
+  <div class="debatainfo">
+    <img class="baner" src="/resources/debaty/banery/{$DATA.punkt.id}.jpg" />
+    <p class="info">{$DATA.punkt.opis}</p>
   </div>
   
   <div id="punkt_form"></div>

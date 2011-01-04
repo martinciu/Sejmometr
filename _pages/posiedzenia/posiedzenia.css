@@ -1,0 +1,107 @@
+._BOX._HORIZONTAL ._TOP {padding: 15px 10px 10px;}
+._BOX._HORIZONTAL ._BOTTOM {padding: 10px; overflow: auto;}
+h2 {margin-bottom: 7px; font-size: 18px;}
+
+#cal {width: 400px; padding: 5px 10px 10px; background-color: #F9F9F9; -moz-border-radius: 5px; -webkit-border-radius: 5px;}
+#cal h1 {text-align: center; font-size: 16px; margin-bottom: 2px;}
+#cal table {width: 100%;}
+#cal table tr.dni td {text-align: center; color: #777; padding-bottom: 2px; font-size: 11px;}
+#cal table tr.d td {width: 14.2857%; border: 1px solid #CCC;}
+#cal table tr.d td .nr {text-align: right; margin: 2px 4px; color: #777}
+#cal table tr.d td.s .nr {color: #B1B1B1}
+
+
+#cal .nav {font-size: 18px;}
+#cal .nav p {display: block; margin-top: -23px; position: relative; top: -2px; widows: 50%; text-align: center; width: 50%;}
+#cal .nav p.left {}
+#cal .nav p.right {margin-left: 50%;}
+#cal .nav p a {padding: 0 10%; outline: none;}
+#cal .nav p a:hover {text-decoration: underline;}
+
+#cal table tr.d td .adevents a {background-color: #7FB0EF; color: #FFF; display: block; margin: 3px 0 5px; outline: none;}
+#cal table tr.d td .adevents a.selected {background: url("/g/_BTN_ORANGE_BG.gif") repeat-x scroll 0 0 transparent;}
+#cal table tr.d td .adevents a.first {margin-left: 3px; -moz-border-radius-topleft: 4px; -moz-border-radius-bottomleft: 4px; -webkit-border-top-left-radius: 4px; -webkit-border-bottom-left-radius: 4px;}
+#cal table tr.d td .adevents a.last {margin-right: 3px; -moz-border-radius-topright: 4px; -moz-border-radius-bottomright: 4px; -webkit-border-top-right-radius: 4px; -webkit-border-bottom-right-radius: 4px;}
+
+.dni {margin: 5px 0;}
+.dni .kalendarzyk {float: left; margin-right: 10px;}
+
+#projekty {width: 600px; float: left; margin-right: 20px;}
+.item {border-bottom: 1px solid #CCC; padding: 20px 0 20px;}
+.item:first-child {padding-top: 0;}
+.item:last-child {border-bottom: none;}
+
+.p {padding-bottom: 10px; margin: 10px;}
+.p:first-child {margin-top: 10px;}
+.p:last-child {border-bottom: none; margin-bottom: 0;}
+.p .dokument {float: left; line-height: 15px;}
+.p .dokument .druk_nr {background-color:#EEE; color:#58595B; display:block; font-size:11px; margin:-25px 1px 0; padding:4px 0 2px; position:relative; text-align:center; line-height: 15px;}
+.p .dokument.lb {position: absolute;}
+.p .tytul {font-size: 15px;}
+.p .tytul a {color: #0083B8;}
+.p .pc {margin-left: 100px; min-height: 102px; position: relative; top: -3px;}
+.d .pc {margin-left: 100px;}
+.p .autorstatus {margin-top: 7px;}
+.p .autorstatus span.label {color:#555; display:block; float:left; margin-right:5px; text-align:right; width:60px; font-weight: bold;}
+.p .opis {margin-top: 10px;}
+
+
+
+
+.kalendarzyk {float: left; margin-right: 8px;}
+
+.e {padding: 1px 7px 7px; min-height: 37px; display: block; outline: none; overflow: auto;}
+#projekty .e {margin-left: 102px;}
+#toolbox .e {margin: 5px 0;}
+.e.nowa_data {border-top:  1px solid #DDD; padding: 7px;}
+.e.nowa_data:first-child {border-top: none;}
+.e .c {margin-left: 87px;}
+.e .tytul {font-size: 14px; margin-top: -2px; margin-bottom: 2px;}
+.e .cc {margin-left: 5px;}
+
+.e.druk .cc, .e.wyrok .cc, .e.podpisanie .cc {margin-left: 0; margin-top: 8px; min-height: 100px;}
+.e.druk .dokument, .e.wyrok .dokument, .e.podpisanie .dokument {float: left;}
+.e.druk .ccc, .e.wyrok .ccc, .e.podpisanie .ccc {margin-left: 90px;}
+
+.e.wypowiedzi .cc {overflow: auto; margin: 5px 0 0 0;}
+
+.ikona_legislacyjna {width: 37px; height: 37px; background: url(/g/ikony_sprite.gif) no-repeat; float: left; margin-right: 8px;}
+.ikona_legislacyjna.wplynal {background-position: 0 0;}
+.ikona_legislacyjna.skierowanie {background-position: -37px 0;}
+.ikona_legislacyjna.druk {background-position: -296px 0;}
+.ikona_legislacyjna.czytanie_komisje {background-position: -74px 0;}
+.ikona_legislacyjna.wypowiedzi {background-position: -74px 0;}
+.ikona_legislacyjna.glosowania {background-position: -111px 0;}
+.ikona_legislacyjna.wyrok {background-position: -296px 0;}
+.ikona_legislacyjna.aklamacja {background-position: -148px 0;}
+.ikona_legislacyjna.wypowiedzi_bw {background-position: -148px 0;}
+.ikona_legislacyjna.podpisanie {background-position: -185px 0;}
+.ikona_legislacyjna.wycofanie {background-position: -222px 0;}
+.ikona_legislacyjna.anulowanie {background-position: -259px 0;}
+
+.e:hover .ikona_legislacyjna.druk {background-position: -296px -37px;}
+.e:hover .ikona_legislacyjna.wyrok {background-position: -296px -37px;}
+.e:hover .ikona_legislacyjna.wypowiedzi {background-position: -74px -37px;}
+
+
+.e.nowa_data .ikona_legislacyjna {margin-left: 0;}
+.debata_baner {float: left; margin-right: 5px; border: 1px solid #BBB; -moz-border-radius: 2px; -webkit-border-radius: 2px;}
+
+
+
+
+#toolbox {margin-left: 600px;}
+#toolbox .tbox {margin-top: 25px;}
+#toolbox .tbox:first-child {margin-top: 0;}
+#toolbox .debaty {}
+#toolbox .debaty.specjalne .tytul {margin-bottom: 6px;}
+#toolbox .debaty.specjalne .opis {clear: both; margin-top: 47px;}
+#toolbox .debaty.oswiadczenia .e .c {margin-left: 40px;}
+
+
+.headerbox {background-color: #F0F0F0; border-top: 1px solid #BBB; padding: 1px 5px 4px; overflow: auto; min-height: 21px;}
+.headerbox .label {font-size: 13px; position: relative; top: 2px;}
+.headerbox .filters {margin-top: -15px;}
+.headerbox .filters .filter {float: right; margin-left: 10px;}
+.headerbox .filters .filter .label {font-size: 12px; float: left; margin: -1px 4px 0 0;}
+.headerbox .filters .filter select {color: #666;}

@@ -1,5 +1,5 @@
 ._BOX_HEADER h1 {float: left; width: 250px;}
-._BOX_HEADER h2 {float: left; margin-right: 5px; position: relative; top: 2px;}
+._BOX_HEADER h2 {float: left; margin-right: 5px; position: relative; top: 4px;}
 ._BOX_HEADER select {position: relative; top: -1px;}
 
 .p {padding-bottom: 20px; border-bottom: 1px solid #CCC; margin: 25px 10px;}

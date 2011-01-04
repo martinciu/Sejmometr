@@ -23,3 +23,5 @@
 #duplikaty_table td, #duplikaty_table th {border: 1px solid #CCC; text-align: center; padding: 3px; width: 1%;}
 #duplikaty_table th {font-weight: bold;}
 #duplikaty_table tr.buttons {background-color:#EEE; text-align: center}
+
+.druki_oryginalne {background-color: #FCC; padding: 10px;}

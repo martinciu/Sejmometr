@@ -11,16 +11,28 @@
   $sejm_posel = $SP->posel_info($sejm_id);  
   if( $SP->response_status!=200 ) return false;
   
+  
+ 
+  
+  
   $sejm_pola = array_keys( $sejm_posel );
   
   $db_posel = array();
   $_db_posel = $this->DB->selectRows("SELECT nazwa, wartosc, COUNT(*) as 'c' FROM poslowie_pola WHERE posel_id='$id' GROUP BY nazwa ORDER BY id DESC");
+    
   foreach( $_db_posel as &$row ) {
     $c = (int) $row[2];
     if( $c>1 ) $row[1] = $this->DB->selectValue("SELECT wartosc FROM poslowie_pola WHERE posel_id='$id' AND nazwa='".$row[0]."' ORDER BY id DESC LIMIT 1");
   }
-  foreach( $_db_posel as $row ) $db_posel[ $row[0] ] = $row[1];  
+  unset($row);
+  foreach( $_db_posel as $row ) {
+    if( !( $row[0]=='klub' && !isset($sejm_posel['klub']) ) ) $db_posel[ $row[0] ] = $row[1];
+  } 
   
+  
+  
+  
+    
   $sejm_keys = array_keys($sejm_posel);
   $db_keys = array_keys($db_posel);
   
@@ -32,6 +44,7 @@
   foreach($existing_keys as $key) {
     if( $sejm_posel[$key] != $db_posel[$key] ) $modified_keys[] = $key;
   }
+  
   
   
     
@@ -53,7 +66,6 @@
       @unlink( $file );
       @copy($val, $file);
     }
-    
   }
   
   foreach( $modified_keys as $key ) {

@@ -29,12 +29,18 @@
 			  <td>
 				  {if $DATA.punkty_wypowiedzi|@count eq 0}<i>Brak punktów wypowiedzi</i>{/if}
 				  {section name="punkty_wypowiedzi" loop=$DATA.punkty_wypowiedzi}{assign var="punkt" value=$DATA.punkty_wypowiedzi[punkty_wypowiedzi]}
-				    <a href="/admin/posiedzenia/punkty_wypowiedzi#id={$punkt.id}">{$punkt.sejm_id}</a>
+				    <div class="item">
+				      <p class="punkt_nr">{$punkt.punkt_nr}</p>
+				      <p class="sejm_id">{$punkt.sejm_id}</p>
+				    </div>
 				  {/section}
 			  </td><td>
 				  {if $DATA.punkty_glosowania|@count eq 0}<i>Brak punktów głosowań</i>{/if}
 				  {section name="punkty_glosowania" loop=$DATA.punkty_glosowania}{assign var="punkt" value=$DATA.punkty_glosowania[punkty_glosowania]}
-				    <a href="/admin/posiedzenia/punkty_glosowania#id={$punkt.id}">{$punkt.sejm_id}</a>
+				    <div class="item">
+				      <p class="punkt_nr">{$punkt.punkt_nr}</p>
+				      <p class="sejm_id">{$punkt.sejm_id}</p>
+				    </div>
 				  {/section}
 			  </td>		  
 		  </tr>{if $DATA.punkty_wypowiedzi|@count eq 0 && $DATA.punkty_glosowania|@count eq 0}

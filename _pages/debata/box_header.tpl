@@ -1,27 +1,10 @@
-{if $debata.typ_id eq 1}
-  
-  <div class="h1cont">
-  {if $debata_typ eq 1}
-    <h1><a href="/projekt/{$projekt.id}">{$projekt.tytul}</a></h1>
-  {else if $debata_typ eq 2}
-    <h1>{$tytul}</h1>
-    <p class="info">Ta debata dotyczy {$ilosc_projektow|dopelniacz:'projektu':'projektów':'projektów'}.</p>
-  {/if}
-  </div>
-  
-{/if}
-
-<div class="e">
-  {$debata.data|sm_kalendarzyk}
+<div class="e{if $debata.typ_id eq 6} oswiadczenia{/if}">
+  <a href="/posiedzenia/{$debata.posiedzenie_id}">{$debata.data|sm_kalendarzyk}</a>
   <a href="/debata/{$debata.id}"><img class="ikona_legislacyjna wypowiedzi" src="/g/p.gif"></a>
   
   <div class="c">
-    {if $debata.typ_id eq 4}
-			<h1><a href="/debata/{$debata.id}">{$debata.tytul}</a></h1>
-			<div class="cc">{$debata.opis}</div>
-		{else}
-      <p class="tytul"><a href="/debata/{$debata.id}">{$label}</a></p>
-      <div class="cc">{$debata.opis}</div>
-    {/if}
+    <p class="tytul"><a href="/debata/{$debata.id}">{$debata.typ_tytul}</a></p>
+    <div class="cc">{$debata.tytul}</div>
+    {if $debata.typ_id eq 3}<p class="wnioskodawca">Wnioskodawca: <span class="a">{$debata.autor}</span></p>{/if}
   </div>
 </div>

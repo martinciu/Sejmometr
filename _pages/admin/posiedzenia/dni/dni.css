@@ -1,3 +1,4 @@
+#dzien {padding-right: 5px;}
 #_COL_RIGHT {padding-right: 0;}
 #browser {width: 57%; float: left;}
 #side_div_cont {width: 43%; overflow: auto;}
@@ -8,7 +9,6 @@
 .mBrowser .item {margin-left: 250px;}
 
 .punkty_row a {display: block; margin: 15px 5px; color: #333; text-decoration: none;}
-.punkty_row a:hover {color: blue;}
 
 #duplikaty_div {background-color: #CCC; padding: 0; margin-bottom: 10px; -moz-border-radius: 5px;}
 
@@ -30,3 +30,16 @@ span.separator {margin: 0 10px;}
 
 .wyp.wypowiedz {border: 1px solid #CCC;}
 .wyp.wypowiedz .bar {color: #999; background-color: #E3E3E3;}
+
+.punkty_row td {text-align: left !important;}
+
+.punkty_row .item {margin: 20px 0;}
+.punkty_row .punkt_nr {-moz-border-radius: 5px 5px 5px 5px;
+    background: url("/g/_HEADER_BG.gif") repeat-x scroll 0 0 transparent;
+    color: #FFFFFF;
+    display: inline;
+    font-size: 14px;
+    padding: 0 6px;
+    float: left;
+    margin-right: 5px;}
+.punkty_row .sejm_id {position: relative; top: -2px; overflow: auto;}

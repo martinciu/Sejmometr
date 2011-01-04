@@ -1,5 +1,5 @@
 <?
-  $limit = 50;
+  $limit = 500;
   $i = 0;
   while( $i<$limit && $id = $this->DB->selectValue("SELECT id FROM punkty_wypowiedzi WHERE status='0'") ) {
     $i++;

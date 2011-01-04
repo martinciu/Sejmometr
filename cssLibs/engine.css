@@ -70,7 +70,7 @@ a._BTN {height: 18px; padding: 0 5px 2px; border-radius: 5px; -moz-border-radius
 a._BTN:hover {color: white;}
 a._BTN.orange {background: url(/g/_BTN_ORANGE_BG.gif) repeat-x 0 0;}
 
-._BOX_HEADER {min-height: 22px; background: #FFF url(/g/_BOX_HEADER_BG.gif) repeat-x 0 bottom; color: #0083B8; font-size: 16px; padding: 10px; font-weight: normal; -moz-border-radius-topleft: 5px; -moz-border-radius-topright: 5px; border-top-left-radius: 5px; border-top-right-radius: 5px;}
+._BOX_HEADER {min-height: 22px; background: #FFF url(/g/_BOX_HEADER_BG.gif) repeat-x 0 bottom; color: #0083B8; font-size: 18px; padding: 10px; font-weight: normal; -moz-border-radius-topleft: 5px; -moz-border-radius-topright: 5px; border-top-left-radius: 5px; border-top-right-radius: 5px;}
 ._BOX_FOOTER {min-height: 22px; background: #FFF url(/g/_BOX_FOOTER_BG.gif) repeat-x 0 top; font-size: 16px; padding: 10px; -moz-border-radius-bottomleft: 5px; -moz-border-radius-bottomright: 5px; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px;}
 ._BOX ._SHADOW {height: 16px;}
 ._BOX ._SHADOW._GREY_TOP {background: url(/g/_BOX_SHADOW_GREY_TOP.gif) repeat-x 0 0;}

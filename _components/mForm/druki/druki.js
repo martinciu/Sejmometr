@@ -26,7 +26,7 @@ _mFormTypes.register('druki', Class.create(mFormField, {
 
       if( data.id.length!=5 ) { alert('Nieprawidłowy id druku'); }
 
-      var li = new Element('li', {className: 'druk', druk_id: data.id}).update( docthumbs_create(data.dokument_id, 3) ).insert('<div class="content"><h4>'+data.numer+'</h4><p class="data">'+data.data+'</p><p>'+data.typ+' - '+data.autor+'</p><p class="tytul">'+data.tytul_oryginalny+'</p></div>');
+      var li = new Element('li', {className: 'druk', druk_id: data.id}).update( docthumbs_create(data.dokument_id, 3) ).insert('<div class="content"><h4><a href="/admin/druki#id='+data.id+'">'+data.numer+'</a></h4><p class="data">'+data.data+'</p><p>'+data.typ+' - '+data.autor+'</p><p class="tytul">'+data.tytul_oryginalny+'</p></div>');
       this.ul.insert(li);
       if( Object.isFunction(this.onDrukRender) ) this.onDrukRender(data);
       this.validate();

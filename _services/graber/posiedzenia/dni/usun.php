@@ -31,6 +31,12 @@
   $this->DB->q("DELETE FROM `punkty_glosowania_druki` WHERE punkt_id IN (SELECT id FROM punkty_glosowania WHERE dzien_id='$id')");
   $this->DB->q("DELETE FROM `posiedzenia_dni` WHERE id='$id'");
   
+  $this->DB->q("DELETE FROM `dni_modele` WHERE dzien_id='$id'");
+
+  
+  $this->DB->q("DELETE FROM `wypowiedzi` WHERE dzien_id='$id'");
+  $this->DB->q("DELETE FROM `glosowania` WHERE dzien_id='$id'");
+
   
   $this->S('liczniki/nastaw/projekty-etapy');
   return 1;

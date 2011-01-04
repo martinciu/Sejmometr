@@ -1,0 +1,11 @@
+.mBrowser .list {width: 55px;}
+.mBrowser .item {margin-left: 55px;}
+
+#_COL_RIGHT {padding-right: 0;}
+#browser {width: 50%; float: left;}
+#scribd_cont {width: 50%; overflow: auto;}
+#scribd {margin-left: 10px; text-align: center; background-color:#EEE; border:1px dashed #CCC; font-size:13px; overflow: hidden;}
+#scribd .msg {position: relative; top: 50%; margin-top: -8px;}
+
+.mForm label.label {width: 75px;}
+.mForm p.value {margin-left: 75px;}

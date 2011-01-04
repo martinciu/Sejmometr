@@ -24,3 +24,7 @@
 
 .mForm label.label {width: 50px;}
 .mForm p.value {margin-left: 50px;}
+
+
+#punkt .debatainfo {overflow: auto; margin-bottom: 20px;}
+#punkt .debatainfo .baner {float: left; margin-right: 5px; border: 1px solid #BBB; -moz-border-radius: 2px; -webkit-border-radius: 2px;}

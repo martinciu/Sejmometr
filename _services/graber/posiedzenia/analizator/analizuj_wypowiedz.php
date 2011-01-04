@@ -234,11 +234,12 @@
 	      $item = $data[$i];
 	      
 	      $typ = '0';
-	      if( $item['typ']=='1' ) { $typ = '1'; }
+	      if( $item['typ']=='0' ) { $typ = '1'; }
 	      elseif( $item['typ']=='3' ) { $typ = '2'; }
 	      
 	      $wypowiedz_id = $this->DB->insert_assoc_create_id('wypowiedzi', array(
 	        'typ' => $typ,
+	        '_typ' => $item['typ'],
 	        'dzien_id' => $dzien_id,
 	        'punkt_id' => $item['punkt_id'],
 	        'autor_id' => $item['autor_id'],
@@ -260,7 +261,7 @@
 	    
     }
     
-    $this->DB->q("UPDATE wypowiedzi LEFT JOIN punkty_wypowiedzi ON wypowiedzi.punkt_id=punkty_wypowiedzi.id SET wypowiedzi.typ='2' WHERE wypowiedzi.punkt_id!='' AND punkty_wypowiedzi.sejm_id='Oświadczenia'");
+    $this->DB->q("UPDATE punkty_wypowiedzi SET typ_id=6, akcept='1' WHERE sejm_id='Oświadczenia'");
     $this->DB->update_assoc('posiedzenia_dni', array('analiza_wystapienia'=>'4'), $dzien_id);
     $this->S('liczniki/nastaw/dni');
     $this->S('liczniki/nastaw/funkcje');

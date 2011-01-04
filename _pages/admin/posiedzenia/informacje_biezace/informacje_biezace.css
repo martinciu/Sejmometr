@@ -1,0 +1,22 @@
+.mBrowser .list {width: 250px;}
+.mBrowser .item {margin-left: 250px;}
+
+.mForm label.label {width: 50px;}
+.mForm p.value {margin-left: 50px;}
+
+.sejm_id {font-size: 11px; border-top: 1px solid #CCC; margin-top: 5px; padding-top: 5px;}
+
+#_COL_RIGHT {padding-right: 0;}
+#browser {width: 57%; float: left;}
+#side_div_cont {width: 43%; overflow: auto;}
+#side_div {margin-left: 10px; text-align: left; background-color:#EEE; border:1px dashed #CCC; font-size:13px; overflow: auto; padding: 10px; line-height: 1.45em;}
+#side_div .msg {position: relative; top: 50%; margin-top: -8px;}
+
+#side_div p {margin: 10px 0;}
+#side_div p:first-child {margin-top: 0;}
+#side_div p:last-child {margin-bottom: 0;}
+#side_div p.wMarszalek {color: #777;}
+
+#side_div span._druk {-moz-border-radius:3px; background-color:#FF3; cursor:pointer; padding:0 5px;}
+
+.mForm label.radio {width: 50%;}

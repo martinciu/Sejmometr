@@ -4,6 +4,7 @@ var Punkt = Class.create({
     this.id = this.data.id;
     
     this.btnSave = mBrowser.addItemButton('save', 'Zapisz', this.save.bind(this));
+    this.btnInfo = mBrowser.addItemButton('info', 'Info', this.info.bind(this));
     
     var suggestions = this.data.sejm_id.substr(this.data.sejm_id.lastIndexOf('druk')).match(/([0-9]+)/gi);
     
@@ -92,6 +93,12 @@ var Punkt = Class.create({
     } else alert('Punkt nie został zapisany');
     mBrowser.enable_loading();
     this.btnSave.enable();
+  },
+  info: function(){
+    this.btnInfo.disable();
+    $S('debaty/info_wszystkie', function(){
+      this.btnInfo.enable();
+    }.bind(this));
   }
 });
 

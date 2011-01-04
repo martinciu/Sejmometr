@@ -1,5 +1,5 @@
 #debaty {margin: 0 auto; overflow: auto; padding: 0 150px;}
-#debaty .d {padding: 15px 10px; overflow: auto; clear: both; border-bottom: 1px solid #DDD;}
+#debaty .d {padding: 25px 10px; overflow: auto; clear: both; border-bottom: 1px solid #DDD;}
 #debaty .d:last-child {border-bottom: none}
 #debaty .d .kalendarzyk {float: left;}
 #debaty .d .c {margin: -2px 0 0 45px;}
@@ -8,3 +8,16 @@
 #debaty .d .info {}
 
 h1._BOX_HEADER span.p {font-size: 12px; color: #58595B; display: block;}
+
+.total {font-size: 13px; color: #58595B; text-align: right;}
+
+
+._PAGINATION {text-align: center; font-size: 15px; margin-top: 1px;}
+._PAGINATION a {padding: 1px 8px; background-color: #E6E6E6; margin: 0 2px; -moz-border-radius: 5px; border-radius: 5px; color: #58595B;}
+._PAGINATION a:hover {color: #0083B8;}
+._PAGINATION a.selected {color: white; background: url(/g/_PAG_BTN_SELECTED_BG.gif) repeat-x 0 0;}
+._PAGINATION a.first {margin-right: 5px;}
+._PAGINATION .separator {color: #777;}
+._PAGINATION .separator.first {margin-right: 7px;}
+._PAGINATION .separator.last {margin-left: 7px;}
+._PAGINATION a.last {margin-left: 5px;}

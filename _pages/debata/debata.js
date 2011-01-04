@@ -8,14 +8,9 @@ var Debata = Class.create({
     this.wyp_div = $('wyp_div');
     this.initial_offset = this.wyp_div.positionedOffset()[1];
     this.length = this.get_wyps().length;
-    this.text_shadow_top = $$('.text_shadow.top').first();
-    this.text_shadow_bottom = $$('.text_shadow.bottom').first();
     
     Event.observe(window, 'scroll', this.onWindowScroll.bind(this));
     Event.observe(window, 'resize', this.onWindowResize.bind(this));
-    Event.observe('wyp_text', 'DOMMouseScroll', this.onMouseWheel.bind(this));
-    Event.observe('wyp_text', 'mousewheel', this.onMouseWheel.bind(this));
-    // window.onmousewheel = document.onmousewheel = this.onMouseWheel.bind(this);
     
     /*
     $$('#navbar ._BOX_FOOTER a').invoke('observe', 'click', function(event){
@@ -35,7 +30,21 @@ var Debata = Class.create({
     
     this.get_wyps().invoke('observe', 'click', this.wyp_a_click.bind(this));
     this.hash = location.hash.substr(1);
-    this.wyp( (this.hash!='' && this.lista_div.down('a.wyp[wyp_i='+this.hash+']')) ? this.hash : 1 );
+    this.set_txt_height();
+    
+    
+    var wyp_id = 1;
+    if( this.hash!='' ) { 
+	    if( String(this.hash).length==5 ) {
+	      var a = this.lista_div.down('a.wyp[wyp_id='+this.hash+']');
+	      if( a ) wyp_id = a.readAttribute('wyp_i');
+	    } else if( this.lista_div.down('a.wyp[wyp_i='+this.hash+']') ) {
+	      wyp_id = this.hash;
+	    }
+    }
+        
+    
+    this.wyp( wyp_id );
   },
   wyp_a_click: function(event){
     this.wyp( event.findElement('a.wyp').readAttribute('wyp_i') );
@@ -48,14 +57,11 @@ var Debata = Class.create({
       
       this.disable();
 	    this.lista_div.select('a.wyp.selected').invoke('removeClassName', 'selected');
-	    this.lista_div.select('a.wyp.beforeselected').invoke('removeClassName', 'beforeselected');
 	    
 	    $('wyp_text').update( '<p class="ladowanie">ładowanie...</p>' );
 	    $('wyp_input').value = this.wyp_i;
 	    
 	    this.wyp_a.addClassName('selected');
-	    var prev_wyp = this.wyp_a.previous('a.wyp');
-	    if( prev_wyp ) prev_wyp.addClassName('beforeselected');
 	    $('wyp_input').value = this.wyp_a.readAttribute('wyp_i');
 	    
 	    location.hash = this.wyp_i;
@@ -65,10 +71,16 @@ var Debata = Class.create({
 	    new Effect.Tween(null, start, end, { duration: .25 }, function(p) { setScrollTop(p); } );
 	    
 	    var src = this.wyp_a.readAttribute('avatar')=='1' ? '/l/2/'+this.wyp_a.readAttribute('autor_id') : '/g/gp_2';
-	    $('wyp_info').update( '<img class="avatar c" src="'+src+'.jpg" /><div class="info">'+this.wyp_a.down('.info').innerHTML+'</div>' );
+	    $('wyp_info').update( '<img class="avatar c" src="'+src+'.jpg" /><div class="info">'+this.wyp_a.down('.info').innerHTML+'</div><div class="link"><a href="/wypowiedz/'+this.wyp_id+'">Strona tej wypowiedzi &raquo;</a></div>' );
 	        
-	    $S('wyp', this.wyp_id, function(txt){
+	    $S('wyp', [this.wyp_id, this.txt_height], function(data){
+	      var txt = data[0];
+	      var ratio = data[1];
+	      
 	      $('wyp_text').update( txt ).scrollTop = 0;
+	      
+	      if( ratio>0 && ratio<100 ) $('wyp_text').insert('<p class="ratio">Powyższy tekst stanowi '+ratio+'% wypowiedzi.<br/><a href="/wypowiedz/'+this.wyp_id+'">Przeczytaj całą wypowiedź &raquo;</a></p>');
+	      
 	      this.onWindowScroll();
 	      this.onWindowResize();
 	      this.enable();
@@ -78,10 +90,6 @@ var Debata = Class.create({
 	    }.bind(this));
     }
   },
-  text_ratio_update: function(){
-	  this.text_ratio = $('wyp_text').scrollHeight / $('wyp_text').getHeight();
-	  if( this.text_ratio>1 ) { $('wyp_text').addClassName('high'); } else { $('wyp_text').removeClassName('high'); }
-  },
   enable: function(){
     this.enabled = true;
   },
@@ -90,13 +98,12 @@ var Debata = Class.create({
   },
   onWindowScroll: function(event){
     var t = Math.max( 7, this.initial_offset-getScrollTop() );
-		$('wyp_div').setStyle({top: t+'px'});
-		this.text_shadow_top.setStyle({top: t+$('wyp_info').getHeight()+'px'});
+		$('wyp_div').setStyle({top: t+10+'px'});
 		
 		this.onWindowResize();
   },
-  onWindowResize: function(event){  
-		var html = $$('html').first();
+  set_txt_height: function(){
+    var html = $$('html').first();
 		var body = $$('body').first();
 		
 		var window_outer_height = Math.max( html.getHeight(), body.getHeight(), html.clientHeight );
@@ -104,14 +111,17 @@ var Debata = Class.create({
 		
 		var d = window_outer_height-window_inner_height-getScrollTop();
 
-    var height = window_inner_height - 26 - $('_HEADER').getHeight() - $('_SUBMENUS').getHeight() - $$('#_CONTAINER ._BOX_HEADER').first().getHeight() - $('wyp_info').getHeight() - $('navbar').getHeight() + Math.min(this.initial_offset-7, getScrollTop()) - Math.max(0, 75-d);
-    $('wyp_text').setStyle({height: height+'px'});
-    this.text_ratio_update();
-    
-    var tsth = this.text_shadow_top.positionedOffset()[1];
-    this.text_shadow_bottom.setStyle({top: tsth+height-10+'px'});
-    
-    $('navbar').setStyle({bottom: Math.max(0, 63-d)+'px'});  
+    this.txt_height = window_inner_height - 26 - $('_HEADER').getHeight() - $('_SUBMENUS').getHeight() - $$('#_CONTAINER ._BOX_HEADER').first().getHeight() - $('wyp_info').getHeight() - $('navbar').getHeight() + Math.min(this.initial_offset-7, getScrollTop()) - Math.max(0, 75-d);
+    return d;
+  },
+  onWindowResize: function(event){  
+		var d =this.set_txt_height();
+    $('wyp_text').setStyle({height: this.txt_height+'px'});
+      
+    var delta = document.viewport.getHeight() - $('_MAIN_CONTAINER').getHeight()+63;    
+    var v = (delta>0) ? delta : 0;    
+    if(delta<63) v = Math.max(0, 63-d);
+    $('navbar').setStyle({bottom: v+'px'}).show();  
   },
   onWindowKeydown: function(event){
     switch( event.keyCode ) {
@@ -126,12 +136,6 @@ var Debata = Class.create({
         break;
       }
     }
-  },
-  onMouseWheel: function(event){
-    if( this.text_ratio>1 ) event.stop();
-    
-    var delta = event.wheelDelta ? event.wheelDelta/-480 : event.detail;    
-    $('wyp_text').scrollTop += delta;
   },
   wyp_nastepna: function(){
     var wyp_a = this.wyp_a.next('a.wyp');

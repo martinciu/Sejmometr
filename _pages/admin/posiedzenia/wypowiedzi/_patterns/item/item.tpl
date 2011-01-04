@@ -3,7 +3,7 @@
     {if $DATA.item.avatar eq '1'}<img class="avatar" src="/l/2/{$DATA.item.autor_id}.jpg" />{/if}
     <div class="desc">
       <p class="nazwa">{$DATA.item.nazwa}</p>
-      <p class="data">{$DATA.item.data}</p>
+      <p class="data">{$DATA.item.data|default:"&nbsp;"}</p>
       <p class="funkcja">{if $DATA.item.funkcja_id eq false}<blink>Brak funkcji</blink>{else}<b>{$DATA.item.funkcja_label}</b>{if $DATA.item.klub_label} ({$DATA.item.klub_label}){/if}{/if}</p>
       <p class="punkt_tytul">{$DATA.item.punkt_tytul|@strip_tags|truncate:500}</p>
     </div>

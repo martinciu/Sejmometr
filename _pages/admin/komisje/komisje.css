@@ -1,0 +1,17 @@
+.mBrowser .list {width: 80px;}
+.mBrowser .item {margin-left: 80px;}
+
+.mForm label.label {width: 70px;}
+.mForm p.value {margin-left: 70px;}
+
+#projekty {margin: 0 100px; color: #58595B;}
+#projekty .projekt {border-bottom: 1px solid #CCC; min-height: 48px; padding: 13px 0;}
+#projekty .projekt:last-child {border-bottom: none;}
+#projekty .projekt .dokument {float: left;}
+#projekty .projekt .c {margin-left: 60px; position: relative; top: -2px;}
+#projekty .projekt .t {font-size: 14px; margin-bottom: 2px;}
+#projekty .projekt .t a, #projekty .projekt .t a:visited {color: #58595B;}
+#projekty .projekt .t a:hover, #projekty .projekt .t a.active {color: #0083B8;}
+
+.mForm label.radio {width: 50%;}
+.inner_title_bar .error {color: red; font-size: 14px;}

@@ -1,61 +1,28 @@
 ._BOX_HEADER {overflow: auto;}
-._BOX_FOOTER {background:url("/g/_FOOTER_BG.gif") repeat-x scroll 0 -17px #FFF; font-size:16px; min-height:22px; padding:10px; -moz-border-radius: 0; -webkit-border-radius: 0;}
-._BOX_TABLE ._LEFT_TD {width: 44%; padding: 0 !important;}
-._BOX_TABLE ._MAIN_TR td {padding: 0 10px;}
-
 ._BOX_HEADER .kalendarzyk {float: left;}
 ._BOX_HEADER .ikona_legislacyjna {width: 37px; height: 37px; background: url(/g/ikony_sprite.gif) no-repeat -74px -37px; float: left; margin-left: 8px;}
-._BOX_HEADER .c {margin-left: 91px; position: relative; top: -3px;}
-._BOX_HEADER .tytul {font-size:14px; top: -2px;}
-._BOX_HEADER .cc {font-size:12px; color: #58595B;}
+._BOX_HEADER .c {margin-left: 91px; position: relative; top: -5px;}
+._BOX_HEADER .tytul {font-size:18px; top: -2px;}
+._BOX_HEADER .cc {font-size:13px; color: #58595B; margin-top: 3px;}
 ._BOX_HEADER h1 {font-size: 16px;}
 
-.avatar {padding: 1px; background-color: #FFF; border: 1px solid #BBB; -moz-border-radius: 3px; -webkit-border-radius: 3px;}
+#wyp {width: 550px;}
+#wyp .text {font-size: 110%; line-height: 1.45em; text-align: justify;}
+#wyp .text p {margin: 10px 0;}
+#wyp .text p.wMarszalek {padding: 5px; background-color: #EEEEF5; -moz-border-radius: 5px; -webkit-border-radius: 5px; color: #777;}
+
+
+#wyp .info {min-height: 54px;}
+#wyp .info .opis {margin-left: 59px;}
+#wyp .info .opis .autor {font-size: 14px;}
+#wyp .info .opis .funkcja {font-size: 12px;}
+#wyp .info .opis .funkcja span.f {font-weight: bold;}
+#wyp .link {margin-top: 5px; text-align: right;}
+
+
+.avatar {padding: 1px; background-color: #FFF; border: 1px solid #BBB; -moz-border-radius: 3px; -webkit-border-radius: 3px; float: left;}
 .avatar.c {width: 50px; height: 50px;}
-.avatar.d {width: 33px; height: 33px;}
 
-.avatar {float: left;}
-
-.wyp {padding: 10px 10px; display: block; color: #58595B; outline: none; cursor: pointer; border-bottom: 1px solid #BFBFBF !important;}
-.wyp:last-child {border-bottom: none !important;}
-.wyp:hover, .wyp:visited, .wyp:active {color: #58595B;}
-.wyp:hover {background-color: #F3F3F3;}
-.wyp.selected {background-color: #FFF; border-bottom-color: white !important;}
-.wyp.beforeselected {border-bottom-color: white !important;}
-
-.wyp .header {overflow: auto; margin-bottom: 1px;}
-
-.wyp .numer {float: left; font-size: 13px; padding: 0 7px 1px; background-color: #DADADA; -moz-border-radius: 4px; -webkit-border-radius: 4px; margin: 1px 0 0 5px; line-height: 15px; height: 16px;}
-.wyp:hover .numer {background-color: #E5E5E5;}
-.wyp.selected .numer {background: url("/g/_HEADER_BG.gif") repeat-x scroll 0 0 transparent; color: #FFF;}
-
-.wyp .info {height: 35px; margin-left: 5px; float: left;}
-.wyp .info .autor {font-size: 14px;}
-.wyp .info .funkcja {font-size: 11px;}
-.wyp .info .funkcja span.f {font-weight: bold;}
-
-#wyp_div {position: fixed;}
-#wyp_info {min-height: 54px;}
-#wyp_info .info {margin-left: 59px;}
-#wyp_info .info .autor {font-size: 14px;}
-#wyp_info .info .funkcja {font-size: 11px;}
-#wyp_info .info .funkcja span.f {font-weight: bold;}
-
-#wyp_text {border-right:1px solid #FFF; font-size:110%; margin-right:10px; overflow:hidden; padding-right:15px; width:512px; line-height: 1.35em;}
-#wyp_text.high:hover {border-right-color: #CCC;}
-#wyp_text p {margin: 10px 0;}
-#wyp_text p.wMarszalek {padding: 5px; background-color: #EEEEF5; -moz-border-radius: 5px; -webkit-border-radius: 5px; color: #777;}
-
-#navbar {position: fixed; background: url("/g/_FOOTER_BG.gif") repeat-x scroll 0 -15px transparent; left: 50%; width: 950px; margin-left: -485px; height: 22px; color: #FFF; padding: 10px;}
-#navbar .pages {font-size: 14px;}
-
-#wyp_input {border: none; width: 30px; text-align: center; padding: 1px; font-size: 13px; margin-right: 1px;}
-
-#_FOOTER {background: url("/g/_HEADER_BG.gif") repeat-x scroll 0 -15px transparent;}
-
-.text_shadow {height: 10px; background-color: red; position: fixed; width: 534px; background: url(/g/text_shadow.png) repeat-x transparent; margin-left: -49px; left: 50%;}
-.text_shadow.top {background-position: 0 0;}
-.text_shadow.bottom {background-position: 0 -10px;}
-
-.h1cont {margin-bottom:7px; padding-bottom:5px;}
-.h1cont .info {font-size: 12px; color: #58595B;}
+.wnioskodawca {font-size: 12px; color: #58595B; margin-top: 5px; text-align: right;}
+.e.oswiadczenia .ikona_legislacyjna {display: none;}
+.e.oswiadczenia .c {margin-left: 46px;}

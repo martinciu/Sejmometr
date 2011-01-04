@@ -245,6 +245,10 @@
             $data['autorzy'][] = array( $autor_id, $this->DB->selectValue("SELECT autor FROM druki_autorzy WHERE id='$autor_id'") );
           }
         }
+        if( $data['etap_typ_id']=='8' && $data['autorzy'][0][0]=='Senat' ) {
+          $data['stanowisko_senatu'] = true;
+          $data['label'] = 'Stanowisko Senatu';
+        }
         break;
       }
       case 1: {

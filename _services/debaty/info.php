@@ -2,7 +2,13 @@
   $id = $_PARAMS;
   if( strlen($id)!=5 ) return false;
   
-    
+  $_COUNT = 3;
+  
+  /*
+  $typ_id = (int) $this->DB->selectValue("SELECT typ_id FROM punkty_wypowiedzi WHERE id='$id'");
+  if( $typ_id==1 ) $_COUNT = 6;
+  */
+  
   $ilosc_wypowiedzi = $this->DB->selectCount("SELECT COUNT(*) FROM wypowiedzi WHERE punkt_id='$id' AND wypowiedzi.typ='1'");
   
   $urzednicy = $this->DB->selectValues("SELECT wypowiedzi_funkcje.dopelniacz FROM wypowiedzi LEFT JOIN wypowiedzi_funkcje ON wypowiedzi.funkcja_id=wypowiedzi_funkcje.id WHERE wypowiedzi.punkt_id='".$id."' AND wypowiedzi.typ='1' AND wypowiedzi.funkcja_id!=1 GROUP BY wypowiedzi.funkcja_id ORDER BY wypowiedzi.ord");
@@ -15,7 +21,7 @@
   
   
   
-  $count = min( 6, count($ludzie) );
+  $count = min( $_COUNT, count($ludzie) );
   if( $count ) {
     $columns = min( 3, $count );
     $rows = floor(($count-1)/3)+1;
@@ -42,7 +48,11 @@
   
   
   
-  if( !$urzednicy_count && !$poslowie_count ) return false;
+  if( !$urzednicy_count && !$poslowie_count ) {
+    $this->DB->update_assoc('punkty_wypowiedzi', array('alert'=>'1'), $id);
+    $this->S('liczniki/nastaw/punkty_wypowiedzi');
+    return false;
+  }
   
   $info = $ilosc_wypowiedzi==1 ? 'Wystąpienie' : 'Debata z udziałem';
   if( $urzednicy_count ) {

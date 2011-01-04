@@ -62,18 +62,37 @@
       return array_unique($result);
     }
     
-    function druki_lista_id($limit=null){
+    function druki_lista_id( $wszystkie = false ){
       $result = array();
       $base_url = 'http://orka.sejm.gov.pl/Druki6ka.nsf/WWW-wszystkie?OpenView&';
-      $limit = (int) empty($limit) ? 999 : $limit;
       
-      if( $limit>0 ) {
-        preg_match_all( "/Druki6ka.nsf\/([0-9a-zA-Z]+)\/([0-9a-zA-Z]+)?/i", $this->getData($base_url.'Start=1&Count='.$limit), $matches);
+      if( $wszystkie ) {
+        
+        $txt = '';
+        $iteration = 0;
+        
+        do {
+	        $s = 999*$iteration+1;
+	        $iteration++;
+	        $txt = $this->getData($base_url.'Start='.$s.'&Count=999');
+	        
+	        preg_match_all( "/Druki6ka.nsf\/([0-9a-zA-Z]+)\/([0-9a-zA-Z]+)?/i", $txt, $matches);
+	        $count = count($matches[0]);
+	        
+		      for( $i=0; $i<$count; $i++ ) $result[] = $matches[1][$i].'/'.$matches[2][$i];
+        } while ($count);
+      
+      } else {
+      
+        $txt = $this->getData($base_url.'Start=1&Count=300');
+        preg_match_all( "/Druki6ka.nsf\/([0-9a-zA-Z]+)\/([0-9a-zA-Z]+)?/i", $txt, $matches);
 	      for( $i=0; $i<count($matches[0]); $i++ ){
 	        $result[] = $matches[1][$i].'/'.$matches[2][$i];
 	      }
+	      
       }
-          
+      
+      
       return array_unique($result);
     }
     
@@ -113,26 +132,9 @@
 		    if( strtolower($pathparts['extension'])=='pdf' ) { $result['pliki'][]= array(urldecode($file), urldecode('http://orka.sejm.gov.pl/Druki6ka.nsf/'.$id.'/$file/'.$file)); }
 		  }
 		  
-		  switch( $id ) {
-        case '0/892788F049011787C125755C00317CB4': {
-		      if( is_array($result['pliki']) ) foreach( $result['pliki'] as &$plik ) {
-		        if( $plik[0]=='1481.pdf' ) $plik[0] = '1481_SP1532.pdf';
-		      }
-          break;
-        }
-        case '0/E7B9E3FE0ED0F7A6C12574360036FCB4': {
-		      if( is_array($result['pliki']) ) foreach( $result['pliki'] as &$plik ) {
-		        if( $plik[0]=='290-002.pdf' ) $plik[0] = '290-002_SP6352.pdf';
-		      }
-          break;
-        }
-        case '0/3F68C9D5B9877976C125765D00332FA6': {
-		      if( is_array($result['pliki']) ) foreach( $result['pliki'] as &$plik ) {
-		        if( $plik[0]=='2332.pdf' ) $plik[0] = '2432.pdf';
-		      }
-          break;
-        }
-      }
+		  if( $id=='0/BD48599EF5E44237C12573CD0042426B' ) $result['pliki'] = array_reverse( $result['pliki'] );
+		 
+		  
 		  return $result;
     }
     
@@ -574,8 +576,7 @@
       
       
       // KLUB 
-      preg_match('/class=\"naz2\"\>\<a href=\"\.\.\/kluby\/(.*?)\.htm/i', $txt, $matches);
-      $result['klub'] = trim( str_replace('kont_', '', $matches[1]));
+      if( preg_match('/class=\"naz2\"\>\<a href=\"\.\.\/kluby\/(.*?)\.htm/i', $txt, $matches) ) $result['klub'] = trim( str_replace('kont_', '', $matches[1]));
       
       
       // OBRAZEK
@@ -607,6 +608,165 @@
       }
       
       return $result;
+    }
+    
+    function komisje_lista(){
+      $data = array();
+      
+      $htmls = array(
+        1 => $this->getData('http://sejm.gov.pl/komisje/komsta6.htm'),
+        2 => $this->getData('http://sejm.gov.pl/komisje/komnad6.htm'),
+        3 => $this->getData('http://sejm.gov.pl/komisje/komsled6.htm'),
+      );
+      
+
+      
+      foreach( $htmls as $typ => $html ) {
+        
+        preg_match_all('/<A HREF=\"www_(.*?)\.htm\">/i', $html, $matches);
+        for( $i=0; $i<count($matches[0]); $i++ ){
+          $data[] = array( strtoupper($matches[1][$i]), $typ );
+        }
+        preg_match_all('/<A HREF=\"http\:\/\/orka\.sejm\.gov\.pl\/SQL\.nsf\/strkomnad6\?OpenAgent\&(.*?)\">/i', $html, $matches);
+        for( $i=0; $i<count($matches[0]); $i++ ){
+          $data[] = array( strtoupper($matches[1][$i]), $typ );
+        }
+        
+      }
+      
+      return $data;
+    }
+    
+    function interpelacje_fix_txt( $txt ){
+      $p = stripos($txt, '</th></tr>');
+      return $p===false ? $txt : substr($txt, $p+10);
+    }
+    
+    function interpelacje_lista_id( $wszystkie = false ){
+      $result = array();
+      $base_url = 'http://orka2.sejm.gov.pl/IZ6.nsf/WWW-INTnr?OpenView&';
+      
+      if( $wszystkie ) {
+        
+        $txt = '';
+        $iteration = 0;
+        
+        do {
+	        $s = 999*$iteration+1;
+	        $iteration++;
+	        $txt = $this->interpelacje_fix_txt( $this->getData($base_url.'Start='.$s.'&Count=999') );
+	        
+	        $matches = array();
+	        $count = 0;
+	        if( preg_match_all( '/IZ6.nsf\/(.*?)\?OpenDocument/i', $txt, $matches) ) {
+	          $matches = array_unique( $matches[1] );
+	          $count = count($matches);
+	        }
+	       
+	        $result = array_merge($result, $matches);
+        } while ($count);
+      
+      } else {
+      
+        $txt = $this->interpelacje_fix_txt( $this->getData($base_url.'Start=1&Count=500') );
+        $matches = array();
+        if( preg_match_all( '/IZ6.nsf\/(.*?)\?OpenDocument/i', $txt, $matches) ) {
+          $matches = array_unique( $matches[1] );
+        }
+       
+        $result = array_merge($result, $matches);
+	      
+      }
+      
+      
+      return array_unique($result);
+    }
+    
+    function interpelacje_info($id, $typ){
+      
+      $txt = $this->getData('http://orka2.sejm.gov.pl/IZ6.nsf/'.$id.'?OpenDocument');
+      $p = stripos($txt, '<body');
+      $txt = $p===false ? $txt : substr($txt, $p);
+      $txt = preg_replace('/([0-9]{2})-([0-9]{2})-([0-9]{4})/', '$3-$2-$1', $txt);
+
+      $result = array();
+
+      if( preg_match_all('/\<tr(.*?)\>(.*?)<\/tr\>/i', $txt, $matches) ) {
+        $matches = $matches[2];
+        foreach( $matches as $match ) {
+          if( preg_match_all('/\<td(.*?)\>(.*?)\<\/td\>/i', $match, $tdmatches) ) {
+            $r = array();
+            for( $i=0; $i<count($tdmatches[0]); $i++ ) if( !empty($tdmatches[2][$i]) ) $r[] = trim( $tdmatches[2][$i] );
+            if( !empty($r) ) $result[] = $r;
+          }
+        }
+      }
+
+      
+      
+      $pola = array();
+      $bufor = '';
+      $opis = '';
+      $prefix = '';
+      
+      foreach( $result as $r ) {
+        if( count($r)==1 ) {
+          $typ = '1';
+          
+          if( $ostatni_typ=='2' ) $bufor = '';
+          $bufor .= ' '.$r[0];
+          
+        } else {
+          $typ = '2';
+          
+          if( $ostatni_typ=='1' ) {
+            $bufor = trim( strip_tags( $bufor ) );
+            if( $opis=='' ) {
+              $opis = $bufor;
+            } else {
+              $prefix = strtolower($bufor);
+            }
+          }
+          
+          $nazwa = strtolower( array_shift( $r ) );
+          $pelna_nazwa = $prefix ? $prefix.' '.$nazwa : $nazwa;
+          
+          $r = implode(' ', $r);
+          
+          if( $nazwa == 'data ogłoszenia' ) {
+            
+            if( preg_match('/([0-9]{4})-([0-9]{2})-([0-9]{2}) - posiedzenie nr ([0-9]+)/i', $r, $matches) ) {
+	            $pola[] = array($pelna_nazwa, $matches[1].'-'.$matches[2].'-'.$matches[3]);
+	            $pola[] = array(ltrim($prefix.' nr posiedzenia ogłoszenia'), $matches[4]);
+            }
+            
+          } elseif($nazwa=='adresat' || $nazwa=='odpowiadający') {
+            
+            if( preg_match('/IZ6.nsf\/main\/(.*?)\"/i', $r, $matches) ) {
+	            $pola[] = array($pelna_nazwa, strip_tags($r));
+	            $pola[] = array(ltrim($prefix.' '.$nazwa.' text id'), $matches[1]);
+            }
+            
+          } else {
+            $pola[] = array($nazwa, strip_tags($r));
+          }
+          
+          
+        
+        }
+        $ostatni_typ = $typ;
+      }
+      
+      if( preg_match('/nr ([0-9]+) w sprawie (.*?)\$/i', $opis.'$', $matches) ) {
+        $nr = $matches[1];
+        $tytul = $matches[2];
+      }
+      
+      return array(
+        'nr' => (int) $nr,
+        'tytul' => $tytul,
+        'pola' => $pola,
+      );
     }
     
   }

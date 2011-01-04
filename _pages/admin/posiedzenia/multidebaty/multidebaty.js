@@ -1,9 +1,6 @@
 var Item = Class.create({
-  initialize: function(data, _typy_options){
-    if( data.typy_error ) alert('Błąd typów');
-    
+  initialize: function(data, _typy_options){    
     this.data = data;
-    this.data['subtyp'] = data.subtypy.length==1 ? Number(data.subtypy[0]) : false;
     this.id = this.data.id;
     
     this.btnSave = mBrowser.addItemButton('save', 'Zapisz', this.save.bind(this));
@@ -11,7 +8,6 @@ var Item = Class.create({
     
     var fields = $A();
     fields.push({name: 'tytul', label: 'Tytuł', type: 'text', options: {rows: 5}, value: this.data.tytul, suggestion: this.data['tytul_suggestion']});
-    fields.push({name: 'typ', label: 'Typ', type: 'radio', options: _typy_options, value: this.data.typ, suggestion: this.data['subtyp']});
     
     this.form = new mForm('item_form', fields, {activateFirstInvalid: true});
   },

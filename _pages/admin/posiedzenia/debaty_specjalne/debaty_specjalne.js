@@ -1,10 +1,10 @@
 var Item = Class.create({
-  initialize: function(data){
+  initialize: function(data, text){
     this.data = data;
     this.id = this.data.id;
     
+    $('side_div').update(text).height_control();
     this.btnSave = mBrowser.addItemButton('save', 'Zapisz', this.save.bind(this));
-    
     
     var fields = $A();
     fields.push({name: 'tytul', label: 'Tytuł', type: 'text', options: {rows: 5}, value: this.data.tytul});

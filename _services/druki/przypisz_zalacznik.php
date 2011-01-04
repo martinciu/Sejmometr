@@ -67,6 +67,7 @@
 	      ));
 	    }
 	    $this->DB->update_assoc('druki', array('przypisany'=>'1'), $id);
+	    $this->S('projekty/dodatkowe_dokumenty/policz', $projekt_id);
     }
   
   
@@ -86,6 +87,7 @@
 	      ));
 	    }
 	    $this->DB->update_assoc('druki', array('przypisany'=>'1'), $id);
+	    $this->S('liczniki/nastaw/projekty_dokumenty');
     }
   
   
@@ -111,10 +113,17 @@
 	    $this->DB->update_assoc('druki', array('przypisany'=>'1'), $id);
     }
     
+ 
+ 
   
   
   
+  // IGNOROWANE
   
+  } else if( $typ_id==33 ) {
+    $this->DB->update_assoc('druki', array('przypisany'=>'1'), $id);
+
+
   
   
   

@@ -8,6 +8,8 @@ var Dzien = Class.create({
     if( $('usun_btn') ) $('usun_btn').observe('click', this.usun.bind(this));
     if( $('analizuj_btn') ) $('analizuj_btn').observe('click', this.analizuj.bind(this));
     
+    this.btnSprawdz = mBrowser.addItemButton('sprawdz', 'Sprawdź', this.sprawdz.bind(this));
+
     for( var i=0; i<wypowiedzi.length; i++ ) {
       var wyp = wypowiedzi[i];
       
@@ -35,7 +37,13 @@ var Dzien = Class.create({
       alert(result);
       $('analizuj_btn').enable();
     });
-  }
+  },
+  sprawdz: function(){
+    this.btnSprawdz.disable();
+    $S('graber/posiedzenia/sprawdz', this.data.posiedzenie_id, function(){
+	    this.btnSprawdz.enable();
+    }.bind(this));
+  },
 });
 
 var MBrowser = Class.create(MBrowser, {

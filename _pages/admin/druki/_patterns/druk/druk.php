@@ -2,6 +2,9 @@
   $id = $_PARAMS['id'];
   $druk = $this->DB->selectAssoc("SELECT druki.id, druki.numer, druki.data, druki.typ_id, druki.autorA_id, druki.autorB_id, druki.autorC_id, druki.zalacznik, druki.tytul_oryginalny, dokumenty.akcept as dokument_akcept, dokumenty.scribd_doc_id, dokumenty.scribd_access_key, druki.dokument_id FROM druki LEFT JOIN dokumenty ON druki.dokument_id=dokumenty.id WHERE druki.id='$id'"); 
   
+  $dokument_id = $druk['dokument_id'];
+  $druki_oryginalne = $this->DB->selectValues("SELECT id FROM druki WHERE id!='$id' AND typ_id!=33 AND dokument_id='$dokument_id'");
+  
   $druk['autorzy'] = array();
   $_autorzy_names = array('A', 'B', 'C');
   foreach( $_autorzy_names as $_autor_name ) {
@@ -43,5 +46,6 @@
   
   
   $result['druk'] = $druk;
+  $result['druki_oryginalne'] = $druki_oryginalne;
   return $result;
 ?>

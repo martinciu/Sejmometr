@@ -34,7 +34,12 @@
   $dni_dodane = array_diff($sejm_ids, $db_ids);
   $dni_skasowane = array_diff($db_ids, $sejm_ids);
   
-
+  /*
+  var_export( $dni_utrzymane );
+  var_export( $dni_dodane );
+  var_export( $dni_skasowane );
+  die();
+  */
   
   
   
@@ -50,7 +55,11 @@
 		  
 		  $file = ROOT.'/graber_cache/dni/'.$dzien_id.'.json';
 		  
-		  if( $md5!=$dbmd5 ) {
+		  if( $md5==$dbmd5 ) {
+		    
+		    $this->DB->q("UPDATE posiedzenia_dni SET analiza_wystapienia='4' WHERE id='$dzien_id'");
+		    
+		  } else {
 		    @unlink($file);
 		    @file_put_contents($file, $model_json);
 		    $this->DB->q("UPDATE posiedzenia_dni SET `data_pobrania_modelu`=NOW(), `md5`='".$md5."', analiza_wystapienia='7' WHERE id='$dzien_id'");

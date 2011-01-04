@@ -6,5 +6,5 @@
   <div id="item_form"></div>
 </div>
 <script>
-  item = new Item({$DATA.item|@json_encode});
+  item = new Item({$DATA.item|@json_encode}, '{$DATA.text}');
 </script>

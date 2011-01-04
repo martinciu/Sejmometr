@@ -1,5 +1,5 @@
 <?
-  return $this->DB->selectValues("SELECT id FROM poslowie");
+  return $this->DB->selectValues("SELECT id FROM projekty WHERE _temp='0'");
 
   /*
   return $this->DB->selectValues("SELECT id FROM punkty_wypowiedzi WHERE przeliczono='0'");

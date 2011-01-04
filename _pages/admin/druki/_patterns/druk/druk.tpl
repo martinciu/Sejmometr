@@ -29,8 +29,17 @@
 
 <div id="druk" class="_height_controll">
   <div class="druk_title_bar">
-	  <p class="tytul"></p>
+	  <p class="tytul">{$DATA.druk.tytul_oryginalny}</p>
   </div>
+  
+  {if $DATA.druki_oryginalne|@count gt 0}
+    <div class="druki_oryginalne">
+      Ten druk posiada dokument, który jest wspólny dla druków: 
+      {section name="druki" loop=$DATA.druki_oryginalne}{assign var="d" value=$DATA.druki_oryginalne[druki]}
+        <a href="/admin/druki#id={$d}">druk</a> 
+      {/section}
+    </div>
+  {/if}
   
   <div id="druk_form"></div>
 </div>

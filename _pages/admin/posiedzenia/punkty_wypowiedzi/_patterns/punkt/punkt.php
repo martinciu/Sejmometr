@@ -21,7 +21,7 @@
     return $text;
   }
   
-  $result['punkt'] = $this->DB->selectAssoc("SELECT punkty_wypowiedzi.id, punkty_wypowiedzi.typ_id, punkty_wypowiedzi.sejm_id, punkty_wypowiedzi.ilosc_wypowiedzi, posiedzenia.id as 'posiedzenie_id', posiedzenia_dni.data, posiedzenia.numer as posiedznie_numer FROM punkty_wypowiedzi LEFT JOIN posiedzenia_dni ON punkty_wypowiedzi.dzien_id=posiedzenia_dni.id LEFT JOIN posiedzenia ON posiedzenia_dni.posiedzenie_id=posiedzenia.id WHERE punkty_wypowiedzi.id='$id'");
+  $result['punkt'] = $this->DB->selectAssoc("SELECT punkty_wypowiedzi.id, punkty_wypowiedzi.typ_id, punkty_wypowiedzi.opis, punkty_wypowiedzi.sejm_id, punkty_wypowiedzi.ilosc_wypowiedzi, posiedzenia.id as 'posiedzenie_id', posiedzenia_dni.data, posiedzenia.numer as posiedznie_numer FROM punkty_wypowiedzi LEFT JOIN posiedzenia_dni ON punkty_wypowiedzi.dzien_id=posiedzenia_dni.id LEFT JOIN posiedzenia ON posiedzenia_dni.posiedzenie_id=posiedzenia.id WHERE punkty_wypowiedzi.id='$id'");
     
   $druki_data = $this->DB->selectAssocs("SELECT druki.id, druki.numer, druki.data, druki.dokument_id, druki.tytul_oryginalny, druki_autorzy.autor, druki_typy.label as 'typ' FROM punkty_wypowiedzi_druki LEFT JOIN druki ON punkty_wypowiedzi_druki.druk_id=druki.id LEFT JOIN druki_autorzy ON druki.autorA_id=druki_autorzy.id LEFT JOIN druki_typy ON druki_typy.id=druki.typ_id WHERE punkty_wypowiedzi_druki.punkt_id='$id'");
   

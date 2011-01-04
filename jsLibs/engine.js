@@ -51,6 +51,32 @@ function isObject(obj){
   return (String(typeof(obj)).toUpperCase()=='OBJECT');
 }
 
+function sm_dopelniacz(){
+  var args = $A(arguments);
+  var count = Number( args[0] );
+  var formA = String( args[1] );
+  var formB = String( args[2] );
+  var formC = String( args[3] );
+  var formD = String( args[4] );
+
+
+  var r;
+  if( count==0) {return formD;}
+  else if( count==1 ) {
+    r = formA;
+  } else if( count<5 ) {
+    r = formB;
+  } else if( count<22) {
+    r = formC;
+  } else {
+    var d = count % 10;
+    if( d<2 ) { r = formC; }
+    else if( d<5 ) { r = formB; }
+    else { r = formC; }
+  }
+  return count+'&nbsp;'+r;
+}
+
 var Height_Controller = Class.create({
   initialize: function(){
     this.resize();

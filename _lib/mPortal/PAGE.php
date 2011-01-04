@@ -114,7 +114,7 @@ class PAGE extends PATTERN {
 	    
 	    $selected = false;
 	    if( is_array($menu_item['SUBMENU']) ) {		      
-	      foreach( $menu_item['SUBMENU'] as &$item ) if( ($item['id']==$_GET['_PAGE']) || ($_GET['_TYPE']!='' && $item['id']==$_GET['_TYPE']) ) {
+	      foreach( $menu_item['SUBMENU'] as &$item ) if( ($item['id']==$_GET['_PAGE']) || ($_GET['_TYPE']!='' && $item['id']==$_GET['_TYPE']) || $item['id']==$_GET['_SUB_MENU_SELECTED'] ) {
 	        $item['selected'] = true;
 	        $selected = true;
 	        break;

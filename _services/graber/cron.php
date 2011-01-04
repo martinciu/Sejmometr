@@ -15,18 +15,23 @@
     }      
   }
     
-  for( $_i=0; $_i<4; $_i++ ) {
+  for( $_i=0; $_i<5; $_i++ ) {
     $action = $this->S('graber/actions_stack/shift');
     if( $action!==false ) {      
       $this->DB->q("UPDATE `graber_schedule` SET `lastRun`=NOW() WHERE action='$action'");
       switch( $action ) {
         case 'druki/pobierz_nowe': { $this->service('graber/druki/pobierz_nowe'); break; }
+        case 'druki/sprawdz_ostatnie': { $this->service('graber/druki/sprawdz_ostatnie'); break; }
+        case 'druki/sprawdz_oczekujace': { $this->service('graber/druki/sprawdz_oczekujace'); break; }
         case 'posiedzenia/pobierz_nowe': { $this->service('graber/posiedzenia/pobierz_nowe'); break; }
         case 'posiedzenia/sprawdz_ostatnie': { $this->service('graber/posiedzenia/sprawdz_ostatnie'); break; }
         case 'projekty/dodaj_nowe': { $this->service('graber/projekty/dodaj_nowe'); break; }
         case 'projekty/sprawdz_ostatnie': { $this->service('graber/projekty/sprawdz_ostatnie'); break; }
         case 'glosowania_pp/pobierz_nowe_dni': { $this->service('graber/glosowania_pp/pobierz_nowe_dni'); break; }
         case 'poslowie/sprawdz': { $this->service('graber/poslowie/sprawdz'); break; }
+        case 'komisje/dodaj_nowe': { $this->service('graber/komisje/dodaj_nowe'); break; }
+        case 'interpelacje/dodaj_nowe': { $this->service('graber/inderpelacje/dodaj_nowe'); break; }
+        
       }
     }
   }

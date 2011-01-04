@@ -68,7 +68,7 @@
   $M->S('graber/posiedzenia/glosowania/pobierz_kluby');
   
   echo "głosowania - rozpoznowanie posłów\n";
-  $M->S('graber/glosowania/rozpoznawanie/wszystkie');
+  // $M->S('graber/glosowania/rozpoznawanie/wszystkie');
   
   
   
