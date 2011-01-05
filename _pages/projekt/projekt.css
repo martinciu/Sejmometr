@@ -4,8 +4,10 @@
 .p .opis {margin: 10px 0 20px;}
 .kalendarzyk {float: left; margin-right: 8px;}
 
-.e {padding: 1px 7px 10px; min-height: 37px; display: block; outline: none;}
+.e {padding: 5px 7px 7px; min-height: 37px; display: block; outline: none;}
 .e.nowa_data {border-top:  1px solid #DDD; padding: 10px 7px 10px;}
+.e .kalendarzyk {visibility: hidden;}
+.e.nowa_data .kalendarzyk {visibility: visible;}
 .e.nowa_data:first-child {border-top: none;}
 .e .c {margin-left: 91px;}
 .e .tytul {font-size: 14px; margin-top: -2px; margin-bottom: 2px;}
@@ -17,7 +19,7 @@
 
 .e.wypowiedzi .cc {overflow: auto; margin: 5px 0 0 0;}
 
-.ikona_legislacyjna {width: 37px; height: 37px; background: url(/g/ikony_sprite.gif) no-repeat; float: left; margin-right: 8px; margin-left: 45px;}
+.ikona_legislacyjna {width: 37px; height: 37px; background: url(/g/ikony_sprite.gif) no-repeat; float: left; margin-right: 8px;}
 .ikona_legislacyjna.wplynal {background-position: 0 0;}
 .ikona_legislacyjna.skierowanie {background-position: -37px 0;}
 .ikona_legislacyjna.druk {background-position: -296px 0;}
@@ -36,8 +38,6 @@
 .e:hover .ikona_legislacyjna.wypowiedzi {background-position: -74px -37px;}
 
 
-.e.nowa_data .ikona_legislacyjna {margin-left: 0;}
-
 .druk_glowny {margin-bottom: 5px;}
 
 .opinie {padding: 0 0 7px 7px; }
@@ -53,4 +53,4 @@
 .opinie_box a.dokument .overlay_bg {background-color: #F2F2F2;}
 .opinie_box a.dokument img.d {-moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none;}
 
-.debata_baner {float: left; margin-right: 5px; border: 1px solid #BBB; -moz-border-radius: 2px; -webkit-border-radius: 2px;}
+.debata_baner {float: left; margin-right: 10px; border: 1px solid #BBB; -moz-border-radius: 2px; -webkit-border-radius: 2px;}

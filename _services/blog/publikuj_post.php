@@ -16,11 +16,12 @@
 	    'opis' => $opis,
 	    'tresc' => $tresc,
 	    'autor' => $this->USER['login'],
+	    'robocza' => '0',
 	  ));
   
   } else {
     
-    $this->DB->q("UPDATE blog SET `tytul`='$tytul', `url_title`='$url_title', `opis`='$opis', `tresc`='$tresc' WHERE id=$id");
+    $this->DB->q("UPDATE blog SET `tytul`='$tytul', `url_title`='$url_title', `opis`='$opis', `tresc`='$tresc', `robocza`='0' WHERE id=$id");
   
   }
   

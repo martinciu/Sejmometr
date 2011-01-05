@@ -14,6 +14,7 @@ RewriteRule ^inne$ servers/page.php?_PAGE=projekty&_TYPE=inne&%{QUERY_STRING} [L
 RewriteRule ^rss/blog$ pattern/rss-blog [L]
 
 RewriteRule ^posiedzenia/([a-zA-Z]{5})$ servers/page.php?_PAGE=posiedzenia&_ID=$1&%{QUERY_STRING} [L]
+RewriteRule ^posiedzenia2/([a-zA-Z]{5})$ servers/page.php?_PAGE=posiedzenia2&_ID=$1&%{QUERY_STRING} [L]
 
 
 RewriteRule ^projekt/([a-zA-Z]{5})$ servers/page.php?_PAGE=projekt&_ID=$1&_TAB=proces&%{QUERY_STRING} [L]

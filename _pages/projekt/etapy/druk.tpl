@@ -1,8 +1,11 @@
 <p class="tytul"><a href="#" onclick="return false;">{$etap.label}</a></p>
 {if $etap.dokument_id}
 <div class="cc">
-  {dokument size='d' _params=$etap}
+  {assign var="_dsize" value="d"}
+  {if $dsize}{assign var="_dsize" value=$dsize}{/if}
+  {dokument size=$_dsize _params=$etap}
   <div class="ccc">
+	  <p>{$etap.title}</p>
     {if !$etap.stanowisko_senatu}
     <p>
 	    Autor: {section name="autorzy" loop=$etap.autorzy}{assign var="autor" value=$etap.autorzy[autorzy]}
@@ -10,7 +13,6 @@
 		{/section}
 	  </p>
 	  {/if}
-	  <p>{$etap.title}</p>
   </div>
 </div>
 {/if}

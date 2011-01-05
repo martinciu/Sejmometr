@@ -10,11 +10,13 @@ function init(){
     var e = a.up('.e');
     if(e){
       var a = e.down('.tytul a');
-      if(a) a.observe('click', pokaz_dokument.bind(null, doc_id, doc_key));
+      if(a) {
+        a.observe('click', pokaz_dokument.bind(null, doc_id, doc_key, title));
+      }
       
       if( !e.hasClassName('podpisanie') ) {
 	      var il = e.down('.ikona_legislacyjna');
-	      if( il ) il.wrap($ANCHOR()).observe('click', pokaz_dokument.bind(null, doc_id, doc_key));
+	      if( il ) il.wrap($ANCHOR()).observe('click', pokaz_dokument.bind(null, doc_id, doc_key, title));
       }
     }
     

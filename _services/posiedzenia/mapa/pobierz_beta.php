@@ -5,7 +5,7 @@
   } else return false;
   
   $data = $this->DB->selectAssocs("SELECT punkty_wypowiedzi.id as 'debata_id', projekty_etapy.projekt_id FROM projekty_etapy JOIN punkty_wypowiedzi ON projekty_etapy.etap_id=punkty_wypowiedzi.id JOIN posiedzenia_dni ON punkty_wypowiedzi.dzien_id=posiedzenia_dni.id WHERE projekty_etapy.typ_id=2 AND posiedzenia_dni.posiedzenie_id='$id' ORDER BY posiedzenia_dni.data DESC, punkty_wypowiedzi.ord DESC");
-  
+  $dni_daty = $this->DB->selectValues("SELECT data FROM posiedzenia_dni WHERE posiedzenie_id='$id' ORDER BY data ASC");
   
 
   
@@ -81,9 +81,36 @@
   }
   
   
+  
+  // dołączamy wydarzenia z danego posiedzenia
+  foreach( $mapa as &$item ) {
+  
+    $projekty = $item['projekty'];
+    $memory = array();
+    $proces = array();
+    $_proces = array();
+    
+    foreach( $projekty as $projekt ) $_proces = array_merge( $_proces, $this->S('projekt/proces', $projekt) );
+
+    foreach( $_proces as $etap ) {
+      $ui = $etap['typ'].$etap['etap_id'];
+      $data = $etap['data'];      
+      if( $etap['typ_id']!='1' && $etap['typ_id']!='4' && $data!='0000-00-00' && in_array($data, $dni_daty) && !in_array($ui, $memory) ) {
+        $proces[] = $etap;
+        $memory[] = $ui;
+      }
+    }    
+    
+    if( is_array($proces[0]) ) $proces[0]['nowa_data'] = true;
+    $item['proces'] = $proces;
+  
+  }
+  
+ 
+  
+  
   return array(
     'mapa' => $mapa,
     'projekty' => $_projekty,
-    'debaty' => $_debaty,
   );
 ?>

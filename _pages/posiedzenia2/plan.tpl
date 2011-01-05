@@ -44,27 +44,8 @@
 			  {/section}
 			  </div>
 			  
-			  <div class="debaty">
-			  {assign var="debaty" value=$item.debaty}
-			  {section name="debaty" loop=$debaty}
-			    {assign var="etap" value=$debaty[debaty]}
-			    {assign var="etap" value=$plan.debaty[$etap]}
-			    		    
-			    <div class="e {$etap.typ}{if $etap.nowa_data} nowa_data{/if}">
-				    {$etap.data|kalendarzyk}
-				    <a href="/debata/{$etap.id}"><img src="/g/p.gif" class="ikona_legislacyjna wypowiedzi" /></a>
-				    <div class="c">
-	
-				      <p class="tytul"><a href="/debata/{$etap.id}">{$etap.tytul}</a></p>
-							<div class="cc">
-							  <a href="/debata/{$etap.id}"><img class="debata_baner" src="/resources/debaty/banery/{$etap.id}.jpg" /></a>
-							  <p class="opis">{$etap.opis}</p>
-							</div>
-	
-				    </div>
-				  </div>
-			  {/section}
-			  </div>
+
+			  {include file="/_pages/projekt/tabs/proces.tpl" proces=$item.proces dsize="e"}
 		
 		  </div>
 		
@@ -80,125 +61,33 @@
 
 <div id="toolbox">
   
-  {if $plan.specjalne}
   <div class="tbox">
 	  <div class="headerbox">
-		  <p class="label">Debaty specjalne:</p>	
+		  <p class="label">Pozostałe debaty:</p>	
 		</div>
-		
-		<div class="debaty specjalne">
-		  {assign var="debaty" value=$plan.specjalne}
-		  {section name="debaty" loop=$debaty}
-		    {assign var="etap" value=$debaty[debaty]}
-		    		    
-		    <div class="e {$etap.typ}{if $etap.nowa_data} nowa_data{/if}">
-			    {$etap.data|kalendarzyk}
-			    <a href="/debata/{$etap.id}"><img src="/g/p.gif" class="ikona_legislacyjna wypowiedzi" /></a>
-			    <div class="c">
-            
-			      <p class="tytul"><a href="/debata/{$etap.id}">{$etap.tytul}</a></p>
-						<div class="cc">
-						  <a href="/debata/{$etap.id}"><img class="debata_baner" src="/resources/debaty/banery/{$etap.id}.jpg" /></a>
-						</div>
-
-			    </div>
-					<p class="opis">{$etap.opis}</p>
-
-			  </div>
-		  {/section}
-		</div>
-		
-  </div>
-  {/if}
-  
-  	
-	{if $plan.informacje_biezace}
-	<div class="tbox">
-	  <div class="headerbox">
-		  <p class="label">Informacja bieżąca:</p>	
-		</div>
-		<div class="debaty">
-		  {assign var="debaty" value=$plan.informacje_biezace}
-		  {section name="debaty" loop=$debaty}
-		    {assign var="etap" value=$debaty[debaty]}
-		    		    
-		    <div class="e {$etap.typ}{if $etap.nowa_data} nowa_data{/if}">
-			    {$etap.data|kalendarzyk}
-			    <a href="/debata/{$etap.id}"><img src="/g/p.gif" class="ikona_legislacyjna wypowiedzi" /></a>
-			    <div class="c">
-            
-            <p class="tytul"><a href="/debata/{$etap.id}">{$etap.tytul}</a></p>
-						<div class="cc">
-						  <p class="opis">{$etap.ilosc_wypowiedzi|dopelniacz:'wypowiedź':'wypowiedzi':'wypowiedzi'}</p>
-						</div>
-
-			    </div>
-			  </div>
-		  {/section}
-		</div>
-  </div>
-  {/if}
-  
-  
-  
-  {if $plan.pytania_biezace && 0}
-  <div class="tbox">
-	  <div class="headerbox">
-		  <p class="label">Sprawy bieżące:</p>	
-		</div>
-		
-		<div class="debaty">
-		  {assign var="debaty" value=$plan.pytania_biezace}
-		  {section name="debaty" loop=$debaty}
-		    {assign var="etap" value=$debaty[debaty]}
-		    		    
-		    <div class="e {$etap.typ}{if $etap.nowa_data} nowa_data{/if}">
-			    {$etap.data|kalendarzyk}
-			    <a href="/debata/{$etap.id}"><img src="/g/p.gif" class="ikona_legislacyjna wypowiedzi" /></a>
-			    <div class="c">
-            
-            <p class="tytul"><a href="/debata/{$etap.id}">Pytania</a></p>
-						<div class="cc">
-						  <p class="opis">{$etap.ilosc_wypowiedzi|dopelniacz:'wypowiedź':'wypowiedzi':'wypowiedzi'}</p>
-						</div>
-
-			    </div>
-			  </div>
-		  {/section}
-		</div>
+    {include file="pozostale_debaty.tpl"}
 	</div>
-	{/if}
-  
-  
-  
-  {if $plan.oswiadczenia}
+	 
+	 
   <div class="tbox">
 	  <div class="headerbox">
 		  <p class="label">Oświadczenia:</p>	
 		</div>
 		
-		<div class="debaty oswiadczenia">
-		  
-		  {assign var="debaty" value=$plan.oswiadczenia}
-		  {section name="debaty" loop=$debaty}
-		    {assign var="etap" value=$debaty[debaty]}
-		    		    
-		    <div class="e {$etap.typ}{if $etap.nowa_data} nowa_data{/if}">
-			    {$etap.data|kalendarzyk}
-			    <div class="c">
-
-						<div class="cc">
-						  <a href="/debata/{$etap.id}"><img class="debata_baner" src="/resources/debaty/banery/{$etap.id}.jpg" /></a>
-						  <p class="opis"><a href="/debata/{$etap.id}">{$etap.ilosc_wypowiedzi|dopelniacz:'oświadczenie':'oświadczenia':'oświadczeń'}</a></p>
-						</div>
-
-			    </div>
-			  </div>
-		  {/section}
-		</div>
+		{assign var="debaty" value=$plan.oswiadczenia}
+		{section name="debaty" loop=$debaty}
+		  {assign var="etap" value=$debaty[debaty]}
+		  		    
+		  <div class="idebata osw">
+		    {$etap.data|kalendarzyk}
+		    <div class="c">
+				  <a href="/debata/{$etap.id}"><img class="debata_baner" src="/resources/debaty/banery/{$etap.id}.jpg" /></a>
+		    </div>
+				<p class="tytul_debaty"><a href="/debata/{$etap.id}">{$etap.ilosc_wypowiedzi|dopelniacz:'oświadczenie':'oświadczenia':'oświadczeń'}</a></p>
 		
-	</div>
-	{/if}
-	
-	
+		  </div>
+		{/section}
+		
+  </div>
+
 </div>

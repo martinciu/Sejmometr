@@ -7,6 +7,7 @@
 .dokument.e img.d {}
 
 .dokument .overlay_bg {background-color: #EEE; opacity: .7; z-index: 1; filter:alpha(opacity=70);}
+.dokument.e .overlay_bg {visibility: hidden;}
 .dokument .overlay {text-align: left; z-index: 2; position: relative;}
 .dokument .overlay .str {text-align: right; color: #58595B;}
 .dokument .overlay img.lupa {background: url(/g/sprite01.png) no-repeat;}
